@@ -1,52 +1,54 @@
-import { View, Text, TextInput, Button } from 'react-native';
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { restoreUser, signup } from './../store/actions/UserActions'
-import * as SecureStore from 'expo-secure-store';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { Button, TextInput } from 'react-native-web';
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { signup } from '../store/actions/UserActions';
 
-const SignupScreen = ({ navigation }) => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const dispatch = useDispatch()
+import { useNavigation } from '@react-navigation/native';
 
-    // const token = useSelector(state => state.user.idToken)
-    // const emailTest = useSelector(state => state.user.email)
-    // console.log(token);
-    // console.log(emailTest);
+const SignupScreen = ({navigation}) => {
+    // const navigation = useNavigation();
 
-    async function load() {
-        let emailFromSecureStore = await SecureStore.getItemAsync('email');
-        let tokenFromSecureStore = await SecureStore.getItemAsync('token');
-        if (emailFromSecureStore && tokenFromSecureStore) {
-            console.log("success", emailFromSecureStore);
+    const [email, onChangeEmail] = useState('');
+    const [password, onChangePassword] = useState('');
 
-            dispatch(restoreUser(emailFromSecureStore, tokenFromSecureStore));
+    const dispatch = useDispatch();
 
-        } else {
-            console.log("failure");
-        }
-    }
-
-    useEffect(() => {
-        load(); // uncomment to read from secure store
-    }, [])
-
+    const users = useSelector(state => state.user.idToken);
 
     return (
         <View>
-            <Text>Signup</Text>
-            <TextInput placeholder='Email'
-                onChangeText={setEmail}
+            
+            <TextInput 
+                placeholder="email" 
+                style={styles.input} 
+                onChangeText={onChangeEmail}
                 value={email} />
-
-            <TextInput placeholder='Password'
-                onChangeText={setPassword}
+            <TextInput 
+                placeholder="password" 
+                style={styles.input}
+                onChangeText={onChangePassword}
                 value={password} />
 
-            <Button title="Signup" onPress={() => dispatch(signup(email, password))} />
-            <Button title="Login Instead" onPress={() => navigation.navigate("Login")} />
+            <Button title='Sign up' 
+                    onPress={() => dispatch(signup(email, password))}  />
+            <Button title="Already have an account? Log in" 
+                    onPress={() => navigation.navigate('Login')} />
         </View>
     );
 }
+
+
+const styles = StyleSheet.create({
+    input: {
+        height: 40,
+        margin: 12,
+        borderWidth: 1,
+        padding: 10,
+    },
+    button: {
+        
+    },
+});
 
 export default SignupScreen;

@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Button, FlatList, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
+import { Button, FlatList, StyleSheet, Text, TouchableOpacity, View, Image, TouchableHighlight } from 'react-native';
+import { TextInput } from 'react-native';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../App';
-import { deleteChatroom, fetchChatrooms } from '../store/actions/ChatActions';
+import { addChatroom, deleteChatroom, fetchChatrooms } from '../store/actions/ChatActions';
 
-const ChatScreen = ({ navigation }: { navigation: any }) => {
+const AddChatroomScreen = ({ navigation }: { navigation: any }) => {
     const [text, onChangeText] = useState('');
 
     const dispatch = useDispatch();
@@ -15,34 +16,42 @@ const ChatScreen = ({ navigation }: { navigation: any }) => {
         dispatch(fetchChatrooms())
     }, []);
 
-    console.log("chatrooms", chatrooms);
-
     const renderItem = ({ item }: { item: any }) => (
-        <TouchableOpacity 
-            style={styles.one_chat} 
-            onPress={() => navigation.navigate('OneChatroom', {
-                chatId: item.id,
-                chatName: item.title,
-            })}>
-
+        <TouchableOpacity style={styles.one_chat}>
             <Image  
                 style={styles.chat_image}
                 source={require('./../assets/chat-img/chat-img-bg.png')}
             />
             <View style={styles.chat_content}>
                 <Text style={styles.chat_title}>{item.title}</Text>
-                <Text style={styles.chat_text}>Thank you for your mess...</Text>
             </View>
             <View>
-                <Text>9:43</Text>
+                <TouchableHighlight onPress={() => dispatch(deleteChatroom(item.id))}>
+                    <View>
+                        <Image  
+                        style={styles.close_image}
+                        source={require('./../assets/icons8-close_window/close.png')} />
+                    </View>
+                </TouchableHighlight>
             </View>
         </TouchableOpacity>
     );
 
-
     return (
-
         <View>
+            
+            <View style={styles.addchat_wrapper}>
+                <View style={styles.addchat}>
+                    <TextInput placeholder="Add chatroom name"
+                        style={styles.input}
+                        onChangeText={onChangeText}
+                        value={text} />
+
+                    <Button color="#5050A5" title='Add' onPress={() => dispatch(addChatroom(text))} />
+                </View>
+                <Text style={styles.cancel_btn} onPress={() => navigation.navigate('Chat')}>Cancel</Text>
+            </View>
+
             { chatrooms.length == 0 ? 
                 <View style={styles.nochats_wrapper}>
                     <Image  
@@ -56,16 +65,39 @@ const ChatScreen = ({ navigation }: { navigation: any }) => {
                     <FlatList data={chatrooms} renderItem={renderItem} />
                 </View>
             }
+            
         </View>
     );
 }
 
 const styles = StyleSheet.create({
+    addchat_wrapper: {
+        backgroundColor: 'white',
+        flexDirection: 'row',
+        paddingTop: 30,
+        alignItems: 'center',
+        shadowColor: '#AAAAAA29',
+        shadowOffset: {width: 0, height: 3},
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+    },
+    addchat: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
     input: {
-        height: 40,
-        margin: 12,
-        borderWidth: 1,
+        height: 36,
+        width: 280,
+        marginLeft: 12,
+        marginVertical: 12,
         padding: 10,
+        fontSize: 12,
+        backgroundColor: '#EEEEEE',
+    },
+    cancel_btn: {
+        marginRight: 12,
+        color: '#333333',
     },
     nochats_wrapper: {
         flex: 1,
@@ -119,8 +151,10 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
     },
-    chat_text: {
+    close_image: {
+        height: 20,
+        width: 20,
     },
 });
 
-export default ChatScreen;
+export default AddChatroomScreen;

@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, FlatList } from 'react-native';
-import { Button, TextInput } from 'react-native-web';
+import { Button, TextInput } from 'react-native';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { login, restoreUser } from '../store/actions/UserActions';
@@ -11,20 +11,20 @@ const LoginScreen = () => {
 
     const dispatch = useDispatch();
 
-    // async function load() {
-    //     let emailFromSecureStore = await SecureStore.getItemAsync('email');
-    //     let tokenFromSecureStore = await SecureStore.getItemAsync('token');
-    //     if (emailFromSecureStore && tokenFromSecureStore) {
-    //         console.log("success", emailFromSecureStore);
+    async function load() {
+        let emailFromSecureStore = await SecureStore.getItemAsync('email');
+        let tokenFromSecureStore = await SecureStore.getItemAsync('token');
+        if (emailFromSecureStore && tokenFromSecureStore) {
+            console.log("success", emailFromSecureStore);
 
-    //         dispatch(restoreUser(emailFromSecureStore, tokenFromSecureStore));
+            dispatch(restoreUser(emailFromSecureStore, tokenFromSecureStore));
 
-    //     } else {
-    //         console.log("failure");
-    //     }
-    // }
+        } else {
+            console.log("failure");
+        }
+    }
 
-    // const users = useSelector(state => state.user.users);
+    const users = useSelector(state => state.user.users);
     const loggedInUser = useSelector( (state: any) => state.user.loggedInUser )
 
     const renderItem = ({ item }) => (

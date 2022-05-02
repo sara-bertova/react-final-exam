@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, FlatList } from 'react-native';
-import { Button, TextInput } from 'react-native-web';
+import { Button, TextInput } from 'react-native';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { signup } from '../store/actions/UserActions';

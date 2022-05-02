@@ -13,5 +13,5 @@ export class Chatroom {
 }
 
 export class Chatmessage {
-    constructor(public text: string, public timestamp: Date) { }
+    constructor(public text: string, public timestamp: Date) {}
 }

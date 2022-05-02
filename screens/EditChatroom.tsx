@@ -100,7 +100,6 @@ const styles = StyleSheet.create({
         color: '#333333',
     },
     nochats_wrapper: {
-        flex: 1,
         marginTop: '50%',
         alignItems: 'center',
         justifyContent: 'center',

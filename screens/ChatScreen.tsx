@@ -3,7 +3,7 @@ import { Button, FlatList, StyleSheet, Text, TouchableOpacity, View, Image } fro
 
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../App';
-import { deleteChatroom, fetchChatrooms } from '../store/actions/ChatActions';
+import { fetchChatrooms } from '../store/actions/ChatActions';
 
 const ChatScreen = ({ navigation }: { navigation: any }) => {
     const [text, onChangeText] = useState('');
@@ -68,7 +68,6 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     nochats_wrapper: {
-        flex: 1,
         marginTop: '50%',
         alignItems: 'center',
         justifyContent: 'center',

@@ -1,6 +1,6 @@
 import { View, Text, Button } from 'react-native';
 import { useSelector } from 'react-redux';
-import Input from './../components/Input'
+import Input from './../components/Input';
 import { useState } from 'react';
 
 const EditProfileScreen = ({ navigation }) => {

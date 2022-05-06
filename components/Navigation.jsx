@@ -62,7 +62,7 @@ function ChatStack() {
         <Stack.Navigator>
             {/* screenOptions={{ headerShown: false }} */}
             <Stack.Screen 
-                name="Chat" 
+                name="ChatScreen" 
                 component={ChatScreen} 
                 options={{
                     title: 'CHAT',

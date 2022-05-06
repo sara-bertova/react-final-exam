@@ -1,19 +1,39 @@
-import { useState } from 'react';
-import { View, Button, TextInput, StyleSheet, Image } from 'react-native';
-import { useDispatch } from 'react-redux';
-import { sendMessage } from '../store/actions/ChatActions';
+import { useEffect, useState } from 'react';
+import { View, Button, TextInput, StyleSheet, Image, FlatList, Text } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchChatrooms, sendMessage } from '../store/actions/ChatActions';
 
 const OneChat = ({ route, navigation }) => {
 
     const { chatId, chatName } = route.params;
     const [text, onChangeText] = useState('')
-
-    
+    const [msgArr, setMsgArr] = useState([])
 
     const dispatch = useDispatch();
+    const chatroom = useSelector(state => state.chat.chatrooms.filter(chatroom => chatroom.id == chatId));
+    const messages = chatroom[0].chatmessages
+
+    useEffect(() => {
+        dispatch(fetchChatrooms())
+    }, []);
+
+    // console.log('*************** ', messages)
 
     return (
         <View>
+            {/* <View>
+                <FlatList data={messages} renderItem={renderItem} />
+            </View> */}
+
+            
+            {Object.keys(messages).map((keyName, i) => (
+                // <Text>{messages[keyName].text} {messages[keyName].timestamp}</Text>
+                <View>
+                    <Text>{messages[keyName].text}</Text>
+                    <Text>{messages[keyName].timestamp}</Text>
+                </View>
+            ))}
+
             <View style={styles.chatbox_wrapper}>
                 <View style={styles.chatbox}>
 

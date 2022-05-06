@@ -28,7 +28,7 @@ export const fetchChatrooms = () => {
 
             let chatrooms = [];
             for (const key in data) {
-                let chatroom = new Chatroom(data[key].chatroomName, [], '', key)
+                let chatroom = new Chatroom(data[key].chatroomName, data[key].chatmessages, '', key)
                 chatrooms.push(chatroom)
             }
 
@@ -97,7 +97,8 @@ export const sendMessage = (chatId: string, message: string) => {
     return async (dispatch: any, getState: any) => {
         const oneMessage = new Chatmessage(message, new Date()); //example of using typescript
         const idToken = getState().user.idToken
-
+        // console.log('*****: ', oneMessage)
+        
         const response = await fetch(
             'https://react-exam-68375-default-rtdb.europe-west1.firebasedatabase.app/chatrooms/' + chatId + '/chatmessages.json/?auth='
             + idToken, {
@@ -107,7 +108,8 @@ export const sendMessage = (chatId: string, message: string) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ 
-                oneMessage
+                text: oneMessage.text,
+                timestamp: oneMessage.timestamp
             })
         });
 
@@ -116,8 +118,8 @@ export const sendMessage = (chatId: string, message: string) => {
         if (!response.ok) {
             //There was a problem..
         } else {
-            console.log(data)
-            dispatch({ type: SEND_MESSAGE, payload: { chatId, oneMessage } })
+            // console.log(data)
+            dispatch(fetchChatrooms())
         }
     };
     

@@ -49,7 +49,7 @@ const AddChatroomScreen = ({ navigation }: { navigation: any }) => {
 
                     <Button color="#5050A5" title='Add' onPress={() => dispatch(addChatroom(text))} />
                 </View>
-                <Text style={styles.cancel_btn} onPress={() => navigation.navigate('Chat')}>Cancel</Text>
+                <Text style={styles.cancel_btn} onPress={() => navigation.navigate('ChatScreen')}>Cancel</Text>
             </View>
 
             { chatrooms.length == 0 ? 

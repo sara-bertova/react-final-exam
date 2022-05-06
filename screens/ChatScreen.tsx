@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Button, FlatList, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
+import { FlatList, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../App';
@@ -7,7 +7,7 @@ import { fetchChatrooms } from '../store/actions/ChatActions';
 
 const ChatScreen = ({ navigation }: { navigation: any }) => {
     const [text, onChangeText] = useState('');
-
+   
     const dispatch = useDispatch();
     const chatrooms = useSelector((state: RootState) => state.chat.chatrooms);
 
@@ -15,7 +15,7 @@ const ChatScreen = ({ navigation }: { navigation: any }) => {
         dispatch(fetchChatrooms())
     }, []);
 
-    console.log("chatrooms", chatrooms);
+    // console.log("chatrooms", chatrooms);
 
     const renderItem = ({ item }: { item: any }) => (
         <TouchableOpacity 

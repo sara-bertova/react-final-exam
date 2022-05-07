@@ -33,7 +33,13 @@ const NavigationComponent = ({ navigation }) => {
             {token !== undefined ? (
                 // Show the app with all navigation
                 <Tab.Navigator>
-                    <Tab.Screen name="Home" component={HomeScreen} />
+                    <Tab.Screen name="Home" component={HomeScreen} 
+                        options={{
+                            title: 'FEED',
+                            headerTitleAlign: 'center',
+                            headerTintColor: '#5050A5',
+                        }} 
+                    />
                     <Tab.Screen name="Discover" component={DiscoverScreen} />
                     <Tab.Screen options={{headerShown: false}} name="Chat" component={ChatStack} />
                     <Tab.Screen name="Menu" component={MenuStack} />
@@ -108,7 +114,6 @@ function ChatStack() {
 
     return (
         <Stack.Navigator>
-            {/* screenOptions={{ headerShown: false }} */}
             <Stack.Screen 
                 name="ChatScreen" 
                 component={ChatScreen} 

@@ -4,12 +4,14 @@ import ReduxThunk from 'redux-thunk';
 import NavigationComponent from './components/Navigation';
 import chatReducer from './store/reducers/ChatReducer';
 import userReducer from "./store/reducers/UserReducer";
+import eventReducer from './store/reducers/EventReducer';
 
 const rootReducer = combineReducers({
   chat: chatReducer,
   user: userReducer,
-  // events: eventReducer
+  events: eventReducer,
 })
+
 export type RootState = ReturnType<typeof rootReducer>
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));

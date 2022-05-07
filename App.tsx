@@ -9,7 +9,7 @@ import eventReducer from './store/reducers/EventReducer';
 const rootReducer = combineReducers({
   chat: chatReducer,
   user: userReducer,
-  events: eventReducer,
+  event: eventReducer,
 })
 
 export type RootState = ReturnType<typeof rootReducer>

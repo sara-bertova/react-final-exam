@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, FlatList, Image} from 'react-native';
+import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity} from 'react-native';
 import CheckBox from "expo-checkbox";
 import { Button, TextInput } from 'react-native';
 import { useState } from 'react';
@@ -41,7 +41,8 @@ const SignupScreen = ({navigation}) => {
                     placeholder="password" 
                     style={styles.input}
                     onChangeText={onChangePassword}
-                    value={password} />
+                    value={password}
+                    secureTextEntry={true} />
             </View>
             <View style={styles.inputContainer}>
                 <Text style={styles.label2}>Repeat Password</Text>
@@ -49,7 +50,8 @@ const SignupScreen = ({navigation}) => {
                     placeholder="repeat password" 
                     style={styles.input}
                     onChangeText={onChangeRepeatPassword}
-                    value={repeatPassword} />
+                    value={repeatPassword}
+                    secureTextEntry={true} />
             </View>
             <View style={styles.checkboxContainer}>
                 <CheckBox
@@ -60,8 +62,13 @@ const SignupScreen = ({navigation}) => {
                 />
                 <Text style={styles.label}>I agree to the <Text style={styles.link2}>terms and conditions</Text></Text>
             </View>
-            <Button title='Get access' disabled={!agree}
-                    onPress={() => dispatch(signup(email, password, repeatPassword))}  color="#5050A5"/>
+            {/* <Button title='Get access' disabled={!agree}
+                    onPress={() => dispatch(signup(email, password, repeatPassword))}  color="#5050A5"/> */}
+            <TouchableOpacity style={styles.button} disabled={!agree} onPress={() => dispatch(signup(email, password, repeatPassword))}>
+                <Text style={styles.buttonText}>Get access</Text>
+            </TouchableOpacity>
+            <Button title='Verify email'
+                    onPress={() => navigation.navigate('VerifyEmail')}  color="#5050A5"/>
             <Text style={styles.text}>Already have a user? <Text style={styles.link} onPress={() => navigation.navigate('Login')}>Log in</Text></Text>
             {/* <Button title="Already have an account? Log in" 
                     onPress={() => navigation.navigate('Login')} color="#5050A5"/> */}
@@ -73,6 +80,16 @@ const SignupScreen = ({navigation}) => {
 const styles = StyleSheet.create({
     container: {
         margin: 20,
+    },
+    button: {
+        backgroundColor: '#5050A5',
+        padding: 20,
+        borderRadius: 5,
+    },
+    buttonText: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: 'bold',
     },
     checkboxContainer: {
         flexDirection: "row",

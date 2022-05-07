@@ -1,19 +1,22 @@
-import { View, Text, StyleSheet, Image, Button } from 'react-native';
+import { View, Text, StyleSheet, Image, Button, TouchableOpacity } from 'react-native';
 
 const OnboardingScreen = ({ navigation }) => {
 
     return (
             <View style={styles.container}>
-                <Image
-                    style={styles.image}
-                    source={require('./../assets/slide1.png')}
-                />
-                <Text style={styles.text}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</Text>
-                <Image
-                    style={styles.icon}
-                    source={require('./../assets/dots-01.png')}
-                />
-                <Button title="Next" onPress={() => navigation.navigate("Onboarding1")} color="#5050A5"/>
+              <Image
+                  style={styles.image}
+                  source={require('./../assets/slide1.png')}
+              />
+              <Text style={styles.text}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</Text>
+              <Image
+                  style={styles.icon}
+                  source={require('./../assets/dots-01.png')}
+              />
+              {/* <Button title="Next" onPress={() => navigation.navigate("Onboarding1")} color="#5050A5"/> */}
+              <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Onboarding1")}>
+                <Text style={styles.buttonText}>Next</Text>
+              </TouchableOpacity>
             </View>
     );
 }
@@ -26,6 +29,16 @@ const styles = StyleSheet.create({
         // alignItems: 'center',
         // justifyContent: 'center',
         margin: 25,
+      },
+      button: {
+        backgroundColor: '#5050A5',
+        padding: 20,
+        borderRadius: 5,
+      },
+      buttonText: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: 'bold',
       },
       icon: {
         width: 50,
@@ -40,11 +53,11 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         alignSelf: 'center',
       },
-      button: {
-        textAlign: 'left',
-        backgroundColor: '#5050A5',
-        fontWeight: 'bold',
-      },
+      // button: {
+      //   textAlign: 'left',
+      //   backgroundColor: '#5050A5',
+      //   fontWeight: 'bold',
+      // },
       text: {
         textAlign: 'center',
         color: '#707070',

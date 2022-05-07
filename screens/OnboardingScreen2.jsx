@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, Button } from 'react-native';
+import { View, Text, StyleSheet, Image, Button, TouchableOpacity } from 'react-native';
 
 const OnboardingScreen2 = ({ navigation }) => {
 
@@ -13,7 +13,10 @@ const OnboardingScreen2 = ({ navigation }) => {
                     style={styles.icon}
                     source={require('./../assets/dots-03.png')}
                 />
-                <Button title="Next" onPress={() => navigation.navigate("Signup")} color="#5050A5"/>
+                {/* <Button title="Next" onPress={() => navigation.navigate("Signup")} color="#5050A5"/> */}
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Signup")}>
+                  <Text style={styles.buttonText}>Next</Text>
+                </TouchableOpacity>
             </View>
     );
 }
@@ -26,6 +29,16 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
     // justifyContent: 'center',
     margin: 25,
+  },
+  button: {
+    backgroundColor: '#5050A5',
+    padding: 20,
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   icon: {
     width: 50,
@@ -40,11 +53,11 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     alignSelf: 'center',
   },
-  button: {
-    textAlign: 'left',
-    backgroundColor: '#5050A5',
-    fontWeight: 'bold',
-  },
+  // button: {
+  //   textAlign: 'left',
+  //   backgroundColor: '#5050A5',
+  //   fontWeight: 'bold',
+  // },
   text: {
     textAlign: 'center',
     color: '#707070',

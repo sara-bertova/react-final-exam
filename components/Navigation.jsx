@@ -15,6 +15,7 @@ import IntroductionScreen from "./../screens/IntroductionScreen";
 import OnboardingScreen from "./../screens/OnboardingScreen";
 import OnboardingScreen1 from "./../screens/OnboardingScreen1";
 import OnboardingScreen2 from "./../screens/OnboardingScreen2";
+import VerifyEmailScreen from "./../screens/VerifyEmailScreen";
 import { NavigationContainer } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
@@ -33,6 +34,16 @@ const NavigationComponent = ({ navigation }) => {
             {token !== undefined ? (
                 // Show the app with all navigation
                 <Tab.Navigator>
+                    {/* <Tab.Screen name="VerifyEmail" component={VerifyEmailScreen} options={{
+                        title: '',
+                        headerStyle: {
+                            backgroundColor: '#5050A5',
+                            borderBottomColor: '#5050A5',
+                        },
+                        contentStyle:{
+                            backgroundColor:'#5050A5'
+                          }
+                        }} /> */}
                     <Tab.Screen name="Home" component={HomeScreen} 
                         options={{
                             title: 'FEED',
@@ -47,9 +58,10 @@ const NavigationComponent = ({ navigation }) => {
             ) : (
                 // show a stack navigator with only signup and login screens.
                 <Stack.Navigator screenOptions={{
-                    contentStyle:{
-                      backgroundColor:'#FFFFFF'
-                    }
+                    headerShown: false,
+                    contentStyle: {
+                        backgroundColor:'#fff'
+                      }
                  }}>
                     <Stack.Screen name="Introduction" component={IntroductionScreen} options={{
                         title: '',
@@ -85,6 +97,16 @@ const NavigationComponent = ({ navigation }) => {
                             backgroundColor: '#fff',
                             borderBottomColor: '#fff',
                         },
+                        }} />
+                    <Stack.Screen name="VerifyEmail" component={VerifyEmailScreen} options={{
+                        title: '',
+                        headerStyle: {
+                            backgroundColor: '#5050A5',
+                            borderBottomColor: '#5050A5',
+                        },
+                        contentStyle: {
+                            backgroundColor:'#5050A5'
+                        }
                         }} />
                     <Stack.Screen name="Login" component={LoginScreen} options={{
                         title: '',

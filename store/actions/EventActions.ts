@@ -1,3 +1,5 @@
+import { Event } from "../../entities/Feed";
+
 export const FETCH_EVENTS = 'FETCH_EVENTS';
 
 export const fetchEvents = () => {
@@ -16,18 +18,26 @@ export const fetchEvents = () => {
 
 
         const data = await response.json(); // json to javascript
-        
+    
         if (!response.ok) {
             //There was a problem..
         } else {
+            let events = [];
+                       
+            for (const key in data) {
+                let event = new Event(data[key].title, 
+                                     data[key].description, 
+                                     data[key].img, 
+                                     data[key].organizer, 
+                                     data[key].place, 
+                                     data[key].time, 
+                                     data[key].email, 
+                                     data[key].schedule, 
+                                     key)
+                events.push(event)
+            }
 
-            // let chatrooms = [];
-            // for (const key in data) {
-            //     let chatroom = new Chatroom(data[key].chatroomName, data[key].chatmessages, '', key)
-            //     chatrooms.push(chatroom)
-            // }
-
-            dispatch({ type: FETCH_EVENTS, payload: 'hah' })
+            dispatch({ type: FETCH_EVENTS, payload: events })
         }
     };
 }

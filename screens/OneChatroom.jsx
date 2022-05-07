@@ -30,7 +30,7 @@ const OneChat = ({ route, navigation }) => {
                 <View style={styles.chatmsg_wrapper}>
                     <Text key={messages[keyName]}
                           style={styles.chatmsg}>{messages[keyName].text}</Text>
-                    <Text style={styles.msg_time}>{Moment(messages[keyName].timestamp).format('h:mm a')}</Text>
+                    <Text key={messages[keyName].timestamp} style={styles.msg_time}>{Moment(messages[keyName].timestamp).format('h:mm a')}</Text>
                 </View>
             ))}
 

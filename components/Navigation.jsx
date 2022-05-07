@@ -109,7 +109,7 @@ function ChatStack() {
                             <View>
                                 <Image  
                                 style={styles.create_image}
-                                source={require('./../assets/icons8-create/icons8-create.png')} />
+                                source={require('./../assets/icons8-create/icons8create.png')} />
                             </View>
                         </TouchableHighlight>
                       ),

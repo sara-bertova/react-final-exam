@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { View, Button, TextInput, StyleSheet, Image, FlatList, Text } from 'react-native';
+import { View, Button, TextInput, StyleSheet, Image, ScrollView, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchChatrooms, sendMessage } from '../store/actions/ChatActions';
 import Moment from 'moment';
@@ -20,12 +20,9 @@ const OneChat = ({ route, navigation }) => {
     // console.log('*************** ', messages)
 
     return (
-        <View>
-            {/* <View>
-                <FlatList data={messages} renderItem={renderItem} />
-            </View> */}
+        <View style={styles.container}>
 
-            
+            <ScrollView style={styles.messages}>
             {Object.keys(messages).map((keyName, i) => ( 
                 <View style={styles.chatmsg_wrapper}>
                     <Text key={messages[keyName]}
@@ -33,6 +30,7 @@ const OneChat = ({ route, navigation }) => {
                     <Text key={messages[keyName].timestamp} style={styles.msg_time}>{Moment(messages[keyName].timestamp).format('h:mm a')}</Text>
                 </View>
             ))}
+            </ScrollView>
 
             <View style={styles.chatbox_wrapper}>
                 <View style={styles.chatbox}>
@@ -57,17 +55,17 @@ const OneChat = ({ route, navigation }) => {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
     chatbox_wrapper: {
         backgroundColor: 'white',
         padding: 12,
         justifyContent: 'space-between',
-        position: 'absolute',
-        bottom: 0,
     },
     chatbox: {
         flexDirection: 'row',
         alignItems: 'center',
-        
     },
     input: {
         height: 44,
@@ -77,6 +75,9 @@ const styles = StyleSheet.create({
         padding: 10,
         fontSize: 12,
         backgroundColor: '#EEEEEE',
+    },
+    messages: {
+         flex: 1,
     },
     chatmsg_wrapper: {
         marginHorizontal: 20,

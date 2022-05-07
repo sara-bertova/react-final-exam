@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { FlatList, Button, StyleSheet, Text, View } from 'react-native';
-import { TextInput, TouchableOpacity } from 'react-native-web';
+import { TextInput, TouchableOpacity } from 'react-native';
 import { Todo } from './../Todo'
 
 export default function TodoScreen() {

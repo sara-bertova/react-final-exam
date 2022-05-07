@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { FlatList, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
+import Moment from 'moment';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../App';
 import { fetchChatrooms } from '../store/actions/ChatActions';
 
 const ChatScreen = ({ navigation }: { navigation: any }) => {
-    const [text, onChangeText] = useState('');
-   
+       
     const dispatch = useDispatch();
     const chatrooms = useSelector((state: RootState) => state.chat.chatrooms);
 
@@ -15,9 +15,10 @@ const ChatScreen = ({ navigation }: { navigation: any }) => {
         dispatch(fetchChatrooms())
     }, []);
 
-    // console.log("chatrooms", chatrooms);
+    console.log("chatrooms", chatrooms);
 
     const renderItem = ({ item }: { item: any }) => (
+
         <TouchableOpacity 
             style={styles.one_chat} 
             onPress={() => navigation.navigate('OneChatroom', {
@@ -31,10 +32,14 @@ const ChatScreen = ({ navigation }: { navigation: any }) => {
             />
             <View style={styles.chat_content}>
                 <Text style={styles.chat_title}>{item.title}</Text>
-                <Text style={styles.chat_text}>Thank you for your mess...</Text>
+                <Text style={styles.chat_text}>
+                    { item.chatmessages[Object.keys(item.chatmessages)[Object.keys(item.chatmessages).length - 1]].text}
+                 </Text>
             </View>
             <View>
-                <Text>9:43</Text>
+            <   Text style={styles.chat_text}>
+                    { Moment(item.chatmessages[Object.keys(item.chatmessages)[Object.keys(item.chatmessages).length - 1]].timestamp).format('h:mm a')}
+                 </Text>
             </View>
         </TouchableOpacity>
     );

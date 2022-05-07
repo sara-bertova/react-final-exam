@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { View, Button, TextInput, StyleSheet, Image, FlatList, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchChatrooms, sendMessage } from '../store/actions/ChatActions';
+import Moment from 'moment';
 
 const OneChat = ({ route, navigation }) => {
 
     const { chatId, chatName } = route.params;
     const [text, onChangeText] = useState('')
-    const [msgArr, setMsgArr] = useState([])
 
     const dispatch = useDispatch();
     const chatroom = useSelector(state => state.chat.chatrooms.filter(chatroom => chatroom.id == chatId));
@@ -26,11 +26,11 @@ const OneChat = ({ route, navigation }) => {
             </View> */}
 
             
-            {Object.keys(messages).map((keyName, i) => (
-                // <Text>{messages[keyName].text} {messages[keyName].timestamp}</Text>
-                <View>
-                    <Text>{messages[keyName].text}</Text>
-                    <Text>{messages[keyName].timestamp}</Text>
+            {Object.keys(messages).map((keyName, i) => ( 
+                <View style={styles.chatmsg_wrapper}>
+                    <Text key={messages[keyName]}
+                          style={styles.chatmsg}>{messages[keyName].text}</Text>
+                    <Text style={styles.msg_time}>{Moment(messages[keyName].timestamp).format('h:mm a')}</Text>
                 </View>
             ))}
 
@@ -60,7 +60,9 @@ const styles = StyleSheet.create({
     chatbox_wrapper: {
         backgroundColor: 'white',
         padding: 12,
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        position: 'absolute',
+        bottom: 0,
     },
     chatbox: {
         flexDirection: 'row',
@@ -69,12 +71,28 @@ const styles = StyleSheet.create({
     },
     input: {
         height: 44,
-        width: 265,
+        width: 245,
         marginHorizontal: 12,
         marginVertical: 12,
         padding: 10,
         fontSize: 12,
         backgroundColor: '#EEEEEE',
+    },
+    chatmsg_wrapper: {
+        marginHorizontal: 20,
+        marginVertical: 7,
+        alignItems: 'flex-end',
+    },
+    chatmsg: {
+        backgroundColor: '#5050A5',
+        color: '#ffffff',
+        padding: 10,
+        alignSelf: 'flex-end',
+        maxWidth: 200,
+        borderRadius: 10,
+    },
+    msg_time: {
+        fontSize: 12,
     },
 })
 

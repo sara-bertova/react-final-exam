@@ -11,6 +11,10 @@ import SignupScreen from "./../screens/SignupScreen";
 import LoginScreen from "./../screens/LoginScreen";
 import ProfileScreen from "./../screens/ProfileScreen";
 import EditProfileScreen from "./../screens/EditProfileScreen";
+import IntroductionScreen from "./../screens/IntroductionScreen";
+import OnboardingScreen from "./../screens/OnboardingScreen";
+import OnboardingScreen1 from "./../screens/OnboardingScreen1";
+import OnboardingScreen2 from "./../screens/OnboardingScreen2";
 import { NavigationContainer } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 
@@ -34,7 +38,39 @@ const NavigationComponent = ({ navigation }) => {
                 </Tab.Navigator>
             ) : (
                 // show a stack navigator with only signup and login screens.
-                <Stack.Navigator>
+                <Stack.Navigator screenOptions={{
+                    contentStyle:{
+                      backgroundColor:'#FFFFFF'
+                    }
+                 }}>
+                    <Stack.Screen name="Introduction" component={IntroductionScreen} options={{
+                        title: '',
+                        headerStyle: {
+                            backgroundColor: '#fff',
+                            borderBottomColor: '#fff',
+                        },
+                        }} />
+                    <Stack.Screen name="Onboarding" component={OnboardingScreen} options={{
+                        title: '',
+                        headerStyle: {
+                            backgroundColor: '#fff',
+                            borderBottomColor: '#fff',
+                        },
+                        }} />
+                    <Stack.Screen name="Onboarding1" component={OnboardingScreen1} options={{
+                        title: '',
+                        headerStyle: {
+                            backgroundColor: '#fff',
+                            borderBottomColor: '#fff',
+                        },
+                        }} />
+                    <Stack.Screen name="Onboarding2" component={OnboardingScreen2} options={{
+                        title: '',
+                        headerStyle: {
+                            backgroundColor: '#fff',
+                            borderBottomColor: '#fff',
+                        },
+                        }} />
                     <Stack.Screen name="Signup" component={SignupScreen} />
                     <Stack.Screen name="Login" component={LoginScreen} />
                 </Stack.Navigator>

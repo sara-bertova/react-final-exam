@@ -5,7 +5,7 @@ export const fetchEvents = () => {
         const idToken = getState().user.idToken
 
         const response = await fetch(
-            'https://react-exam-68375-default-rtdb.europe-west1.firebasedatabase.app/chatrooms.json?auth='
+            'https://react-exam-68375-default-rtdb.europe-west1.firebasedatabase.app/events.json?auth='
             + idToken, {
 
             method: 'GET',
@@ -21,13 +21,13 @@ export const fetchEvents = () => {
             //There was a problem..
         } else {
 
-            let chatrooms = [];
-            for (const key in data) {
-                let chatroom = new Chatroom(data[key].chatroomName, data[key].chatmessages, '', key)
-                chatrooms.push(chatroom)
-            }
+            // let chatrooms = [];
+            // for (const key in data) {
+            //     let chatroom = new Chatroom(data[key].chatroomName, data[key].chatmessages, '', key)
+            //     chatrooms.push(chatroom)
+            // }
 
-            dispatch({ type: FETCH_EVENTS, payload: chatrooms })
+            dispatch({ type: FETCH_EVENTS, payload: 'hah' })
         }
     };
 }

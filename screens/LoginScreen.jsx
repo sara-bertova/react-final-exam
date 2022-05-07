@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Image } from 'react-native';
 import { Button, TextInput } from 'react-native';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -33,24 +33,29 @@ const LoginScreen = () => {
 
     return (
         <View>
-           <View>
-            <TextInput 
-                placeholder="email" 
-                style={styles.input} 
-                onChangeText={onChangeEmail}
-                value={email} />
-            <TextInput 
-                placeholder="password" 
-                style={styles.input}
-                onChangeText={onChangePassword}
-                value={password} />
+            <Image
+                style={styles.image}
+                source={require('./../assets/logo2.png')}
+            />
+            <Text style={styles.heading}>Login</Text>
+            <View>
+                <TextInput 
+                    placeholder="email" 
+                    style={styles.input} 
+                    onChangeText={onChangeEmail}
+                    value={email} />
+                <TextInput 
+                    placeholder="password" 
+                    style={styles.input}
+                    onChangeText={onChangePassword}
+                    value={password} />
 
-            <Button title='Log in' 
-                    onPress={() => dispatch(login(email, password))}  />
+                <Button title='Log in' 
+                        onPress={() => dispatch(login(email, password))}  />
 
-            <FlatList data={loggedInUser} renderItem={renderItem} />
+                <FlatList data={loggedInUser} renderItem={renderItem} />
 
-        </View>
+            </View>
         </View>
     );
 }
@@ -62,8 +67,17 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 10,
     },
-    button: {
-        
+    heading: {
+        color: '#32305D',
+        fontWeight: 'bold',
+        fontSize: 25,
+        marginVertical: 22,
+    },
+    image: {
+        width: 114,
+        height: 114,
+        resizeMode: 'contain',
+        alignSelf: 'center',
     },
 });
 

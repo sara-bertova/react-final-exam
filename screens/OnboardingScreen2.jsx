@@ -13,7 +13,7 @@ const OnboardingScreen2 = ({ navigation }) => {
                     style={styles.icon}
                     source={require('./../assets/dots-03.png')}
                 />
-                <Button title="Next" onPress={() => navigation.navigate("Login")} color="#5050A5"/>
+                <Button title="Next" onPress={() => navigation.navigate("Signup")} color="#5050A5"/>
             </View>
     );
 }

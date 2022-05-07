@@ -73,8 +73,20 @@ const NavigationComponent = ({ navigation }) => {
                             borderBottomColor: '#fff',
                         },
                         }} />
-                    <Stack.Screen name="Signup" component={SignupScreen} />
-                    <Stack.Screen name="Login" component={LoginScreen} />
+                    <Stack.Screen name="Signup" component={SignupScreen} options={{
+                        title: '',
+                        headerStyle: {
+                            backgroundColor: '#fff',
+                            borderBottomColor: '#fff',
+                        },
+                        }} />
+                    <Stack.Screen name="Login" component={LoginScreen} options={{
+                        title: '',
+                        headerStyle: {
+                            backgroundColor: '#fff',
+                            borderBottomColor: '#fff',
+                        },
+                        }}/>
                 </Stack.Navigator>
             )}
         </NavigationContainer >

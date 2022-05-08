@@ -25,12 +25,12 @@ const LoginScreen = ({navigation}) => {
         }
     }
 
-    const users = useSelector(state => state.user.users);
-    const loggedInUser = useSelector( (state: any) => state.user.loggedInUser )
+//     const users = useSelector(state => state.user.users);
+//     const loggedInUser = useSelector( (state: any) => state.user.loggedInUser )
 
-    const renderItem = ({ item }) => (
-        <Text>You are logged in with email: {item.email}</Text>
- );
+//     const renderItem = ({ item }) => (
+//         <Text>You are logged in with email: {item.email}</Text>
+//  );
 
     return (
         <View style={styles.container}>
@@ -42,7 +42,7 @@ const LoginScreen = ({navigation}) => {
             <View style={styles.inputContainer}>
                 <Text style={styles.label2}>E-mail</Text>
                 <TextInput 
-                    placeholder="email" 
+                    placeholder="Email" 
                     style={styles.input} 
                     onChangeText={onChangeEmail}
                     value={email} />
@@ -50,7 +50,7 @@ const LoginScreen = ({navigation}) => {
             <View style={styles.inputContainer}>
                 <Text style={styles.label2}>Password</Text>
                 <TextInput 
-                    placeholder="password" 
+                    placeholder="Password" 
                     style={styles.input}
                     onChangeText={onChangePassword}
                     value={password}
@@ -62,7 +62,9 @@ const LoginScreen = ({navigation}) => {
             <TouchableOpacity style={styles.button} onPress={() => dispatch(login(email, password))}>
                 <Text style={styles.buttonText}>Log in</Text>
             </TouchableOpacity>
-            <FlatList data={loggedInUser} renderItem={renderItem} />
+            <Button title='Set up profile' 
+                    onPress={() => navigation.navigate('SetupProfile')} color="#5050A5"/>
+            {/* <FlatList data={loggedInUser} renderItem={renderItem} /> */}
 
             <Text style={styles.text}>Don't have an account? <Text style={styles.link} onPress={() => navigation.navigate('Signup')}>Sign up</Text></Text>
 
@@ -74,9 +76,10 @@ const LoginScreen = ({navigation}) => {
 const styles = StyleSheet.create({
     container: {
         margin: 20,
-        // flexDirection: "column",
-        // flex: 1,
-        // justifyContent: 'center',
+        // marginTop: '30%',
+        // flexDirection: "row",
+        flex: 1,
+        justifyContent: 'center',
     },
     button: {
         backgroundColor: '#5050A5',

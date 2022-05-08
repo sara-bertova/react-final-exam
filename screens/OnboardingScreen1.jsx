@@ -23,11 +23,11 @@ const OnboardingScreen1 = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
+    flex: 1,
     // flexDirection:'row',
     // backgroundColor: '#fff',
     // alignItems: 'center',
-    // justifyContent: 'center',
+    justifyContent: 'center',
     margin: 25,
   },
   button: {

@@ -16,6 +16,7 @@ import OnboardingScreen from "./../screens/OnboardingScreen";
 import OnboardingScreen1 from "./../screens/OnboardingScreen1";
 import OnboardingScreen2 from "./../screens/OnboardingScreen2";
 import VerifyEmailScreen from "./../screens/VerifyEmailScreen";
+import SetupProfileScreen from "./../screens/SetupProfileScreen";
 import { NavigationContainer } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
@@ -63,58 +64,18 @@ const NavigationComponent = ({ navigation }) => {
                         backgroundColor:'#fff'
                       }
                  }}>
-                    <Stack.Screen name="Introduction" component={IntroductionScreen} options={{
-                        title: '',
-                        headerStyle: {
-                            backgroundColor: '#fff',
-                            borderBottomColor: '#fff',
-                        },
-                        }} />
-                    <Stack.Screen name="Onboarding" component={OnboardingScreen} options={{
-                        title: '',
-                        headerStyle: {
-                            backgroundColor: '#fff',
-                            borderBottomColor: '#fff',
-                        },
-                        }} />
-                    <Stack.Screen name="Onboarding1" component={OnboardingScreen1} options={{
-                        title: '',
-                        headerStyle: {
-                            backgroundColor: '#fff',
-                            borderBottomColor: '#fff',
-                        },
-                        }} />
-                    <Stack.Screen name="Onboarding2" component={OnboardingScreen2} options={{
-                        title: '',
-                        headerStyle: {
-                            backgroundColor: '#fff',
-                            borderBottomColor: '#fff',
-                        },
-                        }} />
-                    <Stack.Screen name="Signup" component={SignupScreen} options={{
-                        title: '',
-                        headerStyle: {
-                            backgroundColor: '#fff',
-                            borderBottomColor: '#fff',
-                        },
-                        }} />
+                    <Stack.Screen name="Introduction" component={IntroductionScreen} />
+                    <Stack.Screen name="Onboarding" component={OnboardingScreen} />
+                    <Stack.Screen name="Onboarding1" component={OnboardingScreen1} />
+                    <Stack.Screen name="Onboarding2" component={OnboardingScreen2} />
+                    <Stack.Screen name="Signup" component={SignupScreen} />
                     <Stack.Screen name="VerifyEmail" component={VerifyEmailScreen} options={{
-                        title: '',
-                        headerStyle: {
-                            backgroundColor: '#5050A5',
-                            borderBottomColor: '#5050A5',
-                        },
                         contentStyle: {
                             backgroundColor:'#5050A5'
                         }
                         }} />
-                    <Stack.Screen name="Login" component={LoginScreen} options={{
-                        title: '',
-                        headerStyle: {
-                            backgroundColor: '#fff',
-                            borderBottomColor: '#fff',
-                        },
-                        }}/>
+                    <Stack.Screen name="Login" component={LoginScreen} />
+                    <Stack.Screen name="SetupProfile" component={SetupProfileScreen} />
                 </Stack.Navigator>
             )}
         </NavigationContainer >

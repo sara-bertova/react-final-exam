@@ -18,7 +18,7 @@ const SignupScreen = ({navigation}) => {
 
     const dispatch = useDispatch();
 
-    const users = useSelector(state => state.user.idToken);
+    // const users = useSelector(state => state.user.idToken);
 
     return (
         <View style={styles.container}>
@@ -30,7 +30,7 @@ const SignupScreen = ({navigation}) => {
             <View style={styles.inputContainer}>
                 <Text style={styles.label2}>E-mail</Text>
                 <TextInput 
-                    placeholder="email" 
+                    placeholder="Email" 
                     style={styles.input} 
                     onChangeText={onChangeEmail}
                     value={email} />
@@ -38,7 +38,7 @@ const SignupScreen = ({navigation}) => {
             <View style={styles.inputContainer}>
                 <Text style={styles.label2}>Password</Text>
                 <TextInput 
-                    placeholder="password" 
+                    placeholder="Password" 
                     style={styles.input}
                     onChangeText={onChangePassword}
                     value={password}
@@ -47,7 +47,7 @@ const SignupScreen = ({navigation}) => {
             <View style={styles.inputContainer}>
                 <Text style={styles.label2}>Repeat Password</Text>
                 <TextInput 
-                    placeholder="repeat password" 
+                    placeholder="Repeat password" 
                     style={styles.input}
                     onChangeText={onChangeRepeatPassword}
                     value={repeatPassword}
@@ -80,6 +80,8 @@ const SignupScreen = ({navigation}) => {
 const styles = StyleSheet.create({
     container: {
         margin: 20,
+        flex: 1,
+        justifyContent: 'center',
     },
     button: {
         backgroundColor: '#5050A5',

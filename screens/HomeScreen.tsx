@@ -18,12 +18,12 @@ const HomeScreen = ({ navigation }: { navigation: any }) =>  {
         'cbs-yoga.png' : require('./../assets/cbs-yoga.png'),
         'cbs-ghost-world.png' : require('./../assets/cbs-ghost-world.png'),
 
-      }
+    }
 
     const renderItem = ({ item }: { item: any }) => (
     
         <TouchableOpacity 
-            onPress={() => navigation.navigate('OneFeedPost', {
+            onPress={() => navigation.navigate('OneEvent', {
                 postId: item.id,
                 postName: item.title,
             })}

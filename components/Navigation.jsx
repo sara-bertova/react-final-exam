@@ -4,7 +4,7 @@ import { View, Text, Button, TouchableHighlight, Image, StyleSheet } from 'react
 import ChatScreen from "../screens/ChatScreen";
 import EditChatroomScreen from "../screens/EditChatroom";
 import OneChatroom from "../screens/OneChatroom";
-import OneFeedPost from "../screens/OneFeedPost";
+import OneEvent from "../screens/OneEvent";
 import MenuScreen from "./../screens/MenuScreen";
 import HomeScreen from "./../screens/HomeScreen";
 import DiscoverScreen from "./../screens/DiscoverScreen";
@@ -112,8 +112,8 @@ function FeedStack() {
                 }} >
             </Stack.Screen>
             <Stack.Screen 
-                name="OneFeedPost" 
-                component={OneFeedPost}
+                name="OneEvent" 
+                component={OneEvent}
                 options={({ route }) => ({
                     title: route.params.postName,               
                     headerTitleAlign: 'center',

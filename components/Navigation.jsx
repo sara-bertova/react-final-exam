@@ -30,6 +30,7 @@ import SetupProfileScreen from "./../screens/SetupProfileScreen";
 import { NavigationContainer } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -148,7 +149,7 @@ function DiscoverStack() {
                     headerTintColor: '#5050A5',
                 }} >
             </Stack.Screen>
-            
+
             <Stack.Screen 
                 name="Events" 
                 component={Events}

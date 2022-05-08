@@ -1,10 +1,13 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView} from 'react-native';
 import CheckBox from "expo-checkbox";
 import { Button, TextInput } from 'react-native';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import Modal from "react-native-modal";
+// import RadioGroup from 'react-native-radio-buttons-group';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import RadioButtonRN from 'radio-buttons-react-native';
 
 const SetupProfileScreen = ({navigation}) => {
     // const navigation = useNavigation();
@@ -17,9 +20,36 @@ const SetupProfileScreen = ({navigation}) => {
     const dispatch = useDispatch();
 
     const [isModalVisible, setIsModalVisible] = useState(false);
-
     const handleModal = () => setIsModalVisible(() => !isModalVisible);
 
+    // const [isSecondSelectVisible, setIsSecondSelectVisible] = useState(false);
+    // const handleSecondSelect = () => setIsSecondSelectVisible(() => !isSecondSelectVisible);
+
+    const [shouldShow, setShouldShow] = useState(false);
+    const [showRadio, setShowRadio] = useState(false);
+    const [showArrow, setShowArrow] = useState(false);
+
+    const data = [{
+        id: '1', 
+        label: 'MSc in Business Administration and E-business',
+        value: 'busAdminEbus'
+    }, {
+        id: '2',
+        label: 'MSc in Business Administration and Information Systems',
+        value: 'busAdminInform'
+    },{
+        id: '3',
+        label: 'MSc in Business Administration and Data Science',
+        value: 'busAdminData'
+    },  
+]
+
+    // const [radioButtons, setRadioButtons] = useState(radioButtonsData)
+
+    // function onPressRadioButton(radioButtonsArray) {
+    //     setRadioButtons(radioButtonsArray);
+    // }
+    
     return (
         <View style={styles.container}>
             <Image
@@ -56,10 +86,77 @@ const SetupProfileScreen = ({navigation}) => {
             </View>
             <Modal isVisible={isModalVisible}>
                 <View style={styles.modal}>
-                <Text style={[styles.heading, styles.modalTitle]}>Study programme</Text>
-                <TouchableOpacity style={[styles.button, styles.buttonUpload, styles.buttonOkModal]} onPress={handleModal}>
-                    <Text style={styles.buttonText}>OK</Text>
-                </TouchableOpacity>
+                    <View style={styles.modalHeader}>
+                        <Text style={[styles.heading, styles.modalTitle]}>Study programme</Text>
+                        <TouchableOpacity style={styles.closeWrapper} onPress={handleModal}>
+                            <Image
+                                style={styles.image}
+                                source={require('./../assets/setup-profile/icons8-close_window.png')}
+                            />
+                        </TouchableOpacity>
+                    </View>
+                    <View>
+                        <View>
+                            <TouchableOpacity onPress={() => setShouldShow(!shouldShow)} style={[styles.button, styles.modalHeader, styles.select]}>
+                                <Text style={styles.buttonText}>Bachelor</Text>
+                                {shouldShow ?
+                                (
+                                <Image
+                                    style={styles.image}
+                                    source={require('./../assets/setup-profile/icons8-expand_arrow_white_up.png')}
+                                /> ) : <Image
+                                style={styles.image}
+                                source={require('./../assets/setup-profile/icons8-expand_arrow_white_down.png')}
+                            /> }
+                            </TouchableOpacity>
+                            {/* <Modal isVisible={isSecondSelectVisible} > */}
+                            {shouldShow ?
+                            (
+                            <TouchableOpacity onPress={() => setShowRadio(!showRadio)} style={[styles.button, styles.modalHeader, styles.select, styles.selectSecondary]}>
+                                <Text style={[styles.buttonText, styles.selectTextSecond]}>IT and Information in Organizations</Text>
+                                {showRadio ?
+                                (
+                                <Image
+                                    style={styles.image}
+                                    source={require('./../assets/setup-profile/icons8-expand_arrow_black_up.png')}
+                                />
+                                ) : <Image
+                                style={styles.image}
+                                source={require('./../assets/setup-profile/icons8-expand_arrow.png')}
+                            />}
+                            </TouchableOpacity>
+                            ) : null}
+                            {/* <RadioGroup 
+                                radioButtons={radioButtons} 
+                                onPress={onPressRadioButton} 
+                            /> */}
+                            {showRadio ?
+                            (
+                            <RadioButtonRN
+                                data={data}
+                                selectedBtn={(e) => console.log(e)}
+                                icon={
+                                  <Icon
+                                    name="check-circle"
+                                    size={25}
+                                    color="#32305D"
+                                  />
+                                }
+                            />
+                            ) : null}
+                            {/* </Modal> */}
+                        </View>
+                        <TouchableOpacity style={[styles.button, styles.modalHeader, styles.select]}>
+                            <Text style={styles.buttonText}>Graduate</Text>
+                            <Image
+                                style={styles.image}
+                                source={require('./../assets/setup-profile/icons8-expand_arrow_white_down.png')}
+                            />
+                        </TouchableOpacity>
+                    </View>
+                    <TouchableOpacity style={[styles.button, styles.buttonUpload, styles.buttonOkModal]} onPress={handleModal}>
+                        <Text style={styles.buttonText}>OK</Text>
+                    </TouchableOpacity>
                 {/* <Button title="Hide modal" onPress={handleModal} /> */}
                 </View>
             </Modal>
@@ -119,9 +216,36 @@ const styles = StyleSheet.create({
     }, 
     modalTitle: {
         textAlign: 'center',
+        color: '#5050A5',
+        textTransform: 'uppercase',
+    },
+    modalHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginHorizontal: 21,
+    },
+    select: {
+        backgroundColor: '#333333',
+        borderRadius: 0,
+        marginHorizontal: 0,
+        borderBottomColor: '#fff', 
+        borderBottomWidth: .5,
+        marginTop: 0,
+        height: 52,
+        padding: 0,
+        paddingHorizontal: 19,
+        alignItems: 'center',
+    },
+    selectSecondary: {
+        backgroundColor: '#EAEAEA',
+    },
+    selectTextSecond: {
+        color: '#333333',
+        fontSize: 12,
     },
     buttonOkModal: {
        alignSelf: 'center',
+       margin: 20,
     },
     heading: {
         color: '#32305D',
@@ -130,8 +254,6 @@ const styles = StyleSheet.create({
         marginVertical: 22,
     },
     image: {
-        width: 114,
-        height: 114,
         resizeMode: 'contain',
         alignSelf: 'center',
     },
@@ -140,6 +262,14 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         marginBottom: 40,
+    },
+    closeWrapper: {
+        borderRadius: 100,
+        backgroundColor: '#EAEAEA',
+        width: 36,
+        height: 36,
+        justifyContent: 'center',
+        alignSelf: 'center',
     },
     profileImgWrapper: {
         width: 104,

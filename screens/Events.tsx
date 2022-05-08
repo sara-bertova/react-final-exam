@@ -17,7 +17,6 @@ const HomeScreen = ({ navigation }: { navigation: any }) =>  {
     const imageMap = {
         'cbs-yoga.png' : require('./../assets/cbs-yoga.png'),
         'cbs-ghost-world.png' : require('./../assets/cbs-ghost-world.png'),
-
     }
 
     const renderItem = ({ item }: { item: any }) => (

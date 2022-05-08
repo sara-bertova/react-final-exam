@@ -1,28 +1,35 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, Text, Button, TouchableHighlight, Image, StyleSheet } from 'react-native';
+
 import ChatScreen from "../screens/ChatScreen";
 import EditChatroomScreen from "../screens/EditChatroom";
 import OneChatroom from "../screens/OneChatroom";
-import OneEvent from "../screens/OneEvent";
-import MenuScreen from "./../screens/MenuScreen";
+
 import HomeScreen from "./../screens/HomeScreen";
 import DiscoverScreen from "./../screens/DiscoverScreen";
-import SignupScreen from "./../screens/SignupScreen";
-import LoginScreen from "./../screens/LoginScreen";
+
+import Events from "./../screens/Events";
+import Organisations from "./../screens/Organisations";
+import Posts from "./../screens/Posts";
+import OneEvent from "../screens/OneEvent";
+
+import MenuScreen from "./../screens/MenuScreen";
 import ProfileScreen from "./../screens/ProfileScreen";
 import EditProfileScreen from "./../screens/EditProfileScreen";
+import SignupScreen from "./../screens/SignupScreen";
+import LoginScreen from "./../screens/LoginScreen";
+
 import IntroductionScreen from "./../screens/IntroductionScreen";
 import OnboardingScreen from "./../screens/OnboardingScreen";
 import OnboardingScreen1 from "./../screens/OnboardingScreen1";
 import OnboardingScreen2 from "./../screens/OnboardingScreen2";
 import VerifyEmailScreen from "./../screens/VerifyEmailScreen";
 import SetupProfileScreen from "./../screens/SetupProfileScreen";
+
 import { NavigationContainer } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -53,7 +60,13 @@ const NavigationComponent = ({ navigation }) => {
                             unmountOnBlur: true,
                         }}
                     />
-                    <Tab.Screen name="Discover" component={DiscoverScreen} />
+                    <Tab.Screen name="Discover" component={DiscoverStack} 
+                        options={{
+                            headerShown: false,
+                            tabBarLabel: "Discover",
+                            unmountOnBlur: true,
+                        }}
+                    />
                     <Tab.Screen name="Chat" component={ChatStack} 
                         options={{
                             headerShown: false,
@@ -116,6 +129,59 @@ function FeedStack() {
                 component={OneEvent}
                 options={({ route }) => ({
                     title: route.params.postName,               
+                    headerTitleAlign: 'center',
+                    headerTintColor: '#5050A5',
+                })}
+            ></Stack.Screen>
+        </Stack.Navigator>
+    )
+}
+function DiscoverStack() {
+    return (
+        <Stack.Navigator initialRouteName="Discover">
+            <Stack.Screen 
+                name="DiscoverOverview" 
+                component={DiscoverScreen}
+                options={{
+                    title: 'DISCOVER',
+                    headerTitleAlign: 'center',
+                    headerTintColor: '#5050A5',
+                }} >
+            </Stack.Screen>
+            
+            <Stack.Screen 
+                name="Events" 
+                component={Events}
+                options={({ route }) => ({
+                    title: route.params.name,               
+                    headerTitleAlign: 'center',
+                    headerTintColor: '#5050A5',
+                })}
+            ></Stack.Screen>
+            <Stack.Screen 
+                name="OneEvent" 
+                component={OneEvent}
+                options={({ route }) => ({
+                    title: route.params.postName,               
+                    headerTitleAlign: 'center',
+                    headerTintColor: '#5050A5',
+                })}
+            ></Stack.Screen>
+
+            <Stack.Screen 
+                name="Organisations" 
+                component={Organisations}
+                options={({ route }) => ({
+                    title: route.params.name,               
+                    headerTitleAlign: 'center',
+                    headerTintColor: '#5050A5',
+                })}
+            ></Stack.Screen>
+            <Stack.Screen 
+                name="Posts" 
+                component={Posts}
+                options={({ route }) => ({
+                    title: route.params.name,               
                     headerTitleAlign: 'center',
                     headerTintColor: '#5050A5',
                 })}

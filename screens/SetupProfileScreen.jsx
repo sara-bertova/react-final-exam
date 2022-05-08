@@ -3,9 +3,8 @@ import CheckBox from "expo-checkbox";
 import { Button, TextInput } from 'react-native';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { signup } from '../store/actions/UserActions';
-
 import { useNavigation } from '@react-navigation/native';
+import Modal from "react-native-modal";
 
 const SetupProfileScreen = ({navigation}) => {
     // const navigation = useNavigation();
@@ -17,6 +16,10 @@ const SetupProfileScreen = ({navigation}) => {
 
     const dispatch = useDispatch();
 
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const handleModal = () => setIsModalVisible(() => !isModalVisible);
+
     return (
         <View style={styles.container}>
             <Image
@@ -27,7 +30,7 @@ const SetupProfileScreen = ({navigation}) => {
             <View style={styles.profileImgContainer}>
                 <View>
                     <Text style={styles.label2}>Profile picture</Text>
-                    <TouchableOpacity style={[styles.button, styles.buttonUpload]} disabled={!agree} onPress={() => dispatch(signup(email, password, repeatPassword))}>
+                    <TouchableOpacity style={[styles.button, styles.buttonUpload]}>
                         <Text style={styles.buttonText}>Upload</Text>
                     </TouchableOpacity>
                 </View>
@@ -42,18 +45,24 @@ const SetupProfileScreen = ({navigation}) => {
                 <Text style={styles.label2}>What is your name?</Text>
                 <TextInput 
                     placeholder="First name and last name" 
+                    placeholderTextColor="#BABADD" 
                     style={styles.input} 
                     onChangeText={onChangeName}
                     value={name} />
             </View>
             <View style={styles.inputContainer}>
                 <Text style={styles.label2}>Study programme</Text>
-                <TextInput 
-                    placeholder="Select from list" 
-                    style={styles.input}
-                    onChangeText={onChangeProgramme}
-                    value={programme} />
+                <Text style={styles.modalToggle} onPress={handleModal}>Select from list</Text>
             </View>
+            <Modal isVisible={isModalVisible}>
+                <View style={styles.modal}>
+                <Text style={[styles.heading, styles.modalTitle]}>Study programme</Text>
+                <TouchableOpacity style={[styles.button, styles.buttonUpload, styles.buttonOkModal]} onPress={handleModal}>
+                    <Text style={styles.buttonText}>OK</Text>
+                </TouchableOpacity>
+                {/* <Button title="Hide modal" onPress={handleModal} /> */}
+                </View>
+            </Modal>
             <TouchableOpacity style={styles.button} disabled={!agree} onPress={() => dispatch(signup(email, password, repeatPassword))}>
                 <Text style={styles.buttonText}>Next</Text>
             </TouchableOpacity>
@@ -72,6 +81,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#5050A5',
         padding: 20,
         borderRadius: 5,
+        marginTop: 68,
     },
     buttonText: {
         color: '#fff',
@@ -92,9 +102,26 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 10,
         borderColor: '#EEEEEE',
+        marginBottom: 24,
     },
     input: {
         height: 35,
+        fontSize: 16,
+    },
+    modalToggle: {
+        marginTop: 8,
+        color: '#BABADD',
+        fontSize: 16,
+    },
+    modal: {
+        backgroundColor: '#fff',
+        borderRadius: 20,
+    }, 
+    modalTitle: {
+        textAlign: 'center',
+    },
+    buttonOkModal: {
+       alignSelf: 'center',
     },
     heading: {
         color: '#32305D',
@@ -111,6 +138,8 @@ const styles = StyleSheet.create({
     profileImgContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 40,
     },
     profileImgWrapper: {
         width: 104,
@@ -127,6 +156,9 @@ const styles = StyleSheet.create({
         height: 37,
         width: 160,
         padding: 0,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 10,
     },
     link: {
         fontWeight: 'bold',

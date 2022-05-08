@@ -31,6 +31,7 @@ const SignupScreen = ({navigation}) => {
                 <Text style={styles.label2}>E-mail</Text>
                 <TextInput 
                     placeholder="Email" 
+                    placeholderTextColor="#BABADD" 
                     style={styles.input} 
                     onChangeText={onChangeEmail}
                     value={email} />
@@ -39,6 +40,7 @@ const SignupScreen = ({navigation}) => {
                 <Text style={styles.label2}>Password</Text>
                 <TextInput 
                     placeholder="Password" 
+                    placeholderTextColor="#BABADD" 
                     style={styles.input}
                     onChangeText={onChangePassword}
                     value={password}
@@ -48,6 +50,7 @@ const SignupScreen = ({navigation}) => {
                 <Text style={styles.label2}>Repeat Password</Text>
                 <TextInput 
                     placeholder="Repeat password" 
+                    placeholderTextColor="#BABADD" 
                     style={styles.input}
                     onChangeText={onChangeRepeatPassword}
                     value={repeatPassword}
@@ -119,6 +122,7 @@ const styles = StyleSheet.create({
     },
     input: {
         height: 35,
+        fontSize: 16,
     },
     heading: {
         color: '#32305D',

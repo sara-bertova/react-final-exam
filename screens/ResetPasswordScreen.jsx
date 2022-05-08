@@ -8,37 +8,11 @@ import { useNavigation } from '@react-navigation/native';
 const LoginScreen = ({navigation}) => {
 
     const [email, onChangeEmail] = useState('');
-    const [password, onChangePassword] = useState('');
-
-    const dispatch = useDispatch();
-
-    async function load() {
-        let emailFromSecureStore = await SecureStore.getItemAsync('email');
-        let tokenFromSecureStore = await SecureStore.getItemAsync('token');
-        if (emailFromSecureStore && tokenFromSecureStore) {
-            console.log("success", emailFromSecureStore);
-
-            dispatch(restoreUser(emailFromSecureStore, tokenFromSecureStore));
-
-        } else {
-            console.log("failure");
-        }
-    }
-
-//     const users = useSelector(state => state.user.users);
-//     const loggedInUser = useSelector( (state: any) => state.user.loggedInUser )
-
-//     const renderItem = ({ item }) => (
-//         <Text>You are logged in with email: {item.email}</Text>
-//  );
 
     return (
         <View style={styles.container}>
-            <Image
-                style={styles.image}
-                source={require('./../assets/logo2.png')}
-            />
-            <Text style={styles.heading}>Login</Text>
+            <Text style={styles.heading}>Reset password</Text>
+            <Text style={styles.text}>If you do not know your current password, you can change it.</Text>
             <View style={styles.inputContainer}>
                 <Text style={styles.label2}>E-mail</Text>
                 <TextInput 
@@ -48,29 +22,9 @@ const LoginScreen = ({navigation}) => {
                     onChangeText={onChangeEmail}
                     value={email} />
             </View>
-            <View style={styles.inputContainer}>
-                <Text style={styles.label2}>Password</Text>
-                <TextInput 
-                    placeholder="Password" 
-                    placeholderTextColor="#BABADD" 
-                    style={styles.input}
-                    onChangeText={onChangePassword}
-                    value={password}
-                    secureTextEntry={true} />
-            </View>
-            <Text style={styles.link} onPress={() => navigation.navigate('Login')}>Forgot password?</Text>
-            {/* <Button title='Log in' 
-                    onPress={() => dispatch(login(email, password))} color="#5050A5"/> */}
             <TouchableOpacity style={styles.button} onPress={() => dispatch(login(email, password))}>
-                <Text style={styles.buttonText}>Log in</Text>
-            </TouchableOpacity>
-            <Button title='Set up profile' 
-                    onPress={() => navigation.navigate('SetupProfile')} color="#5050A5"/>
-            {/* <FlatList data={loggedInUser} renderItem={renderItem} /> */}
-
-            <Text style={styles.text}>Don't have an account? <Text style={styles.link} onPress={() => navigation.navigate('Signup')}>Sign up</Text></Text>
-
-            
+                <Text style={styles.buttonText}>Reset</Text>
+            </TouchableOpacity>            
         </View>
     );
 }
@@ -78,8 +32,6 @@ const LoginScreen = ({navigation}) => {
 const styles = StyleSheet.create({
     container: {
         margin: 20,
-        // marginTop: '30%',
-        // flexDirection: "row",
         flex: 1,
         justifyContent: 'center',
     },
@@ -141,9 +93,9 @@ const styles = StyleSheet.create({
         marginBottom: 50,
     },
     text: {
-        textAlign: 'center',
-        color: '#5050A5', 
-        marginTop: 36,
+        color: '#333333', 
+        marginTop: 0,
+        fontSize: 16,
     }
 });
 

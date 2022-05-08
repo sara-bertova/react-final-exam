@@ -23,10 +23,11 @@ const HomeScreen = ({ navigation }: { navigation: any }) =>  {
     const renderItem = ({ item }: { item: any }) => (
     
         <TouchableOpacity 
-            onPress={() => navigation.navigate('OneChatroom', {
-                chatId: item.id,
-                chatName: item.title,
-            })}>
+            onPress={() => navigation.navigate('OneFeedPost', {
+                postId: item.id,
+                postName: item.title,
+            })}
+            >
 
             <View style={styles.feed_wrapper}>
                 <ImageBackground source={imageMap[item.img as keyof typeof imageMap]} style={styles.feed_img}>

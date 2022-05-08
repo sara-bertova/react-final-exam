@@ -4,6 +4,7 @@ import { View, Text, Button, TouchableHighlight, Image, StyleSheet } from 'react
 import ChatScreen from "../screens/ChatScreen";
 import EditChatroomScreen from "../screens/EditChatroom";
 import OneChatroom from "../screens/OneChatroom";
+import OneFeedPost from "../screens/OneFeedPost";
 import MenuScreen from "./../screens/MenuScreen";
 import HomeScreen from "./../screens/HomeScreen";
 import DiscoverScreen from "./../screens/DiscoverScreen";
@@ -45,15 +46,21 @@ const NavigationComponent = ({ navigation }) => {
                             backgroundColor:'#5050A5'
                           }
                         }} /> */}
-                    <Tab.Screen name="Home" component={HomeScreen} 
+                    <Tab.Screen name="Home" component={FeedStack} 
                         options={{
-                            title: 'FEED',
-                            headerTitleAlign: 'center',
-                            headerTintColor: '#5050A5',
-                        }} 
+                            headerShown: false,
+                            tabBarLabel: "Home",
+                            unmountOnBlur: true,
+                        }}
                     />
                     <Tab.Screen name="Discover" component={DiscoverScreen} />
-                    <Tab.Screen options={{headerShown: false}} name="Chat" component={ChatStack} />
+                    <Tab.Screen name="Chat" component={ChatStack} 
+                        options={{
+                            headerShown: false,
+                            tabBarLabel: "Chat",
+                            unmountOnBlur: true,
+                        }}
+                    />
                     <Tab.Screen name="Menu" component={MenuStack} />
                 </Tab.Navigator>
             ) : (
@@ -92,6 +99,31 @@ function MenuStack() {
     )
 }
 
+function FeedStack() {
+    return (
+        <Stack.Navigator initialRouteName="Feed">
+            <Stack.Screen 
+                name="Feed" 
+                component={HomeScreen}
+                options={{
+                    title: 'FEED',
+                    headerTitleAlign: 'center',
+                    headerTintColor: '#5050A5',
+                }} >
+            </Stack.Screen>
+            <Stack.Screen 
+                name="OneFeedPost" 
+                component={OneFeedPost}
+                options={({ route }) => ({
+                    title: route.params.postName,               
+                    headerTitleAlign: 'center',
+                    headerTintColor: '#5050A5',
+                })}
+            ></Stack.Screen>
+        </Stack.Navigator>
+    )
+}
+
 function ChatStack() {
     const navigation = useNavigation();
 
@@ -118,12 +150,8 @@ function ChatStack() {
             <Stack.Screen 
                 name="EditChatroomScreen" 
                 component={EditChatroomScreen}
-                options={{
-                    headerShown: false,
-                    title: '',
-                    headerTitleAlign: 'center',
-                }}
-            ></Stack.Screen>
+                options={{headerShown: false}}>
+            </Stack.Screen>
             <Stack.Screen 
                 name="OneChatroom" 
                 component={OneChatroom}

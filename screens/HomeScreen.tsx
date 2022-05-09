@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { FlatList, StyleSheet, Text, TouchableOpacity, View, Image, ImageBackground, ScrollView } from 'react-native';
+import { FlatList, StyleSheet, Text, TouchableOpacity, View, Image, ImageBackground } from 'react-native';
+import { ScrollView } from 'react-native-virtualized-view';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../App';
@@ -23,13 +24,6 @@ const HomeScreen = ({ navigation }: { navigation: any }) =>  {
         'post1-01.png' : require('./../assets/posts/post1-01.png'),
         'post2-01.png' : require('./../assets/posts/post2-01.png'),
     }
-
-    // const renderPostEvent = ({ item }: { item: any }) => { 
-        
-        
-    //     {item.place !== undefined ? }
-        
-    // }
 
     const renderEvents = ({ item }: { item: any }) => (
     
@@ -94,15 +88,18 @@ const HomeScreen = ({ navigation }: { navigation: any }) =>  {
     );
 
     return (
-        <View>
-            <FlatList nestedScrollEnabled data={events} renderItem={renderEvents} />
-            <FlatList nestedScrollEnabled data={posts} renderItem={renderPosts} />
-        </View>
+        <ScrollView style={styles.container}>
+            <FlatList listKey={'events'} data={events} renderItem={renderEvents} />
+            <FlatList listKey={'posts'} data={posts} renderItem={renderPosts} />
+        </ScrollView>
     );
 }
 
 
 const styles = StyleSheet.create({
+    container: {
+        marginBottom: 20,
+    },
     feed_wrapper: {
         flex: 1,
         marginTop: 24,

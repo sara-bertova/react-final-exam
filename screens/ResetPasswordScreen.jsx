@@ -22,7 +22,7 @@ const LoginScreen = ({navigation}) => {
                     onChangeText={onChangeEmail}
                     value={email} />
             </View>
-            <TouchableOpacity style={styles.button} onPress={() => dispatch(login(email, password))}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ResetPasswordEmail')}>
                 <Text style={styles.buttonText}>Reset</Text>
             </TouchableOpacity>            
         </View>
@@ -68,6 +68,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 10,
         borderColor: '#EEEEEE',
+        marginTop: 45, 
+        marginBottom: 40,
     },
     input: {
         height: 35,
@@ -77,7 +79,7 @@ const styles = StyleSheet.create({
         color: '#32305D',
         fontWeight: 'bold',
         fontSize: 25,
-        marginVertical: 22,
+        marginVertical: 5,
     },
     image: {
         width: 114,

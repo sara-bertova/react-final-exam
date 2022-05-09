@@ -19,9 +19,9 @@ const VerifyEmailScreen = ({navigation}) => {
             />
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}>
                 <Text style={styles.buttonText}>Log in</Text>
-                <Image
+                {/* <Image
                     source={require('./../assets/verify-email/icons8-checked.png')}
-                />
+                /> */}
             </TouchableOpacity>
             {/* <Text style={styles.text2}>Having trouble?</Text>
             <Text style={styles.link} onPress={() => navigation.navigate('Login')}>Resend e-mail</Text> */}

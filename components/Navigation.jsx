@@ -19,6 +19,8 @@ import ProfileScreen from "./../screens/ProfileScreen";
 import EditProfileScreen from "./../screens/EditProfileScreen";
 import SignupScreen from "./../screens/SignupScreen";
 import LoginScreen from "./../screens/LoginScreen";
+import ResetPasswordScreen from "./../screens/ResetPasswordScreen";
+import ResetPasswordEmailScreen from "./../screens/ResetPasswordEmailScreen";
 
 import IntroductionScreen from "./../screens/IntroductionScreen";
 import OnboardingScreen from "./../screens/OnboardingScreen";
@@ -96,6 +98,17 @@ const NavigationComponent = ({ navigation }) => {
                         }
                         }} />
                     <Stack.Screen name="Login" component={LoginScreen} />
+                    <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} options={{
+                    headerShown: true,
+                    title: 'BACK',
+                    headerTitleAlign: 'left',
+                    headerTintColor: '#5050A5',
+                }} ></Stack.Screen>
+                    <Stack.Screen name="ResetPasswordEmail" component={ResetPasswordEmailScreen} options={{
+                        contentStyle: {
+                            backgroundColor:'#5050A5'
+                        }
+                        }} />
                     <Stack.Screen name="SetupProfile" component={SetupProfileScreen} />
                 </Stack.Navigator>
             )}

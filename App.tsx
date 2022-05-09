@@ -5,11 +5,13 @@ import NavigationComponent from './components/Navigation';
 import chatReducer from './store/reducers/ChatReducer';
 import userReducer from "./store/reducers/UserReducer";
 import eventReducer from './store/reducers/EventReducer';
+// import programmeReducer from './store/reducers/ProgrammeReducer';
 
 const rootReducer = combineReducers({
   chat: chatReducer,
   user: userReducer,
   event: eventReducer,
+  // programme: programmeReducer,
 })
 
 export type RootState = ReturnType<typeof rootReducer>

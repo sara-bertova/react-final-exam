@@ -58,7 +58,7 @@ const LoginScreen = ({navigation}) => {
                     value={password}
                     secureTextEntry={true} />
             </View>
-            <Text style={styles.link} onPress={() => navigation.navigate('Login')}>Forgot password?</Text>
+            <Text style={styles.link} onPress={() => navigation.navigate('ResetPassword')}>Forgot password?</Text>
             {/* <Button title='Log in' 
                     onPress={() => dispatch(login(email, password))} color="#5050A5"/> */}
             <TouchableOpacity style={styles.button} onPress={() => dispatch(login(email, password))}>

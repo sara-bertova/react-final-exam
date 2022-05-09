@@ -21,7 +21,6 @@ export const fetchChatrooms = () => {
 
 
         const data = await response.json(); // json to javascript
-        
         if (!response.ok) {
             //There was a problem..
         } else {
@@ -31,6 +30,19 @@ export const fetchChatrooms = () => {
                 let chatroom = new Chatroom(data[key].chatroomName, data[key].chatmessages, '', key)
                 chatrooms.push(chatroom)
             }
+
+            // let chatrooms = [];
+
+            // for(const key in data) {
+
+            //     let chatmessages = [];
+            //     for(const key2 in data[key].chatmessages) {
+            //         let msg = data[key].chatmessages[key2];
+            //         chatmessages.push(new Chatmessage(key2, msg.text, new Date(msg.timestamp)));
+            //     }
+            
+            //     chatrooms.push(new Chatroom(data[key].chatroomName, data[key].chatmessages ? chatmessages : [], '', key));
+            // }
 
             dispatch({ type: FETCH_CHATROOMS, payload: chatrooms })
         }
@@ -123,6 +135,5 @@ export const sendMessage = (chatId: string, message: string) => {
         }
     };
     
-    // return { type: SEND_MESSAGE, payload: { chatId, message }};
 }
 

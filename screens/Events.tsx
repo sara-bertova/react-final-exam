@@ -49,9 +49,8 @@ const HomeScreen = ({ navigation }: { navigation: any }) =>  {
     );
 
     return (
-        <View>
-            <FlatList data={events} renderItem={renderItem} />
-        </View>
+        
+        <FlatList nestedScrollEnabled data={events} renderItem={renderItem} />
     );
 }
 

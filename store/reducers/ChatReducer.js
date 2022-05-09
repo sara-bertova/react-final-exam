@@ -1,5 +1,5 @@
 import { Chatmessage, Chatroom } from "../../entities/Chatroom";
-import { ADD_CHATROOM, DELETE_CHATROOM, FETCH_CHATROOMS, SEND_MESSAGE } from "../actions/ChatActions";
+import { ADD_CHATROOM, DELETE_CHATROOM, FETCH_CHATROOMS } from "../actions/ChatActions";
 
 const initialState = {
     chatrooms: [],
@@ -9,6 +9,7 @@ const chatReducer = (state = initialState, action) => {
     switch (action.type) {
         
         case FETCH_CHATROOMS:
+            console.log(action.payload)
             return { ...state, chatrooms: action.payload }
 
         case ADD_CHATROOM:
@@ -27,14 +28,6 @@ const chatReducer = (state = initialState, action) => {
                 ...state, chatrooms:
                     state.chatrooms.filter(chatroom => chatroom.id !== action.payload)
             };
-
-        case SEND_MESSAGE:
-            console.log(action.payload.oneMessage.text)
-            // chatroom = state.chatrooms.filter(chatroom => chatroom.id == action.payload.chatId)
-            // console.log(chatroom.title)
-            // return { ...state, chatroom.chatmessages:  }
-
-        //return {...state, chatrooms: [...state.chatrooms, {title: action.payload}]}
 
         default:
             return state; //does not do anything yet​   

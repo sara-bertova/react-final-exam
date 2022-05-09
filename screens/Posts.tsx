@@ -3,62 +3,21 @@ import { FlatList, StyleSheet, Text, TouchableOpacity, View, Image, ImageBackgro
 
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../App';
-import { fetchEvents, fetchPosts } from '../store/actions/FeedActions';
+import { fetchPosts } from '../store/actions/FeedActions';
 
 const HomeScreen = ({ navigation }: { navigation: any }) =>  {
 
     const dispatch = useDispatch();
-    const events = useSelector((state: RootState) => state.event.events);
     const posts = useSelector((state: RootState) => state.post.posts);
-    // const eventsPosts = events.concat(posts)
 
     useEffect(() => {
-        dispatch(fetchEvents())
         dispatch(fetchPosts())
     }, []);
 
     const imageMap = {
-        'cbs-yoga.png' : require('./../assets/cbs-yoga.png'),
-        'cbs-ghost-world.png' : require('./../assets/cbs-ghost-world.png'),
         'post1-01.png' : require('./../assets/posts/post1-01.png'),
         'post2-01.png' : require('./../assets/posts/post2-01.png'),
     }
-
-    // const renderPostEvent = ({ item }: { item: any }) => { 
-        
-        
-    //     {item.place !== undefined ? }
-        
-    // }
-
-    const renderEvents = ({ item }: { item: any }) => (
-    
-        <TouchableOpacity 
-            onPress={() => navigation.navigate('OneEvent', {
-                postId: item.id,
-                postName: item.title,
-            })}
-            >
-                
-            <View style={styles.feed_wrapper}>
-                <ImageBackground source={imageMap[item.img as keyof typeof imageMap]} style={styles.feed_img}>
-                    <Text style={[styles.white_text, styles.title]}>{item.title}</Text>
-                    <Text style={[styles.white_text, styles.event_organizer]}>{item.organizer}</Text>
-                    <Text style={styles.white_text}>
-                        <Image    
-                            source={require('./../assets/icons8-alarm_clock/icons8-alarm_clock.png')}
-                        /> {item.time}
-                    </Text>
-                    <Text style={styles.white_text}>
-                        <Image    
-                            source={require('./../assets/icons8-marker/icons8-marker.png')}
-                        /> {item.place}
-                    </Text>
-                </ImageBackground>
-            </View>
-            
-        </TouchableOpacity>
-    );
 
     const renderPosts = ({ item }: { item: any }) => (
     
@@ -94,13 +53,13 @@ const HomeScreen = ({ navigation }: { navigation: any }) =>  {
     );
 
     return (
-        <View>
-            <FlatList nestedScrollEnabled data={events} renderItem={renderEvents} />
-            <FlatList nestedScrollEnabled data={posts} renderItem={renderPosts} />
-        </View>
+        // <ScrollView>
+        //     <FlatList nestedScrollEnabled data={posts} renderItem={renderPosts} />
+        // </ScrollView>
+        
+        <FlatList nestedScrollEnabled data={posts} renderItem={renderPosts} />
     );
 }
-
 
 const styles = StyleSheet.create({
     feed_wrapper: {
@@ -121,13 +80,6 @@ const styles = StyleSheet.create({
     post_img: {
         width: 337,
         height: 155,
-    },
-    white_text: {
-        color: '#ffffff',
-    },
-    event_organizer: {
-        fontSize: 12,
-        paddingVertical: 5,
     },
     title: {
         fontSize: 20,

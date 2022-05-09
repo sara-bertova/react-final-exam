@@ -1,7 +1,8 @@
-import { FETCH_EVENTS } from "../actions/FeedActions";
+import { FETCH_EVENTS, FETCH_POSTS } from "../actions/FeedActions";
 
 const initialState = {
     events: [],
+    posts: [],
 };
 
 
@@ -9,8 +10,10 @@ const feedReducer = (state = initialState, action) => {
     switch (action.type) {
         
         case FETCH_EVENTS:
-            console.log(action.payload)
             return { ...state, events: action.payload }
+
+        case FETCH_POSTS:
+            return { ...state, posts: action.payload }
 
         default:
             return state; //does not do anything yet​   

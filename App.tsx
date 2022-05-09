@@ -10,6 +10,7 @@ const rootReducer = combineReducers({
   chat: chatReducer,
   user: userReducer,
   event: feedReducer,
+  post: feedReducer,
 })
 
 export type RootState = ReturnType<typeof rootReducer>

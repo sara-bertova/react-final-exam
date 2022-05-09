@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { View, Button, TextInput, StyleSheet, Image, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchEvents } from '../store/actions/EventActions';
+import { fetchEvents } from '../store/actions/FeedActions';
 import Moment from 'moment';
 
 const OnePost = ({ route, navigation }) => {
@@ -27,22 +27,11 @@ const OnePost = ({ route, navigation }) => {
     return (
         <ScrollView style={styles.container}>
 
-            {/* <ScrollView style={styles.messages}>
-            {Object.keys(messages).map((keyName, i) => ( 
-                <View style={styles.chatmsg_wrapper}>
-                    <Text key={messages[keyName]}
-                          style={styles.chatmsg}>{messages[keyName].text}</Text>
-                    <Text key={messages[keyName].timestamp} style={styles.msg_time}>{Moment(messages[keyName].timestamp).format('h:mm a')}</Text>
-                </View>
-            ))}
-            </ScrollView> */}
-
             <View style={styles.intro_wrapper}>
                 <Image source={imageMap[event.img]} style={styles.img} />
                 
                 <View style={styles.info}>
                     <Text style={styles.title}>{event.title}</Text>
-                    {/* <Text style={styles.organizer}>{event.organizer}</Text> */}
                     <Text style={styles.time}>
                         <Image style={styles.icon_img}  
                             source={require('./../assets/icons8-alarm_clock/icons8-alarm_clock.png')}
@@ -107,7 +96,7 @@ const OnePost = ({ route, navigation }) => {
                 {Object.keys(event.schedule).map((keyName, i) => ( 
                     <View style={(i === event.schedule.length - 1) ? styles.schedule_wrapper_noBorder : styles.schedule_wrapper}>
                         <Text key={event.schedule[keyName]} 
-                              style={styles.schedule_time}>{event.schedule[keyName][1]}</Text>
+                              style={styles.schedule_time[1]}>{event.schedule[keyName][1]}</Text>
                         <Text key={event.schedule[keyName][0]}
                               style={styles.schedule_text}>{event.schedule[keyName][0]}</Text>
                     </View>

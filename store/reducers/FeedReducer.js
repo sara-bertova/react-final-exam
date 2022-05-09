@@ -1,11 +1,11 @@
-import { FETCH_EVENTS } from "../actions/EventActions";
+import { FETCH_EVENTS } from "../actions/FeedActions";
 
 const initialState = {
     events: [],
 };
 
 
-const eventReducer = (state = initialState, action) => {
+const feedReducer = (state = initialState, action) => {
     switch (action.type) {
         
         case FETCH_EVENTS:
@@ -17,4 +17,4 @@ const eventReducer = (state = initialState, action) => {
     }
 };
 
-export default eventReducer;
+export default feedReducer;

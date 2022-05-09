@@ -3,7 +3,7 @@ import { FlatList, StyleSheet, Text, TouchableOpacity, View, Image, ImageBackgro
 
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../App';
-import { fetchEvents } from '../store/actions/EventActions';
+import { fetchEvents } from '../store/actions/FeedActions';
 
 const HomeScreen = ({ navigation }: { navigation: any }) =>  {
 

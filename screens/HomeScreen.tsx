@@ -3,7 +3,7 @@ import { FlatList, StyleSheet, Text, TouchableOpacity, View, Image, ImageBackgro
 
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../App';
-import { fetchEvents } from '../store/actions/EventActions';
+import { fetchEvents } from '../store/actions/FeedActions';
 
 const HomeScreen = ({ navigation }: { navigation: any }) =>  {
 
@@ -20,7 +20,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) =>  {
 
     }
 
-    const renderItem = ({ item }: { item: any }) => (
+    const renderEvents = ({ item }: { item: any }) => (
     
         <TouchableOpacity 
             onPress={() => navigation.navigate('OneEvent', {
@@ -51,7 +51,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) =>  {
 
     return (
         <View>
-            <FlatList data={events} renderItem={renderItem} />
+            <FlatList data={events} renderItem={renderEvents} />
         </View>
     );
 }

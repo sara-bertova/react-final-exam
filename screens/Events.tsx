@@ -3,7 +3,7 @@ import { FlatList, StyleSheet, Text, TouchableOpacity, View, Image, ImageBackgro
 
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../App';
-import { fetchEvents } from '../store/actions/EventActions';
+import { fetchEvents } from '../store/actions/FeedActions';
 
 const HomeScreen = ({ navigation }: { navigation: any }) =>  {
 
@@ -49,9 +49,8 @@ const HomeScreen = ({ navigation }: { navigation: any }) =>  {
     );
 
     return (
-        <View>
-            <FlatList data={events} renderItem={renderItem} />
-        </View>
+        
+        <FlatList nestedScrollEnabled data={events} renderItem={renderItem} />
     );
 }
 

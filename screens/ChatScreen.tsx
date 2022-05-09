@@ -15,7 +15,19 @@ const ChatScreen = ({ navigation }: { navigation: any }) => {
         dispatch(fetchChatrooms())
     }, []);
 
-    console.log("chatrooms", chatrooms);
+    // Object.keys(chatrooms).map((keyName, i) => ( 
+    //     chatrooms[keyName].chatmessages != undefined ?
+    //         console.log(chatrooms[keyName].chatmessages) :
+    //         console.log('nic')
+    // ))
+
+    // Object.keys(item.chatmessages).map((keyName, i) => ( 
+    //     item.chatmessages[keyName].text
+    //     item.chatmessages != undefined ? item.chatmessages[Object.keys(item.chatmessages)[Object.keys(item.chatmessages).length - 1]].text :
+    //     console.log('no messages')
+    // )) 
+
+    // console.log(chatrooms)
 
     const renderItem = ({ item }: { item: any }) => (
 
@@ -32,15 +44,18 @@ const ChatScreen = ({ navigation }: { navigation: any }) => {
             />
             <View style={styles.chat_content}>
                 <Text style={styles.chat_title}>{item.title}</Text>
+                
                 <Text style={styles.chat_text}>
-                    { item.chatmessages[Object.keys(item.chatmessages)[Object.keys(item.chatmessages).length - 1]].text}
+                    { item.chatmessages != undefined ? item.chatmessages[Object.keys(item.chatmessages)[Object.keys(item.chatmessages).length - 1]].text :
+                        console.log('no messages')}
                  </Text>
             </View>
+            { item.chatmessages != undefined ? 
             <View>
-            <   Text style={styles.chat_text}>
+                <Text style={styles.chat_text}>
                     { Moment(item.chatmessages[Object.keys(item.chatmessages)[Object.keys(item.chatmessages).length - 1]].timestamp).format('h:mm a')}
                  </Text>
-            </View>
+            </View> : <View><Text style={styles.chat_text}></Text></View>}
         </TouchableOpacity>
     );
 
@@ -124,6 +139,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     chat_text: {
+        width: 100,
+        
     },
 });
 

@@ -133,7 +133,6 @@ export const sendMessage = (chatId: string, message: string) => {
             // console.log(data)
             dispatch(fetchChatrooms())
         }
-    };
-    
+    };   
 }
 

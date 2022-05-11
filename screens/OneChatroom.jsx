@@ -37,7 +37,7 @@ const OneChat = ({ route, navigation }) => {
 
                     <Image  
                         style={styles.chat_image}
-                        source={require('./../assets/chat-img/chat-img-sm.png')}
+                        source={require('./../assets/emma/emma-101.png')}
                     />
                 
                     <TextInput placeholder="Write message"
@@ -57,6 +57,10 @@ const OneChat = ({ route, navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    chat_image: {
+        width: 50,
+        height: 50,
     },
     chatbox_wrapper: {
         backgroundColor: 'white',

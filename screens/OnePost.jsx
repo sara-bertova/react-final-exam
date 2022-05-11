@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { View, StyleSheet, Image, ScrollView, Text, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Image, ScrollView, Text, TouchableOpacity, TextInput, Button } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchEvents } from '../store/actions/FeedActions';
+import { fetchEvents, sendComment } from '../store/actions/FeedActions';
 import Moment from 'moment';
 
 const OnePost = ({ route, navigation }) => {
@@ -22,37 +22,80 @@ const OnePost = ({ route, navigation }) => {
         'post2-01.png' : require('./../assets/posts/post2-01.png'),
     }
 
-    // console.log('*************** ', post.title)
+    console.log('*************** ', post.comments)
 
     return (
 
-        <ScrollView style={styles.container}>
-            <Image source={imageMap[post.img]} style={styles.img}></Image>
-            
-            <Text style={styles.title}>{post.title}</Text>
+        <View style={styles.container}>
+            <ScrollView style={styles.post_wrapper}>
+                <Image source={imageMap[post.img]} style={styles.img}></Image>
+                
+                <Text style={styles.title}>{post.title}</Text>
 
-            <TouchableOpacity style={styles.inputContainer}>
-                <Image source={require('./../assets/chat-img/chat-img-sm.png')} />
-                <View style={styles.input_wrapper}>
-                    <Text style={styles.organizer}>{post.organizer}</Text>
-                    <Text style={styles.organizer_subtext}>View page</Text>
-                </View>
-                <View style={styles.chat_icon}>
-                    <Image source={require('./../assets/icons8-chat/icons8-chat.png')} />
-                </View>
-            </TouchableOpacity>
-
-            <View style={styles.post_time_wrapper}>
-                        <Text style={styles.post_time}>{post.time}</Text>
-                        <View style={styles.post_lc_wrpper}>
-                            <Text style={styles.likes}><Image source={require('./../assets/icons8-thumbs_up/icons8-thumbs_up.png')}/> 73</Text>
-                            <Text style={styles.comments}><Image source={require('./../assets/icons8-comments/icons8-comments.png')}/> 31</Text>
-                        </View>
+                <TouchableOpacity style={styles.inputContainer}>
+                    <Image source={require('./../assets/chat-img/chat-img-sm.png')} />
+                    <View style={styles.input_wrapper}>
+                        <Text style={styles.organizer}>{post.organizer}</Text>
+                        <Text style={styles.organizer_subtext}>View page</Text>
                     </View>
+                    <View style={styles.chat_icon}>
+                        <Image source={require('./../assets/icons8-chat/icons8-chat.png')} />
+                    </View>
+                </TouchableOpacity>
 
-            <Text style={styles.text}>{post.description}</Text>
+                <View style={styles.post_time_wrapper}>
+                            <Text style={styles.post_time}>{post.time}</Text>
+                            <View style={styles.post_lc_wrpper}>
+                                <Text style={styles.likes}><Image source={require('./../assets/icons8-thumbs_up/icons8-thumbs_up.png')}/>{post.likes}</Text>
+                                <Text style={styles.comments}><Image source={require('./../assets/icons8-comments/icons8-comments.png')}/> 31</Text>
+                            </View>
+                        </View>
+
+                <Text style={styles.text}>{post.description}</Text>
+
+                <View style={styles.like_post_wrapper}>
+                    <Text style={styles.likes_number}>{post.likes} liked this</Text>
+                    <Text style={styles.likes_wrapper}>
+                        <Image source={require('./../assets/icons8-thumbs_up/icons8-thumbs_up-md.png')} style={styles.likes_icon} /> Like
+                    </Text>
+                </View>
+
+                <View style={styles.post_comments}>
+                    <Text style={styles.comments_title}>COMMENTS</Text>
+                    {Object.keys(post.comments).map((keyName, i) => ( 
+                        <View style={styles.comment_wrapper}>
+                            <Text style={styles.comment_user}>Adela</Text>
+                            <Text key={post.comments[keyName].text}
+                                style={styles.one_comment}>{post.comments[keyName].text}</Text>
+                            
+                            <Text key={post.comments[keyName].timestamp} style={styles.comment_time}>{Moment(post.comments[keyName].timestamp).format('h:mm a')}</Text>
+                        </View>
+                    ))}
+                </View>
+
+            </ScrollView>
             
-        </ScrollView>
+            <View style={styles.chatbox_wrapper}>
+                <View style={styles.chatbox}>
+
+                    <Image  
+                        style={styles.chat_image}
+                        source={require('./../assets/emma/emma-101.png')}
+                    />
+                
+                    <TextInput placeholder="Add comment"
+                        multiline
+                        style={styles.input}
+                        onChangeText={onChangeText}
+                        value={text} />
+
+                    <Button color="#5050A5" title='Send' onPress={() => dispatch(sendComment(postId, text))} />
+                
+                </View>
+            </View>
+            
+        </View>
+        
     );
 }
 
@@ -60,6 +103,10 @@ const styles = StyleSheet.create({
     container: {
         color: '#333333',
         backgroundColor: '#ffffff',
+        flex: 1,
+    },
+    post_wrapper: {
+        flex: 1,
     },
     img: {
         width: '100%',
@@ -132,6 +179,84 @@ const styles = StyleSheet.create({
     text: {
         paddingHorizontal: 24,
         paddingBottom: 24,
+        fontSize: 16,
+    },
+    chatbox_wrapper: {
+        backgroundColor: 'white',
+        padding: 12,
+        justifyContent: 'space-between',
+    },
+    chat_image: {
+        width: 50,
+        height: 50,
+    },
+    chatbox: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    input: {
+        height: 44,
+        width: 245,
+        marginHorizontal: 12,
+        marginVertical: 12,
+        padding: 10,
+        fontSize: 12,
+        backgroundColor: '#EEEEEE',
+    },
+    comments_title: {
+        color: '#5050A5',
+        fontSize: 26,
+        marginTop: 16,
+        marginBottom: 5,
+        fontWeight: 'bold',
+    },
+    post_comments: {
+        paddingHorizontal: 24,
+    },
+    comment_wrapper: {
+        marginVertical: 10,
+    },
+    comment_user: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        paddingBottom: 5,
+    },
+    one_comment: {
+        fontSize: 16,
+    },
+    comment_time: {
+        paddingTop: 5,
+        fontSize: 12,
+        color: '#AAAAAA',
+    },
+    like_post_wrapper: {
+        marginHorizontal: 24,
+        width: 350,
+        alignSelf: 'center',
+        borderTopWidth: 1,
+        borderTopColor: '#EEEEEE',
+        borderBottomWidth: 1,
+        borderBottomColor: '#EEEEEE',
+        flexDirection: 'row',
+        padding: 10,
+        marginTop: 5,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    likes_number: {
+        color: '#5050A5',
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
+    likes_wrapper: {
+        fontSize: 18, 
+        color: '#5050A5',
+        fontWeight: 'bold',
+        borderColor: '#5050A5',
+        borderWidth: 1,
+        borderRadius: 5,
+        width: 120,
+        padding: 8,
     },
 })
 

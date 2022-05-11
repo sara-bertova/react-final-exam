@@ -73,8 +73,8 @@ const HomeScreen = ({ navigation }: { navigation: any }) =>  {
                     <View style={styles.post_time_wrapper}>
                         <Text style={styles.post_time}>{item.time}</Text>
                         <View style={styles.post_lc_wrpper}>
-                            <Text style={styles.likes}><Image source={require('./../assets/icons8-thumbs_up/icons8-thumbs_up.png')}/> 73</Text>
-                            <Text style={styles.comments}><Image source={require('./../assets/icons8-comments/icons8-comments.png')}/> 31</Text>
+                            <Text style={styles.likes}><Image source={require('./../assets/icons8-thumbs_up/icons8-thumbs_up.png')}/>{item.likes}</Text>
+                            <Text style={styles.comments}><Image source={require('./../assets/icons8-comments/icons8-comments.png')}/>31</Text>
                         </View>
                     </View>
                     <View style={styles.post_organizer_wrapper}>

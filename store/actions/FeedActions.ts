@@ -1,4 +1,4 @@
-import { Event, Post } from "../../entities/Feed";
+import { Comment, Event, Post } from "../../entities/Feed";
 
 export const FETCH_EVENTS = 'FETCH_EVENTS';
 export const FETCH_POSTS = 'FETCH_POSTS';
@@ -73,6 +73,7 @@ export const fetchPosts = () => {
                                      data[key].organizer,  
                                      data[key].time,  
                                      data[key].comments, 
+                                     data[key].likes,
                                      key)
                 posts.push(post)
             }
@@ -80,4 +81,35 @@ export const fetchPosts = () => {
             dispatch({ type: FETCH_POSTS, payload: posts })
         }
     };
+}
+
+export const sendComment = (postId: string, message: string) => {
+    return async (dispatch: any, getState: any) => {
+        const idToken = getState().user.idToken
+        const oneComment = new Comment(message, new Date(), idToken); //example of using typescript
+        
+        const response = await fetch(
+            'https://react-exam-68375-default-rtdb.europe-west1.firebasedatabase.app/posts/' + postId + '/comments.json/?auth='
+            + idToken, {
+
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 
+                text: oneComment.text,
+                timestamp: oneComment.timestamp,
+                userId: oneComment.userid
+            })
+        });
+
+        const data = await response.json(); // json to javascript
+
+        if (!response.ok) {
+            //There was a problem..
+        } else {
+            // console.log(data)
+            dispatch(fetchPosts())
+        }
+    };   
 }

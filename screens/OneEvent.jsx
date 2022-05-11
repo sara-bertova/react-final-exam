@@ -95,8 +95,8 @@ const OnePost = ({ route, navigation }) => {
                 <Text style={styles.schedule_title}>SCHEDULE</Text>
                 {Object.keys(event.schedule).map((keyName, i) => ( 
                     <View style={(i === event.schedule.length - 1) ? styles.schedule_wrapper_noBorder : styles.schedule_wrapper}>
-                        <Text key={event.schedule[keyName]} 
-                              style={styles.schedule_time[1]}>{event.schedule[keyName][1]}</Text>
+                        <Text key={event.schedule[keyName][1]} 
+                              style={styles.schedule_time}>{event.schedule[keyName][1]}</Text>
                         <Text key={event.schedule[keyName][0]}
                               style={styles.schedule_text}>{event.schedule[keyName][0]}</Text>
                     </View>

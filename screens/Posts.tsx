@@ -57,7 +57,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) =>  {
         //     <FlatList nestedScrollEnabled data={posts} renderItem={renderPosts} />
         // </ScrollView>
         
-        <FlatList nestedScrollEnabled data={posts} renderItem={renderPosts} />
+        <FlatList nestedScrollEnabled data={posts} renderItem={renderPosts}/>
     );
 }
 

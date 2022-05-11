@@ -13,6 +13,7 @@ import Events from "./../screens/Events";
 import Organisations from "./../screens/Organisations";
 import Posts from "./../screens/Posts";
 import OneEvent from "../screens/OneEvent";
+import OnePost from '../screens/OnePost';
 
 import MenuScreen from "./../screens/MenuScreen";
 import ProfileScreen from "./../screens/ProfileScreen";
@@ -147,6 +148,15 @@ function FeedStack() {
                     headerTintColor: '#5050A5',
                 })}
             ></Stack.Screen>
+            <Stack.Screen 
+                name="OnePost" 
+                component={OnePost}
+                options={({ route }) => ({
+                    title: route.params.postName,               
+                    headerTitleAlign: 'center',
+                    headerTintColor: '#5050A5',
+                })}
+            ></Stack.Screen>
         </Stack.Navigator>
     )
 }
@@ -196,6 +206,15 @@ function DiscoverStack() {
                 component={Posts}
                 options={({ route }) => ({
                     title: route.params.name,               
+                    headerTitleAlign: 'center',
+                    headerTintColor: '#5050A5',
+                })}
+            ></Stack.Screen>
+            <Stack.Screen 
+                name="OnePost" 
+                component={OnePost}
+                options={({ route }) => ({
+                    title: route.params.postName,               
                     headerTitleAlign: 'center',
                     headerTintColor: '#5050A5',
                 })}

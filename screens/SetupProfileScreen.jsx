@@ -52,11 +52,11 @@ const SetupProfileScreen = ({navigation}) => {
     
     return (
         <View style={styles.container}>
-            <Image
+            {/* <Image
                 style={styles.image}
                 source={require('./../assets/logo2.png')}
-            />
-            <Text style={styles.heading}>Before we start...</Text>
+            /> */}
+            {/* <Text style={styles.heading}>Before we start...</Text> */}
             <View style={styles.profileImgContainer}>
                 <View>
                     <Text style={styles.label2}>Profile picture</Text>
@@ -67,7 +67,7 @@ const SetupProfileScreen = ({navigation}) => {
                 <View style={styles.profileImgWrapper}>
                     <Image
                         style={styles.profileImg}
-                        source={require('./../assets/setup-profile/icons8-user_account.png')}
+                        source={require('./../assets/setup-profile/robert.png')}
                     />
                 </View>
             </View>
@@ -161,7 +161,7 @@ const SetupProfileScreen = ({navigation}) => {
                 </View>
             </Modal>
             <TouchableOpacity style={styles.button} disabled={!agree} onPress={() => dispatch(signup(email, password, repeatPassword))}>
-                <Text style={styles.buttonText}>Next</Text>
+                <Text style={styles.buttonText}>Save changes</Text>
             </TouchableOpacity>
         </View>
     );
@@ -196,10 +196,11 @@ const styles = StyleSheet.create({
     },
     inputContainer: {
         height: 70,
-        borderWidth: 1,
+        borderWidth: 2,
         padding: 10,
         borderColor: '#EEEEEE',
         marginBottom: 24,
+        backgroundColor: '#fff',
     },
     input: {
         height: 35,
@@ -275,9 +276,10 @@ const styles = StyleSheet.create({
         width: 104,
         height: 104,
         borderWidth: 2,
-        borderColor: '#EEEEEE',
+        borderColor: '#fff',
         borderRadius: 100,
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     profileImg: {
         alignSelf: 'center',

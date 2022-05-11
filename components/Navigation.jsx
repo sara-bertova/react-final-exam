@@ -78,7 +78,18 @@ const NavigationComponent = ({ navigation }) => {
                             unmountOnBlur: true,
                         }}
                     />
-                    <Tab.Screen name="Menu" component={MenuStack} />
+                    <Tab.Screen name="Menu" component={MenuStack}
+                        options={{
+                            headerShown: false,
+                            tabBarLabel: "Menu",
+                            unmountOnBlur: true,
+                        }} 
+                        // options={{
+                        //     title: 'MENU',
+                        //     headerTitleAlign: 'center',
+                        //     headerTintColor: '#5050A5',
+                        // }}
+                    />
                 </Tab.Navigator>
             ) : (
                 // show a stack navigator with only signup and login screens.
@@ -120,9 +131,25 @@ const NavigationComponent = ({ navigation }) => {
 
 function MenuStack() {
     return (
-        <Stack.Navigator>
-            <Stack.Screen name="Profile" component={ProfileScreen}></Stack.Screen>
-            <Stack.Screen name="EditProfile" component={EditProfileScreen}></Stack.Screen>
+        <Stack.Navigator initialRouteName='Profile'>
+            <Stack.Screen 
+                name="Profile" 
+                component={ProfileScreen}
+                options={{
+                    title: 'MENU',
+                    headerTitleAlign: 'center',
+                    headerTintColor: '#5050A5',
+                }}>
+            </Stack.Screen>
+            <Stack.Screen 
+                name="SetupProfile" 
+                component={SetupProfileScreen}
+                options={{
+                    title: 'EDIT PROFILE',
+                    headerTitleAlign: 'center',
+                    headerTintColor: '#5050A5',
+                }}>
+            </Stack.Screen>
         </Stack.Navigator>
     )
 }

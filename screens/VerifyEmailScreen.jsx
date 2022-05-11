@@ -7,8 +7,10 @@ import { signup } from '../store/actions/UserActions';
 
 import { useNavigation } from '@react-navigation/native';
 
-const VerifyEmailScreen = ({navigation}) => {
+const VerifyEmailScreen = ({route, navigation}) => {
     // const navigation = useNavigation();
+
+    const { email, password, repeatPassword } = route.params;
 
     // const [email, onChangeEmail] = useState('');
     // const [password, onChangePassword] = useState('');
@@ -16,9 +18,9 @@ const VerifyEmailScreen = ({navigation}) => {
 
     // const [agree, setAgree] = useState(false);
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-    // const users = useSelector(state => state.user.idToken);
+    const users = useSelector(state => state.user.idToken);
 
     return (
         <View style={styles.container}>
@@ -34,7 +36,7 @@ const VerifyEmailScreen = ({navigation}) => {
             />
             {/* <Button title="I've verified my e-mail"
                     onPress={() => navigation.navigate('Login')}  color="#ffffff"/> */}
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}>
+            <TouchableOpacity style={styles.button} onPress={() => dispatch(signup(email, password, repeatPassword))}>
                 <Text style={styles.buttonText}>I've verified my e-mail</Text>
                 <Image
                     source={require('./../assets/verify-email/icons8-checked.png')}

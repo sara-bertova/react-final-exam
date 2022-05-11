@@ -16,7 +16,7 @@ const SignupScreen = ({navigation}) => {
 
     const [agree, setAgree] = useState(false);
 
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     // const users = useSelector(state => state.user.idToken);
 
@@ -67,11 +67,15 @@ const SignupScreen = ({navigation}) => {
             </View>
             {/* <Button title='Get access' disabled={!agree}
                     onPress={() => dispatch(signup(email, password, repeatPassword))}  color="#5050A5"/> */}
-            <TouchableOpacity style={styles.button} disabled={!agree} onPress={() => dispatch(signup(email, password, repeatPassword))}>
+            <TouchableOpacity style={styles.button} disabled={!agree} onPress={() => navigation.navigate('VerifyEmail', {
+                email: email, 
+                password: password, 
+                repeatPassword: repeatPassword,
+            })}>
                 <Text style={styles.buttonText}>Get access</Text>
             </TouchableOpacity>
-            <Button title='Verify email'
-                    onPress={() => navigation.navigate('VerifyEmail')}  color="#5050A5"/>
+            {/* <Button title='Verify email'
+                    onPress={() => navigation.navigate('VerifyEmail')}  color="#5050A5"/> */}
             <Text style={styles.text}>Already have a user? <Text style={styles.link} onPress={() => navigation.navigate('Login')}>Log in</Text></Text>
             {/* <Button title="Already have an account? Log in" 
                     onPress={() => navigation.navigate('Login')} color="#5050A5"/> */}

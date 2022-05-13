@@ -1,16 +1,17 @@
-import { RESTORE_USER, SIGNUP, LOGIN } from "../actions/UserActions";
-
+import { RESTORE_USER, SIGNUP, LOGIN, UPDATE_USER } from "../actions/UserActions";
 
 export interface UserState {
     idToken: string | undefined;
     email: string | undefined;
     username: string | undefined;
+    programme: string | undefined;
 }
 
 const initialState: UserState = {
     idToken: undefined,
     email: undefined,
-    username: 'Test'
+    username: 'Username',
+    programme: 'Study programme'
 };
 
 export interface Action {
@@ -26,6 +27,9 @@ const userReducer = (state: UserState = initialState, action: Action) => {
             return { ...state, idToken: action.payload.idToken, email: action.payload.email } 
         case RESTORE_USER:
             return { ...state, idToken: action.payload.idToken, email: action.payload.email }
+        case UPDATE_USER:
+            console.log(action.payload.username)
+            return { ...state, idToken: action.payload.idToken, username: action.payload.username }
 
         default:
             return state; //does not do anything yet​   

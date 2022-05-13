@@ -3,12 +3,16 @@ import * as SecureStore from 'expo-secure-store';
 export const SIGNUP = 'SIGNUP';
 export const LOGIN = 'LOGIN';
 export const RESTORE_USER = 'RESTORE_USER';
+export const UPDATE_USER = 'UPDATE_USER';
 
 
 export const restoreUser = (email, token) => {
     return { type: RESTORE_USER, payload: { email, idToken: token } };
 };
 
+export const updateUser = (username, token) => {
+    return { type: UPDATE_USER, payload: { username, idToken: token } };
+};
 
 export const signup = (email, password, repeatPassword) => {
     return async dispatch => {
@@ -43,7 +47,7 @@ export const signup = (email, password, repeatPassword) => {
         } else {
             await SecureStore.setItemAsync('email', data.email);
             await SecureStore.setItemAsync('token', data.idToken);
-            dispatch({ type: SIGNUP, payload: { email: data.email, idToken: data.idToken } })
+            dispatch({ type: SIGNUP, payload: { email: data.email, username: data.username, programme: data.programme, idToken: data.idToken } })
         }
     };
 };
@@ -70,7 +74,11 @@ export const login = (email, password) => {
             //There was a problem..
         } else {
             const data = await response.json(); // json to javascript
-            dispatch({ type: LOGIN, payload: { email: data.email, idToken: data.idToken } })
+            dispatch({ type: LOGIN, payload: { email: data.email, username: data.username, programme: data.programme, idToken: data.idToken } })
         }
     };
 };
+
+
+
+

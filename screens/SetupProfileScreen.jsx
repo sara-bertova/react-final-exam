@@ -8,6 +8,8 @@ import Modal from "react-native-modal";
 // import RadioGroup from 'react-native-radio-buttons-group';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import RadioButtonRN from 'radio-buttons-react-native';
+import Input from './../components/Input';
+import { updateUser } from '../store/actions/UserActions';
 
 const SetupProfileScreen = ({navigation}) => {
     // const navigation = useNavigation();
@@ -28,6 +30,9 @@ const SetupProfileScreen = ({navigation}) => {
     const [shouldShow, setShouldShow] = useState(false);
     const [showRadio, setShowRadio] = useState(false);
     const [showArrow, setShowArrow] = useState(false);
+
+    const username = useSelector(state => state.user.username);
+    const [validUsername, setValidUsername] = useState(username !== '')
 
     const data = [{
         id: '1', 
@@ -71,15 +76,22 @@ const SetupProfileScreen = ({navigation}) => {
                     />
                 </View>
             </View>
-            <View style={styles.inputContainer}>
-                <Text style={styles.label2}>What is your name?</Text>
+            {/* <View style={styles.inputContainer}> */}
+                <Input
+                    label="What is your name?"
+                    inputValue={username}
+                    error="Username cannot be empty."
+                    valid={validUsername}
+                    setValid={setValidUsername}
+                />
+                {/* <Text style={styles.label2}>What is your name?</Text>
                 <TextInput 
                     placeholder="First name and last name" 
                     placeholderTextColor="#BABADD" 
                     style={styles.input} 
                     onChangeText={onChangeName}
-                    value={name} />
-            </View>
+                    value={name} /> */}
+            {/* </View> */}
             <View style={styles.inputContainer}>
                 <Text style={styles.label2}>Study programme</Text>
                 <Text style={styles.modalToggle} onPress={handleModal}>Select from list</Text>
@@ -160,7 +172,7 @@ const SetupProfileScreen = ({navigation}) => {
                 {/* <Button title="Hide modal" onPress={handleModal} /> */}
                 </View>
             </Modal>
-            <TouchableOpacity style={styles.button} disabled={!agree} onPress={() => dispatch(signup(email, password, repeatPassword))}>
+            <TouchableOpacity style={styles.button} onPress={() => dispatch(updateUser(username))}>
                 <Text style={styles.buttonText}>Save changes</Text>
             </TouchableOpacity>
         </View>

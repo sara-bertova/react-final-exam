@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { signup } from '../store/actions/UserActions';
 
 import { useNavigation } from '@react-navigation/native';
+import Input from './../components/Input';
 
 const SignupScreen = ({navigation}) => {
     // const navigation = useNavigation();
@@ -15,6 +16,16 @@ const SignupScreen = ({navigation}) => {
     const [repeatPassword, onChangeRepeatPassword] = useState('');
 
     const [agree, setAgree] = useState(false);
+
+    // const email = useSelector(state => state.user.email);
+    // const [validEmail, setValidEmail] = useState(email !== '')
+
+    // const password = useSelector(state => state.user.password);
+    // const [validPassword, setValidPassword] = useState(password !== '')
+    // console.log(password);
+
+    // const repeatPassword = useSelector(state => state.user.repeatPassword);
+    // const [validRepPassword, setValidRepPassword] = useState(repeatPassword !== '')
 
     // const dispatch = useDispatch();
 
@@ -27,6 +38,32 @@ const SignupScreen = ({navigation}) => {
                 source={require('./../assets/logo2.png')}
             />
             <Text style={styles.heading}>Sign up to get access</Text>
+            {/* <Input
+                    label="E-mail"
+                    placeholder='E-mail'
+                    inputValue={email}
+                    error="Email cannot be empty"
+                    valid={validEmail}
+                    setValid={setValidEmail}
+                /> */}
+            {/* <Input
+                    label="Password"
+                    placeholder='Password'
+                    inputValue={password}
+                    error="Password cannot be empty"
+                    valid={validPassword}
+                    setValid={setValidPassword}
+                    // secureEntry={true}
+                /> */}
+            {/* <Input
+                    label="Repeat Password"
+                    placeholder='Repeat password'
+                    inputValue={repeatPassword}
+                    error="You must confirm your password"
+                    valid={validRepPassword}
+                    setValid={setValidRepPassword}
+                    secureEntry={true}
+                /> */}
             <View style={styles.inputContainer}>
                 <Text style={styles.label2}>E-mail</Text>
                 <TextInput 
@@ -45,7 +82,7 @@ const SignupScreen = ({navigation}) => {
                     onChangeText={onChangePassword}
                     value={password}
                     secureTextEntry={true} />
-            </View>
+            </View> 
             <View style={styles.inputContainer}>
                 <Text style={styles.label2}>Repeat Password</Text>
                 <TextInput 

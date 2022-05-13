@@ -64,8 +64,8 @@ const LoginScreen = ({navigation}) => {
             <TouchableOpacity style={styles.button} onPress={() => dispatch(login(email, password))}>
                 <Text style={styles.buttonText}>Log in</Text>
             </TouchableOpacity>
-            <Button title='Set up profile' 
-                    onPress={() => navigation.navigate('SetupProfile')} color="#5050A5"/>
+            {/* <Button title='Set up profile' 
+                    onPress={() => navigation.navigate('SetupProfile')} color="#5050A5"/> */}
             {/* <FlatList data={loggedInUser} renderItem={renderItem} /> */}
 
             <Text style={styles.text}>Don't have an account? <Text style={styles.link} onPress={() => navigation.navigate('Signup')}>Sign up</Text></Text>

@@ -10,6 +10,7 @@ import feedReducer from './store/reducers/FeedReducer';
 const rootReducer = combineReducers({
   chat: chatReducer,
   user: userReducer,
+  // userInfo: userReducer,
   // programme: programmeReducer,
 
   event: feedReducer,

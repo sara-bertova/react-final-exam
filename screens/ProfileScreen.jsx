@@ -5,19 +5,13 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import Modal from "react-native-modal";
-// import RadioGroup from 'react-native-radio-buttons-group';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import RadioButtonRN from 'radio-buttons-react-native';
-import ToggleButton from "react-native-toggle-button";
 
 const ProfileScreen = ({ navigation }) => {
 
     const [name, onChangeName] = useState('');
-    const [programme, onChangeProgramme] = useState('');
+    // const [programme, onChangeProgramme] = useState('');
 
     const [agree, setAgree] = useState(false);
-
-    const dispatch = useDispatch();
 
     const [isModalVisible, setIsModalVisible] = useState(false);
     const handleModal = () => setIsModalVisible(() => !isModalVisible);
@@ -25,11 +19,14 @@ const ProfileScreen = ({ navigation }) => {
     // const [isSecondSelectVisible, setIsSecondSelectVisible] = useState(false);
     // const handleSecondSelect = () => setIsSecondSelectVisible(() => !isSecondSelectVisible);
 
-
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
     const [isEnabled2, setIsEnabled2] = useState(false);
     const toggleSwitch2 = () => setIsEnabled2(previousState => !previousState);
+
+    const email = useSelector(state => state.user.email);
+    const username = useSelector(state => state.user.username);
+    const programme = useSelector(state => state.user.programme);
 
     return (
         <View style={styles.container}>
@@ -37,13 +34,13 @@ const ProfileScreen = ({ navigation }) => {
                 <View style={styles.profileImgWrapper}>
                     <Image
                         style={styles.profileImg}
-                        source={require('./../assets/setup-profile/icons8-user_account.png')}
+                        source={require('./../assets/setup-profile/robert.png')}
                     />
                 </View>
                 <View style={styles.profileTextWrapper}>
-                    <Text style={styles.name}>Robert Jacobsen</Text>
-                    <Text style={styles.profileInfo}>roja20zz@student.cbs.dk</Text>
-                    <Text style={styles.profileInfo}>MSc in Business Administration and E-business</Text>
+                    <Text style={styles.name}>{username}</Text>
+                    <Text style={styles.profileInfo}>{email}</Text>
+                    <Text style={styles.profileInfo}>{programme}</Text>
                 </View>
             </View>
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SetupProfile')}>
@@ -173,7 +170,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: '#fff',
         borderRadius: 100,
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
         marginRight: 19,
     },
     profileTextWrapper: {

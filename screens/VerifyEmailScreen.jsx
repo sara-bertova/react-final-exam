@@ -11,6 +11,7 @@ const VerifyEmailScreen = ({route, navigation}) => {
     // const navigation = useNavigation();
 
     const { email, password, repeatPassword } = route.params;
+    console.log(password);
 
     // const [email, onChangeEmail] = useState('');
     // const [password, onChangePassword] = useState('');

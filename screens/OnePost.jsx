@@ -22,8 +22,6 @@ const OnePost = ({ route, navigation }) => {
         'post2-01.png' : require('./../assets/posts/post2-01.png'),
     }
 
-    console.log('*************** ', post.comments)
-
     return (
 
         <View style={styles.container}>
@@ -55,22 +53,24 @@ const OnePost = ({ route, navigation }) => {
 
                 <View style={styles.like_post_wrapper}>
                     <Text style={styles.likes_number}>{post.likes} liked this</Text>
-                    <Text style={styles.likes_wrapper}>
-                        <Image source={require('./../assets/icons8-thumbs_up/icons8-thumbs_up-md.png')} style={styles.likes_icon} /> Like
-                    </Text>
+                    <TouchableOpacity>
+                        <Text style={styles.likes_wrapper}>
+                            <Image source={require('./../assets/icons8-thumbs_up/icons8-thumbs_up-md.png')} style={styles.likes_icon} /> Like
+                        </Text>
+                    </TouchableOpacity>
                 </View>
 
                 <View style={styles.post_comments}>
                     <Text style={styles.comments_title}>COMMENTS</Text>
-                    {Object.keys(post.comments).map((keyName, i) => ( 
+                    {post.comments != undefined ? Object.keys(post.comments).map((keyName, i) => ( 
                         <View style={styles.comment_wrapper}>
                             <Text style={styles.comment_user}>Adela</Text>
                             <Text key={post.comments[keyName].text}
                                 style={styles.one_comment}>{post.comments[keyName].text}</Text>
                             
-                            <Text key={post.comments[keyName].timestamp} style={styles.comment_time}>{Moment(post.comments[keyName].timestamp).format('h:mm a')}</Text>
+                            <Text key={post.comments[keyName].timestamp} style={styles.comment_time}>{Moment(post.comments[keyName].timestamp).format('mm')} min</Text>
                         </View>
-                    ))}
+                    )) : <Text>No comments yet</Text>}
                 </View>
 
             </ScrollView>

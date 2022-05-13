@@ -5,7 +5,6 @@ const initialState = {
     posts: [],
 };
 
-
 const feedReducer = (state = initialState, action) => {
     switch (action.type) {
         

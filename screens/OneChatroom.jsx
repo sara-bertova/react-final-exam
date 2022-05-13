@@ -25,7 +25,7 @@ const OneChat = ({ route, navigation }) => {
             <ScrollView style={styles.messages}>
                 {Object.keys(messages).map((keyName, i) => ( 
                     <View style={styles.chatmsg_wrapper}>
-                        <Text key={messages[keyName]}
+                        <Text key={messages[keyName].text}
                             style={styles.chatmsg}>{messages[keyName].text}</Text>
                         <Text key={messages[keyName].timestamp} style={styles.msg_time}>{Moment(messages[keyName].timestamp).format('h:mm a')}</Text>
                     </View>

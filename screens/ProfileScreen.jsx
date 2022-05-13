@@ -30,6 +30,7 @@ const ProfileScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
+
             <View style={styles.profileImgContainer}>
                 <View style={styles.profileImgWrapper}>
                     <Image
@@ -43,10 +44,13 @@ const ProfileScreen = ({ navigation }) => {
                     <Text style={styles.profileInfo}>{programme}</Text>
                 </View>
             </View>
+
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SetupProfile')}>
                 <Text style={styles.buttonText}>Edit profile</Text>
             </TouchableOpacity>
+
             <Text style={styles.heading}>Notifications</Text>
+
             <View style={[styles.logoutButton, styles.toggleBgd]}>
                 <View>
                     <Text style={styles.toggleTitle}>Chat</Text>
@@ -60,6 +64,7 @@ const ProfileScreen = ({ navigation }) => {
                     value={isEnabled}
                 />
             </View>
+
             <View style={[styles.logoutButton, styles.toggleBgd]}>
                 <View>
                     <Text style={styles.toggleTitle}>Event reminder</Text>
@@ -73,9 +78,11 @@ const ProfileScreen = ({ navigation }) => {
                     value={isEnabled2}
                 />
             </View>
+
             <TouchableOpacity style={styles.logoutButton}>
                 <Text style={styles.logoutText}>Log out</Text>
             </TouchableOpacity>
+            
         </View>
     );
 }

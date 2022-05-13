@@ -15,7 +15,9 @@ const SetupProfileScreen = ({navigation}) => {
     // const navigation = useNavigation();
 
     const [name, onChangeName] = useState('');
-    const [programme, onChangeProgramme] = useState('');
+    // const [programme, onChangeProgramme] = useState('');
+    const username = useSelector(state => state.user.username);
+    const [validUsername, setValidUsername] = useState(username !== '')
 
     const [agree, setAgree] = useState(false);
 
@@ -30,9 +32,6 @@ const SetupProfileScreen = ({navigation}) => {
     const [shouldShow, setShouldShow] = useState(false);
     const [showRadio, setShowRadio] = useState(false);
     const [showArrow, setShowArrow] = useState(false);
-
-    const username = useSelector(state => state.user.username);
-    const [validUsername, setValidUsername] = useState(username !== '')
 
     const data = [{
         id: '1', 
@@ -57,11 +56,13 @@ const SetupProfileScreen = ({navigation}) => {
     
     return (
         <View style={styles.container}>
+
             {/* <Image
                 style={styles.image}
                 source={require('./../assets/logo2.png')}
             /> */}
             {/* <Text style={styles.heading}>Before we start...</Text> */}
+
             <View style={styles.profileImgContainer}>
                 <View>
                     <Text style={styles.label2}>Profile picture</Text>
@@ -76,26 +77,29 @@ const SetupProfileScreen = ({navigation}) => {
                     />
                 </View>
             </View>
+
             {/* <View style={styles.inputContainer}> */}
-                <Input
+                {/* <Input
                     label="What is your name?"
                     inputValue={username}
                     error="Username cannot be empty."
                     valid={validUsername}
                     setValid={setValidUsername}
-                />
-                {/* <Text style={styles.label2}>What is your name?</Text>
+                /> */}
+                <Text style={styles.label2}>What is your name?</Text>
                 <TextInput 
-                    placeholder="First name and last name" 
+                    placeholder={username}
                     placeholderTextColor="#BABADD" 
                     style={styles.input} 
                     onChangeText={onChangeName}
-                    value={name} /> */}
+                    value={name} />
             {/* </View> */}
+
             <View style={styles.inputContainer}>
                 <Text style={styles.label2}>Study programme</Text>
                 <Text style={styles.modalToggle} onPress={handleModal}>Select from list</Text>
             </View>
+
             <Modal isVisible={isModalVisible}>
                 <View style={styles.modal}>
                     <View style={styles.modalHeader}>
@@ -172,9 +176,13 @@ const SetupProfileScreen = ({navigation}) => {
                 {/* <Button title="Hide modal" onPress={handleModal} /> */}
                 </View>
             </Modal>
-            <TouchableOpacity style={styles.button} onPress={() => dispatch(updateUser(username))}>
+
+            <Button color="#5050A5" title='Save changes' onPress={() => dispatch(updateUser(name))} />
+
+            {/* <TouchableOpacity style={styles.button} onPress={() => dispatch(updateUser(name))}>
                 <Text style={styles.buttonText}>Save changes</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
+            
         </View>
     );
 }

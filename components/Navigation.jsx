@@ -18,6 +18,8 @@ import OnePost from '../screens/OnePost';
 import MenuScreen from "./../screens/MenuScreen";
 import ProfileScreen from "./../screens/ProfileScreen";
 import EditProfileScreen from "./../screens/EditProfileScreen";
+import SetupProfileScreen from "./../screens/SetupProfileScreen";
+
 import SignupScreen from "./../screens/SignupScreen";
 import LoginScreen from "./../screens/LoginScreen";
 import ResetPasswordScreen from "./../screens/ResetPasswordScreen";
@@ -28,7 +30,6 @@ import OnboardingScreen from "./../screens/OnboardingScreen";
 import OnboardingScreen1 from "./../screens/OnboardingScreen1";
 import OnboardingScreen2 from "./../screens/OnboardingScreen2";
 import VerifyEmailScreen from "./../screens/VerifyEmailScreen";
-import SetupProfileScreen from "./../screens/SetupProfileScreen";
 
 import { NavigationContainer } from '@react-navigation/native';
 import { useSelector } from 'react-redux';

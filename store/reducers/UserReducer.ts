@@ -10,8 +10,8 @@ export interface UserState {
 const initialState: UserState = {
     idToken: undefined,
     email: undefined,
-    username: 'Username',
-    programme: 'Study programme'
+    username: undefined,
+    programme: undefined
 };
 
 export interface Action {
@@ -22,9 +22,10 @@ export interface Action {
 const userReducer = (state: UserState = initialState, action: Action) => {
     switch (action.type) {
         case SIGNUP:
-            return { ...state, idToken: action.payload.idToken, email: action.payload.email }
+            return { ...state, idToken: action.payload.idToken, email: action.payload.email, username: action.payload.username }
         case LOGIN:
-            return { ...state, idToken: action.payload.idToken, email: action.payload.email } 
+            console.log(action.payload.username)
+            return { ...state, idToken: action.payload.idToken, email: action.payload.email, username: action.payload.username } 
         case RESTORE_USER:
             return { ...state, idToken: action.payload.idToken, email: action.payload.email }
         case UPDATE_USER:
@@ -32,7 +33,7 @@ const userReducer = (state: UserState = initialState, action: Action) => {
             return { ...state, idToken: action.payload.idToken, username: action.payload.username }
 
         default:
-            return state; //does not do anything yet​   
+            return state; //does not do anything yet​  
     }
 };
 

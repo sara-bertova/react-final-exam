@@ -26,8 +26,17 @@ const Input = props => {
     return (
         <View style={styles.inputContainer}>
             <Text style={styles.label2}>{props.label}</Text>
-            <TextInput style={styles.input} value={text} onChangeText={handleChangeText} onBlur={handleOnBlur} placeholder={placeholder} placeholderTextColor="#BABADD" secureTextEntry={boolean}/>
-            {!props.valid && entered ? <Text style={styles.error}>{props.error}</Text> : <></>}
+            <TextInput style={styles.input} 
+                       value={text} 
+                       onChangeText={handleChangeText} 
+                       onBlur={handleOnBlur} 
+                       placeholder={placeholder} 
+                       placeholderTextColor="#BABADD" 
+                       secureTextEntry={boolean}/>
+                {!props.valid && entered ? 
+                    <Text style={styles.error}>{props.error}</Text> 
+                : <>
+            </>}
         </View>
     );
 }

@@ -17,14 +17,12 @@ const OneChat = ({ route, navigation }) => {
         dispatch(fetchChatrooms())
     }, []);
 
-    // console.log('*************** ', messages)
-
     return (
         <View style={styles.container}>
 
             <ScrollView style={styles.messages}>
                 {Object.keys(messages).map((keyName, i) => ( 
-                    <View style={styles.chatmsg_wrapper}>
+                    <View key={i} style={styles.chatmsg_wrapper}>
                         <Text key={messages[keyName].text}
                             style={styles.chatmsg}>{messages[keyName].text}</Text>
                         <Text key={messages[keyName].timestamp} style={styles.msg_time}>

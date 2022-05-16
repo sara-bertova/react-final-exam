@@ -64,7 +64,7 @@ const OnePost = ({ route, navigation }) => {
                     <Text style={styles.comments_title}>COMMENTS</Text>
                     {post.comments != undefined ? Object.keys(post.comments).map((keyName, i) => ( 
                         <View style={styles.comment_wrapper}>
-                            <Text style={styles.comment_user}>Adela</Text>
+                            <Text key={post.comments[keyName].userId} style={styles.comment_user}>Adela</Text>
                             <Text key={post.comments[keyName].text}
                                 style={styles.one_comment}>{post.comments[keyName].text}</Text>
                             

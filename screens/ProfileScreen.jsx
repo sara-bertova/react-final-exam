@@ -40,10 +40,8 @@ const ProfileScreen = ({ navigation }) => {
     //     }
     // }
 
-
     const email = useSelector(state => state.user.email);
     const username = useSelector(state => state.user.username);
-    const programme = useSelector(state => state.user.programme);
 
     return (
         <View style={styles.container}>

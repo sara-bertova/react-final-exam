@@ -1,35 +1,24 @@
-import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity} from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Alert} from 'react-native';
 import CheckBox from "expo-checkbox";
-import { Button, TextInput } from 'react-native';
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { signup } from '../store/actions/UserActions';
+import Modal from "react-native-modal";
 
-import { useNavigation } from '@react-navigation/native';
 import Input from './../components/Input';
 
 const SignupScreen = ({navigation}) => {
-    // const navigation = useNavigation();
 
     const [email, onChangeEmail] = useState('');
     const [password, onChangePassword] = useState('');
     const [repeatPassword, onChangeRepeatPassword] = useState('');
 
-    const [agree, setAgree] = useState(false);
-
-    // const email = useSelector(state => state.user.email);
     const [validEmail, setValidEmail] = useState(email !== '')
-
-    // const password = useSelector(state => state.user.password);
     const [validPassword, setValidPassword] = useState(password !== '')
-    console.log(password);
-
-    // const repeatPassword = useSelector(state => state.user.repeatPassword);
     const [validRepPassword, setValidRepPassword] = useState(repeatPassword !== '')
 
-    const dispatch = useDispatch();
+    const [agree, setAgree] = useState(false);
 
-    const users = useSelector(state => state.user.idToken);
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const handleModal = () => setIsModalVisible(() => !isModalVisible);
 
     return (
         <View style={styles.container}>
@@ -67,35 +56,7 @@ const SignupScreen = ({navigation}) => {
                     setText={onChangeRepeatPassword}
                     secureEntry={true}
                 />
-            {/* <View style={styles.inputContainer}>
-                <Text style={styles.label2}>E-mail</Text>
-                <TextInput 
-                    placeholder="Email" 
-                    placeholderTextColor="#BABADD" 
-                    style={styles.input} 
-                    onChangeText={onChangeEmail}
-                    value={email} />
-            </View>
-            <View style={styles.inputContainer}>
-                <Text style={styles.label2}>Password</Text>
-                <TextInput 
-                    placeholder="Password" 
-                    placeholderTextColor="#BABADD" 
-                    style={styles.input}
-                    onChangeText={onChangePassword}
-                    value={password}
-                    secureTextEntry={true} />
-            </View> 
-            <View style={styles.inputContainer}>
-                <Text style={styles.label2}>Repeat Password</Text>
-                <TextInput 
-                    placeholder="Repeat password" 
-                    placeholderTextColor="#BABADD" 
-                    style={styles.input}
-                    onChangeText={onChangeRepeatPassword}
-                    value={repeatPassword}
-                    secureTextEntry={true} />
-            </View> */}
+
             <View style={styles.checkboxContainer}>
                 <CheckBox
                     value={agree}
@@ -105,20 +66,35 @@ const SignupScreen = ({navigation}) => {
                 />
                 <Text style={styles.label}>I agree to the <Text style={styles.link2}>terms and conditions</Text></Text>
             </View>
-            {/* <Button title='Get access' disabled={!agree}
-                    onPress={() => dispatch(signup(email, password, repeatPassword))}  color="#5050A5"/> */}
-            <TouchableOpacity style={styles.button} disabled={!agree} onPress={() => navigation.navigate('VerifyEmail', {
-                email: email, 
-                password: password, 
-                repeatPassword: repeatPassword,
-            })}>
+            
+            <TouchableOpacity style={styles.button} disabled={!agree} 
+                              onPress={() => {
+                                    if ( password != repeatPassword) {
+                                        Alert.alert("Passwords do not match")
+                                    } else {
+                                        navigation.navigate('VerifyEmail', {
+                                            email: email, 
+                                            password: password, 
+                                            repeatPassword: repeatPassword
+                                        })
+                                    }
+                            }}>
                 <Text style={styles.buttonText}>Get access</Text>
             </TouchableOpacity>
-            {/* <Button title='Verify email'
-                    onPress={() => navigation.navigate('VerifyEmail')}  color="#5050A5"/> */}
+
+            <Modal isVisible={isModalVisible}>
+                <View style={styles.modal}>
+                    <TouchableOpacity style={styles.closeWrapper} onPress={handleModal}>
+                        <Image
+                            style={styles.close_img}
+                            source={require('./../assets/setup-profile/icons8-close_window.png')}
+                        />
+                    </TouchableOpacity>
+                    <Text>Passwords dont</Text>
+                </View>
+            </Modal>
+
             <Text style={styles.text}>Already have a user? <Text style={styles.link} onPress={() => navigation.navigate('Login')}>Log in</Text></Text>
-            {/* <Button title="Already have an account? Log in" 
-                    onPress={() => navigation.navigate('Login')} color="#5050A5"/> */}
         </View>
     );
 }
@@ -190,7 +166,19 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#5050A5', 
         marginTop: 36,
-    }
+    },
+    modal: {
+        backgroundColor: '#fff',
+        borderRadius: 20,
+    },
+    closeWrapper: {
+        borderRadius: 100,
+        backgroundColor: '#EAEAEA',
+        width: 36,
+        height: 36,
+        justifyContent: 'center',
+        alignSelf: 'center',
+    },
 });
 
 export default SignupScreen;

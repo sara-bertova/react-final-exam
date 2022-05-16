@@ -4,6 +4,7 @@ export const SIGNUP = 'SIGNUP';
 export const LOGIN = 'LOGIN';
 export const RESTORE_USER = 'RESTORE_USER';
 export const UPDATE_USER = 'UPDATE_USER';
+export const LOGOUT = 'LOGOUT';
 
 
 export const restoreUser = (email: string, token: string) => {
@@ -13,6 +14,17 @@ export const restoreUser = (email: string, token: string) => {
 // export const updateUser = (username, token) => {
 //     return { type: UPDATE_USER, payload: { username, idToken: token } };
 // };
+
+export const logout = (token: string) => {
+    return async (dispatch: any, getState: any) => {
+        const idToken = getState().user.idToken
+        console.log(idToken)
+        SecureStore.deleteItemAsync('token', idToken);
+    // .then(
+    //     props.navigation.navigate('Login')
+    // );
+    }
+};
 
 export const signup = (email: string, password: string, repeatPassword: string) => {
     return async (dispatch: any, getState: any) => {

@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import Modal from "react-native-modal";
+import { logout } from '../store/actions/UserActions';
 
 const ProfileScreen = ({ navigation }) => {
 
@@ -16,6 +17,8 @@ const ProfileScreen = ({ navigation }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const handleModal = () => setIsModalVisible(() => !isModalVisible);
 
+    const dispatch = useDispatch();
+
     // const [isSecondSelectVisible, setIsSecondSelectVisible] = useState(false);
     // const handleSecondSelect = () => setIsSecondSelectVisible(() => !isSecondSelectVisible);
 
@@ -23,6 +26,20 @@ const ProfileScreen = ({ navigation }) => {
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
     const [isEnabled2, setIsEnabled2] = useState(false);
     const toggleSwitch2 = () => setIsEnabled2(previousState => !previousState);
+
+    // async function load() {
+    //     let emailFromSecureStore = await SecureStore.getItemAsync('email');
+    //     let tokenFromSecureStore = await SecureStore.getItemAsync('token');
+    //     if (emailFromSecureStore && tokenFromSecureStore) {
+    //         console.log("success", emailFromSecureStore);
+
+    //         dispatch(restoreUser(emailFromSecureStore, tokenFromSecureStore));
+
+    //     } else {
+    //         console.log("failure");
+    //     }
+    // }
+
 
     const email = useSelector(state => state.user.email);
     const username = useSelector(state => state.user.username);
@@ -79,7 +96,7 @@ const ProfileScreen = ({ navigation }) => {
                 />
             </View>
 
-            <TouchableOpacity style={styles.logoutButton}>
+            <TouchableOpacity style={styles.logoutButton} onPress={() => dispatch(logout())}>
                 <Text style={styles.logoutText}>Log out</Text>
             </TouchableOpacity>
             

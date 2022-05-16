@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView} from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView, ScrollView} from 'react-native';
 import CheckBox from "expo-checkbox";
 import { Button, TextInput } from 'react-native';
 import { useState } from 'react';
@@ -12,11 +12,10 @@ import Input from './../components/Input';
 import { updateUser } from '../store/actions/UserActions';
 
 const SetupProfileScreen = ({navigation}) => {
-    // const navigation = useNavigation();
 
     const [name, onChangeName] = useState('');
-    // const [programme, onChangeProgramme] = useState('');
-    // const username = useSelector(state => state.user.username);
+
+    const placeholder = useSelector(state => state.user.username);
     const [username, onChangeUsername] = useState('');
     const [validUsername, setValidUsername] = useState(username !== '')
 
@@ -27,14 +26,28 @@ const SetupProfileScreen = ({navigation}) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const handleModal = () => setIsModalVisible(() => !isModalVisible);
 
-    // const [isSecondSelectVisible, setIsSecondSelectVisible] = useState(false);
-    // const handleSecondSelect = () => setIsSecondSelectVisible(() => !isSecondSelectVisible);
-
     const [shouldShow, setShouldShow] = useState(false);
+    const [shouldShow2, setShouldShow2] = useState(false);
     const [showRadio, setShowRadio] = useState(false);
-    const [showArrow, setShowArrow] = useState(false);
+    const [showRadio2, setShowRadio2] = useState(false);
 
-    const data = [{
+
+    const bachelorProgrammes = [{
+        id: '1', 
+        label: 'Professional Bachelor: Crafts in Glass and Ceramics',
+        value: 'craftsGlass'
+    }, {
+        id: '2',
+        label: 'Graphic Communication Design',
+        value: 'graphicComm'
+    },{
+        id: '3',
+        label: 'Visual Game and Media Design',
+        value: 'visualGame'
+    },  
+]
+
+    const graduateProgrammes = [{
         id: '1', 
         label: 'MSc in Business Administration and E-business',
         value: 'busAdminEbus'
@@ -48,21 +61,9 @@ const SetupProfileScreen = ({navigation}) => {
         value: 'busAdminData'
     },  
 ]
-
-    // const [radioButtons, setRadioButtons] = useState(radioButtonsData)
-
-    // function onPressRadioButton(radioButtonsArray) {
-    //     setRadioButtons(radioButtonsArray);
-    // }
     
     return (
         <View style={styles.container}>
-
-            {/* <Image
-                style={styles.image}
-                source={require('./../assets/logo2.png')}
-            /> */}
-            {/* <Text style={styles.heading}>Before we start...</Text> */}
 
             <View style={styles.profileImgContainer}>
                 <View>
@@ -82,6 +83,7 @@ const SetupProfileScreen = ({navigation}) => {
             <Input
                 label="What is your name?"
                 inputValue={username}
+                placeholder={placeholder}
                 error="Username cannot be empty."
                 valid={validUsername}
                 setValid={setValidUsername}
@@ -118,11 +120,10 @@ const SetupProfileScreen = ({navigation}) => {
                                 source={require('./../assets/setup-profile/icons8-expand_arrow_white_down.png')}
                             /> }
                             </TouchableOpacity>
-                            {/* <Modal isVisible={isSecondSelectVisible} > */}
                             {shouldShow ?
                             (
                             <TouchableOpacity onPress={() => setShowRadio(!showRadio)} style={[styles.button, styles.modalHeader, styles.select, styles.selectSecondary]}>
-                                <Text style={[styles.buttonText, styles.selectTextSecond]}>IT and Information in Organizations</Text>
+                                <Text style={[styles.buttonText, styles.selectTextSecond]}>Architecture, Design, Conservation</Text>
                                 {showRadio ?
                                 (
                                 <Image
@@ -135,14 +136,10 @@ const SetupProfileScreen = ({navigation}) => {
                             />}
                             </TouchableOpacity>
                             ) : null}
-                            {/* <RadioGroup 
-                                radioButtons={radioButtons} 
-                                onPress={onPressRadioButton} 
-                            /> */}
                             {showRadio ?
                             (
                             <RadioButtonRN
-                                data={data}
+                                data={bachelorProgrammes}
                                 selectedBtn={(e) => console.log(e)}
                                 icon={
                                   <Icon
@@ -153,28 +150,61 @@ const SetupProfileScreen = ({navigation}) => {
                                 }
                             />
                             ) : null}
-                            {/* </Modal> */}
                         </View>
-                        <TouchableOpacity style={[styles.button, styles.modalHeader, styles.select]}>
-                            <Text style={styles.buttonText}>Graduate</Text>
-                            <Image
-                                style={styles.image}
-                                source={require('./../assets/setup-profile/icons8-expand_arrow_white_down.png')}
-                            />
-                        </TouchableOpacity>
+                        <View>
+                            <TouchableOpacity onPress={() => setShouldShow2(!shouldShow2)} style={[styles.button, styles.modalHeader, styles.select]}>
+                                    <Text style={styles.buttonText}>Graduate</Text>
+                                    {shouldShow2 ?
+                                    (
+                                    <Image
+                                        style={styles.image}
+                                        source={require('./../assets/setup-profile/icons8-expand_arrow_white_up.png')}
+                                    /> ) : <Image
+                                    style={styles.image}
+                                    source={require('./../assets/setup-profile/icons8-expand_arrow_white_down.png')}
+                                /> }
+                                </TouchableOpacity>
+                                {shouldShow2 ?
+                                (
+                                <TouchableOpacity onPress={() => setShowRadio2(!showRadio2)} style={[styles.button, styles.modalHeader, styles.select, styles.selectSecondary]}>
+                                    <Text style={[styles.buttonText, styles.selectTextSecond]}>IT and Information in Organizations</Text>
+                                    {showRadio2 ?
+                                    (
+                                    <Image
+                                        style={styles.image}
+                                        source={require('./../assets/setup-profile/icons8-expand_arrow_black_up.png')}
+                                    />
+                                    ) : <Image
+                                    style={styles.image}
+                                    source={require('./../assets/setup-profile/icons8-expand_arrow.png')}
+                                />}
+                                </TouchableOpacity>
+                                ) : null}
+                                {showRadio2 ?
+                                (
+                                <RadioButtonRN
+                                    data={graduateProgrammes}
+                                    selectedBtn={(e) => console.log(e)}
+                                    icon={
+                                    <Icon
+                                        name="check-circle"
+                                        size={25}
+                                        color="#32305D"
+                                    />
+                                    }
+                                />
+                                ) : null}
+                        </View>
                     </View>
                     <TouchableOpacity style={[styles.button, styles.buttonUpload, styles.buttonOkModal]} onPress={handleModal}>
                         <Text style={styles.buttonText}>OK</Text>
                     </TouchableOpacity>
-                {/* <Button title="Hide modal" onPress={handleModal} /> */}
                 </View>
             </Modal>
 
-            <Button color="#5050A5" title='Save changes' onPress={() => dispatch(updateUser(username))} />
-
-            {/* <TouchableOpacity style={styles.button} onPress={() => dispatch(updateUser(name))}>
+            <TouchableOpacity style={styles.button} onPress={() => dispatch(updateUser(username))}>
                 <Text style={styles.buttonText}>Save changes</Text>
-            </TouchableOpacity> */}
+            </TouchableOpacity>
             
         </View>
     );

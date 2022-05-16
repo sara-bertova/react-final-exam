@@ -58,7 +58,7 @@ const ProfileScreen = ({ navigation }) => {
                 <View style={styles.profileTextWrapper}>
                     <Text style={styles.name}>{username}</Text>
                     <Text style={styles.profileInfo}>{email}</Text>
-                    <Text style={styles.profileInfo}>{programme}</Text>
+                    <Text style={styles.profileInfo}>MSc in Business Administration and E-business</Text>
                 </View>
             </View>
 

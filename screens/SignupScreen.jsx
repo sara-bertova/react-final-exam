@@ -55,6 +55,7 @@ const SignupScreen = ({navigation}) => {
                     valid={validPassword}
                     setValid={setValidPassword}
                     setText={onChangePassword}
+                    secureEntry={true}
                 />
             <Input
                     label="Repeat Password"
@@ -64,6 +65,7 @@ const SignupScreen = ({navigation}) => {
                     valid={validRepPassword}
                     setValid={setValidRepPassword}
                     setText={onChangeRepeatPassword}
+                    secureEntry={true}
                 />
             {/* <View style={styles.inputContainer}>
                 <Text style={styles.label2}>E-mail</Text>

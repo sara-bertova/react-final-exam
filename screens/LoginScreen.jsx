@@ -4,11 +4,18 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { login, restoreUser } from '../store/actions/UserActions';
 import { useNavigation } from '@react-navigation/native';
+import Input from './../components/Input';
 
 const LoginScreen = ({navigation}) => {
 
     const [email, onChangeEmail] = useState('');
     const [password, onChangePassword] = useState('');
+
+    // const email = useSelector(state => state.user.email);
+    const [validEmail, setValidEmail] = useState(email !== '')
+
+    // const password = useSelector(state => state.user.password);
+    const [validPassword, setValidPassword] = useState(password !== '')
 
     const dispatch = useDispatch();
 
@@ -39,7 +46,26 @@ const LoginScreen = ({navigation}) => {
                 source={require('./../assets/logo2.png')}
             />
             <Text style={styles.heading}>Login</Text>
-            <View style={styles.inputContainer}>
+            <Input
+                    label="E-mail"
+                    placeholder='E-mail'
+                    inputValue={email}
+                    error="Email cannot be empty"
+                    valid={validEmail}
+                    setValid={setValidEmail}
+                    setText={onChangeEmail}
+                />
+            <Input
+                    label="Password"
+                    placeholder='Password'
+                    inputValue={password}
+                    error="Password cannot be empty"
+                    valid={validPassword}
+                    setValid={setValidPassword}
+                    setText={onChangePassword}
+                    secureEntry={true}
+                />
+            {/* <View style={styles.inputContainer}>
                 <Text style={styles.label2}>E-mail</Text>
                 <TextInput 
                     placeholder="Email" 
@@ -57,7 +83,7 @@ const LoginScreen = ({navigation}) => {
                     onChangeText={onChangePassword}
                     value={password}
                     secureTextEntry={true} />
-            </View>
+            </View> */}
             <Text style={styles.link} onPress={() => navigation.navigate('ResetPassword')}>Forgot password?</Text>
             {/* <Button title='Log in' 
                     onPress={() => dispatch(login(email, password))} color="#5050A5"/> */}

@@ -18,18 +18,18 @@ const SignupScreen = ({navigation}) => {
     const [agree, setAgree] = useState(false);
 
     // const email = useSelector(state => state.user.email);
-    // const [validEmail, setValidEmail] = useState(email !== '')
+    const [validEmail, setValidEmail] = useState(email !== '')
 
     // const password = useSelector(state => state.user.password);
-    // const [validPassword, setValidPassword] = useState(password !== '')
-    // console.log(password);
+    const [validPassword, setValidPassword] = useState(password !== '')
+    console.log(password);
 
     // const repeatPassword = useSelector(state => state.user.repeatPassword);
-    // const [validRepPassword, setValidRepPassword] = useState(repeatPassword !== '')
+    const [validRepPassword, setValidRepPassword] = useState(repeatPassword !== '')
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-    // const users = useSelector(state => state.user.idToken);
+    const users = useSelector(state => state.user.idToken);
 
     return (
         <View style={styles.container}>
@@ -38,33 +38,34 @@ const SignupScreen = ({navigation}) => {
                 source={require('./../assets/logo2.png')}
             />
             <Text style={styles.heading}>Sign up to get access</Text>
-            {/* <Input
+            <Input
                     label="E-mail"
                     placeholder='E-mail'
                     inputValue={email}
                     error="Email cannot be empty"
                     valid={validEmail}
                     setValid={setValidEmail}
-                /> */}
-            {/* <Input
+                    setText={onChangeEmail}
+                />
+            <Input
                     label="Password"
                     placeholder='Password'
                     inputValue={password}
                     error="Password cannot be empty"
                     valid={validPassword}
                     setValid={setValidPassword}
-                    // secureEntry={true}
-                /> */}
-            {/* <Input
+                    setText={onChangePassword}
+                />
+            <Input
                     label="Repeat Password"
                     placeholder='Repeat password'
                     inputValue={repeatPassword}
                     error="You must confirm your password"
                     valid={validRepPassword}
                     setValid={setValidRepPassword}
-                    secureEntry={true}
-                /> */}
-            <View style={styles.inputContainer}>
+                    setText={onChangeRepeatPassword}
+                />
+            {/* <View style={styles.inputContainer}>
                 <Text style={styles.label2}>E-mail</Text>
                 <TextInput 
                     placeholder="Email" 
@@ -92,7 +93,7 @@ const SignupScreen = ({navigation}) => {
                     onChangeText={onChangeRepeatPassword}
                     value={repeatPassword}
                     secureTextEntry={true} />
-            </View>
+            </View> */}
             <View style={styles.checkboxContainer}>
                 <CheckBox
                     value={agree}

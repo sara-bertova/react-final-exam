@@ -19,7 +19,10 @@ export const logout = (token: string) => {
     return async (dispatch: any, getState: any) => {
         const idToken = getState().user.idToken
         console.log(idToken)
-        SecureStore.deleteItemAsync('token', idToken);
+        SecureStore.deleteItemAsync('token');
+        SecureStore.deleteItemAsync('email');
+
+        dispatch({ type: LOGOUT })
     // .then(
     //     props.navigation.navigate('Login')
     // );

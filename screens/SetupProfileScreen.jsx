@@ -16,7 +16,8 @@ const SetupProfileScreen = ({navigation}) => {
 
     const [name, onChangeName] = useState('');
     // const [programme, onChangeProgramme] = useState('');
-    const username = useSelector(state => state.user.username);
+    // const username = useSelector(state => state.user.username);
+    const [username, onChangeUsername] = useState('');
     const [validUsername, setValidUsername] = useState(username !== '')
 
     const [agree, setAgree] = useState(false);
@@ -78,22 +79,14 @@ const SetupProfileScreen = ({navigation}) => {
                 </View>
             </View>
 
-            {/* <View style={styles.inputContainer}> */}
-                {/* <Input
-                    label="What is your name?"
-                    inputValue={username}
-                    error="Username cannot be empty."
-                    valid={validUsername}
-                    setValid={setValidUsername}
-                /> */}
-                <Text style={styles.label2}>What is your name?</Text>
-                <TextInput 
-                    placeholder={username}
-                    placeholderTextColor="#BABADD" 
-                    style={styles.input} 
-                    onChangeText={onChangeName}
-                    value={name} />
-            {/* </View> */}
+            <Input
+                label="What is your name?"
+                inputValue={username}
+                error="Username cannot be empty."
+                valid={validUsername}
+                setValid={setValidUsername}
+                setText={onChangeUsername}
+            />
 
             <View style={styles.inputContainer}>
                 <Text style={styles.label2}>Study programme</Text>
@@ -177,7 +170,7 @@ const SetupProfileScreen = ({navigation}) => {
                 </View>
             </Modal>
 
-            <Button color="#5050A5" title='Save changes' onPress={() => dispatch(updateUser(name))} />
+            <Button color="#5050A5" title='Save changes' onPress={() => dispatch(updateUser(username))} />
 
             {/* <TouchableOpacity style={styles.button} onPress={() => dispatch(updateUser(name))}>
                 <Text style={styles.buttonText}>Save changes</Text>

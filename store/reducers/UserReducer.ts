@@ -32,7 +32,7 @@ const userReducer = (state: UserState = initialState, action: Action) => {
             console.log(action.payload.username)
             return { ...state, idToken: action.payload.idToken, username: action.payload.username }
         case LOGOUT:
-            return { ...state, idToken: action.payload.idToken, email: action.payload.email }
+            return { ...state, idToken: undefined, email: undefined }
 
         default:
             return state; //does not do anything yet​  

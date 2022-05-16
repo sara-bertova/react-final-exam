@@ -11,21 +11,12 @@ export const restoreUser = (email: string, token: string) => {
     return { type: RESTORE_USER, payload: { email, idToken: token } };
 };
 
-// export const updateUser = (username, token) => {
-//     return { type: UPDATE_USER, payload: { username, idToken: token } };
-// };
-
-export const logout = (token: string) => {
-    return async (dispatch: any, getState: any) => {
-        const idToken = getState().user.idToken
-        console.log(idToken)
+export const logout = () => {
+    return async (dispatch: any) => {
         SecureStore.deleteItemAsync('token');
         SecureStore.deleteItemAsync('email');
 
         dispatch({ type: LOGOUT })
-    // .then(
-    //     props.navigation.navigate('Login')
-    // );
     }
 };
 
@@ -45,8 +36,6 @@ export const signup = (email: string, password: string, repeatPassword: string) 
             //   }
 
             body: JSON.stringify({ //javascript to json
-                //key value pairs of data you want to send to server
-                // ...
                 email: email,
                 password: password,
                 displayName: email,
@@ -54,43 +43,37 @@ export const signup = (email: string, password: string, repeatPassword: string) 
             })
         });
 
-        // console.log(await response.json());
-
         const data = await response.json(); // json to javascript
-        console.log(data);
+
         if (!response.ok) {
-            //There was a problem..
+            console.log('Something went wrong')
         } else {
             await SecureStore.setItemAsync('email', data.email);
             await SecureStore.setItemAsync('token', data.idToken);
-            dispatch({ type: SIGNUP, payload: { email: data.email, username: data.displayName, programme: data.programme, idToken: data.idToken } })
+            dispatch({ type: SIGNUP, payload: { email: data.email, username: data.displayName, idToken: data.idToken } })
         }
     };
 };
 
 export const login = (email: string, password: string) => {
-    return async (dispatch: any, getState: any) => {
+    return async (dispatch: any) => {
         const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDUnUm3h11wX7dP0NZixdZvw7X8eqK282o', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ //javascript to json
-                //key value pairs of data you want to send to server
-                // ...
+            body: JSON.stringify({
                 email: email,
                 password: password,
                 returnSecureToken: true
             })
         });
 
-        // console.log(await response.json());
-
         if (!response.ok) {
-            //There was a problem..
+            console.log('Something went wrong')
         } else {
-            const data = await response.json(); // json to javascript
-            dispatch({ type: LOGIN, payload: { email: data.email, username: data.displayName, programme: data.programme, idToken: data.idToken } })
+            const data = await response.json();
+            dispatch({ type: LOGIN, payload: { email: data.email, username: data.displayName, idToken: data.idToken } })
         }
     };
 };
@@ -112,42 +95,13 @@ export const updateUser = (username: string) => {
         });
 
         if (!response.ok) {
-            console.log('chyba')
-            //There was a problem..
+            console.log('Something went wrong')
         } else {
             const data = await response.json(); 
-            // dispatch(getUser())
-            dispatch({ type: LOGIN, payload: { email: data.email, username: data.displayName, programme: data.programme, idToken: data.idToken } })
+            dispatch({ type: LOGIN, payload: { email: data.email, username: data.displayName, idToken: data.idToken } })
         }
     };
 };
-
-// export const getUser = () => {
-//     return async (dispatch: any, getState: any) => {
-//         const idToken = getState().user.idToken
-//         const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyDUnUm3h11wX7dP0NZixdZvw7X8eqK282o', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify({
-//                 idToken: idToken,
-//             })
-//         });
-
-//         if (!response.ok) {
-//             console.log('chyba')
-//             //There was a problem..
-//         } else {
-//             const data = await response.json();
-//             Object.keys(data.users).map((keyName, i) => (
-//                 console.log(data.users[keyName].email)
-//             ))
-//             // dispatch(restoreUser(data.email, idToken))
-//             // dispatch({ type: LOGIN, payload: { email: data.email, username: data.displayName, programme: data.programme, idToken: data.idToken } })
-//         }
-//     };
-// };
 
 
 

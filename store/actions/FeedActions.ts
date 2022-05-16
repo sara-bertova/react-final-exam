@@ -17,11 +17,10 @@ export const fetchEvents = () => {
             }
         });
 
-
         const data = await response.json(); // json to javascript
     
         if (!response.ok) {
-            //There was a problem..
+            console.log('Something went wrong')
         } else {
             let events = [];
                        
@@ -58,11 +57,10 @@ export const fetchPosts = () => {
             }
         });
 
-
         const data = await response.json(); // json to javascript
     
         if (!response.ok) {
-            //There was a problem..
+            console.log('Something went wrong')
         } else {
             let posts = [];
                        
@@ -103,12 +101,9 @@ export const sendComment = (postId: string, message: string) => {
             })
         });
 
-        const data = await response.json(); // json to javascript
-
         if (!response.ok) {
-            //There was a problem..
+            console.log('Something went wrong')
         } else {
-            // console.log(data)
             dispatch(fetchPosts())
         }
     };   

@@ -22,7 +22,7 @@ export const fetchChatrooms = () => {
 
         const data = await response.json(); // json to javascript
         if (!response.ok) {
-            //There was a problem..
+            console.log('Something went wrong')
         } else {
 
             let chatrooms = [];
@@ -31,19 +31,6 @@ export const fetchChatrooms = () => {
                 chatrooms.push(chatroom)
             }
 
-            // let chatrooms = [];
-
-            // for(const key in data) {
-
-            //     let chatmessages = [];
-            //     for(const key2 in data[key].chatmessages) {
-            //         let msg = data[key].chatmessages[key2];
-            //         chatmessages.push(new Chatmessage(key2, msg.text, new Date(msg.timestamp)));
-            //     }
-            
-            //     chatrooms.push(new Chatroom(data[key].chatroomName, data[key].chatmessages ? chatmessages : [], '', key));
-            // }
-
             dispatch({ type: FETCH_CHATROOMS, payload: chatrooms })
         }
     };
@@ -51,7 +38,6 @@ export const fetchChatrooms = () => {
 
 export const addChatroom = (chatroomName: string) => {
     return async (dispatch: any, getState: any) => {
-        // const msg: Chatmessage = new Chatmessage('Hello', new Date()); //example of using typescript
         const idToken = getState().user.idToken
 
         const response = await fetch(
@@ -62,9 +48,7 @@ export const addChatroom = (chatroomName: string) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ //javascript to json
-                //key value pairs of data you want to send to server
-                // ...
+            body: JSON.stringify({ 
                 chatroomName
             })
         });
@@ -73,7 +57,7 @@ export const addChatroom = (chatroomName: string) => {
         const data = await response.json(); // json to javascript
         console.log(data);
         if (!response.ok) {
-            //There was a problem..
+            console.log('Something went wrong')
         } else {
             dispatch({ type: ADD_CHATROOM, payload: { chatroomName, id: data.name } })
         }
@@ -98,7 +82,7 @@ export const deleteChatroom = (id: string) => {
         const data = await response.json(); // json to javascript
         console.log(data);
         if (!response.ok) {
-            //There was a problem..
+            console.log('Something went wrong')
         } else {
             dispatch({ type: DELETE_CHATROOM, payload: id })
         }
@@ -107,9 +91,8 @@ export const deleteChatroom = (id: string) => {
 
 export const sendMessage = (chatId: string, message: string) => {
     return async (dispatch: any, getState: any) => {
-        const oneMessage = new Chatmessage(message, new Date()); //example of using typescript
+        const oneMessage = new Chatmessage(message, new Date());
         const idToken = getState().user.idToken
-        // console.log('*****: ', oneMessage)
         
         const response = await fetch(
             'https://react-exam-68375-default-rtdb.europe-west1.firebasedatabase.app/chatrooms/' + chatId + '/chatmessages.json/?auth='
@@ -128,9 +111,8 @@ export const sendMessage = (chatId: string, message: string) => {
         const data = await response.json(); // json to javascript
 
         if (!response.ok) {
-            //There was a problem..
+            console.log('Something went wrong')
         } else {
-            // console.log(data)
             dispatch(fetchChatrooms())
         }
     };   

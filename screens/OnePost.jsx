@@ -12,6 +12,7 @@ const OnePost = ({ route, navigation }) => {
     const dispatch = useDispatch();
     const posts = useSelector(state => state.post.posts.filter(post => post.id == postId));
     const post = posts[0]
+    const username = useSelector(state => state.user.username)
 
     useEffect(() => {
         dispatch(fetchEvents())
@@ -63,8 +64,8 @@ const OnePost = ({ route, navigation }) => {
                 <View style={styles.post_comments}>
                     <Text style={styles.comments_title}>COMMENTS</Text>
                     {post.comments != undefined ? Object.keys(post.comments).map((keyName, i) => ( 
-                        <View style={styles.comment_wrapper}>
-                            <Text key={post.comments[keyName].userId} style={styles.comment_user}>Adela</Text>
+                        <View key={i} style={styles.comment_wrapper}>
+                            <Text key={post.comments[keyName].userId} style={styles.comment_user}>{username}</Text>
                             <Text key={post.comments[keyName].text}
                                 style={styles.one_comment}>{post.comments[keyName].text}</Text>
                             

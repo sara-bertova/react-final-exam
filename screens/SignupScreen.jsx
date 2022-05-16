@@ -166,19 +166,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#5050A5', 
         marginTop: 36,
-    },
-    modal: {
-        backgroundColor: '#fff',
-        borderRadius: 20,
-    },
-    closeWrapper: {
-        borderRadius: 100,
-        backgroundColor: '#EAEAEA',
-        width: 36,
-        height: 36,
-        justifyContent: 'center',
-        alignSelf: 'center',
-    },
+    }
 });
 
 export default SignupScreen;

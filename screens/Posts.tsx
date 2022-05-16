@@ -30,11 +30,15 @@ const HomeScreen = ({ navigation }: { navigation: any }) =>  {
 
             <View style={[styles.feed_wrapper ,styles.post_wrapper]}>
                 <Image source={imageMap[item.img as keyof typeof imageMap]} style={styles.post_img}/>
+
                 <View style={styles.post_content}>
+
                     <Text style={styles.post_cat}>
                         <Image source={require('./../assets/icons8-news/icons8-news.png')}/> BLOG
                     </Text>
+
                     <Text style={styles.title}>{item.title}</Text>
+
                     <View style={styles.post_time_wrapper}>
                         <Text style={styles.post_time}>{item.time}</Text>
                         <View style={styles.post_lc_wrpper}>
@@ -42,6 +46,7 @@ const HomeScreen = ({ navigation }: { navigation: any }) =>  {
                             <Text style={styles.comments}><Image source={require('./../assets/icons8-comments/icons8-comments.png')}/> 31</Text>
                         </View>
                     </View>
+
                     <View style={styles.post_organizer_wrapper}>
                         <Image source={require('./../assets/chat-img/chat-img-sm.png')} style={styles.post_organizer_img}/>
                         <Text style={styles.post_organizer}>{item.organizer}</Text>
@@ -53,9 +58,6 @@ const HomeScreen = ({ navigation }: { navigation: any }) =>  {
     );
 
     return (
-        // <ScrollView>
-        //     <FlatList nestedScrollEnabled data={posts} renderItem={renderPosts} />
-        // </ScrollView>
         
         <FlatList nestedScrollEnabled data={posts} renderItem={renderPosts}/>
     );

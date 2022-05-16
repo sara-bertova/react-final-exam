@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
-import { View, Button, TextInput, StyleSheet, Image, ScrollView, Text } from 'react-native';
+import { View, Button, TextInput, StyleSheet, Image, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchChatrooms, sendMessage } from '../store/actions/ChatActions';
 import Moment from 'moment';
 
 const OneChat = ({ route, navigation }) => {
+    const [agree, setAgree] = useState(false);
 
     const { chatId, chatName } = route.params;
     const [text, onChangeText] = useState('')
-
+    
     const dispatch = useDispatch();
     const chatroom = useSelector(state => state.chat.chatrooms.filter(chatroom => chatroom.id == chatId));
     const messages = chatroom[0].chatmessages
@@ -16,6 +17,7 @@ const OneChat = ({ route, navigation }) => {
     useEffect(() => {
         dispatch(fetchChatrooms())
     }, []);
+
 
     return (
         <View style={styles.container}>
@@ -43,10 +45,21 @@ const OneChat = ({ route, navigation }) => {
                     <TextInput placeholder="Write message"
                         multiline
                         style={styles.input}
+                        // onSubmitEditing={()=>{
+                        //     this.setState({
+                        //       clearInput:!this.state.clearInput, 
+                        //     })  
+                        //   }}
                         onChangeText={onChangeText}
                         value={text} />
 
-                    <Button color="#5050A5" title='Send' onPress={() => dispatch(sendMessage(chatId, text))} />
+                    {/* <Button color="#5050A5" title='Send' onPress={() => dispatch(sendMessage(chatId, text))} /> */}
+
+                    <TouchableOpacity style={styles.button} onPress={() => dispatch(sendMessage(chatId, text))}>
+                        <Image
+                            source={require('./../assets/icons8-email_send.png')}
+                        />
+                    </TouchableOpacity>
                 
                 </View>
             </View>
@@ -98,6 +111,16 @@ const styles = StyleSheet.create({
     },
     msg_time: {
         fontSize: 12,
+    },
+    button: {
+        backgroundColor: '#5050A5',
+        padding: 12,
+        borderRadius: 5,
+    },
+    disabled: {
+        backgroundColor: '#BABADD',
+        padding: 12,
+        borderRadius: 5,
     },
 })
 

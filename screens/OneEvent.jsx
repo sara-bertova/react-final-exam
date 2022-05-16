@@ -3,6 +3,7 @@ import { View, Button, TextInput, StyleSheet, Image, ScrollView, Text, Touchable
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchEvents } from '../store/actions/FeedActions';
 import Moment from 'moment';
+import { Linking } from 'react-native';
 
 const OnePost = ({ route, navigation }) => {
 
@@ -44,16 +45,24 @@ const OnePost = ({ route, navigation }) => {
                     </Text>
                 </View>
 
-                <TouchableOpacity style={styles.inputContainer}>
+                <View style={styles.inputContainer}>
                     <Image source={require('./../assets/chat-img/chat-img-sm.png')} />
-                    <View style={styles.input_wrapper}>
+                    <TouchableOpacity style={styles.input_wrapper}>
                         <Text style={styles.organizer}>{event.organizer}</Text>
                         <Text style={styles.organizer_subtext}>View page</Text>
-                    </View>
-                    <View style={styles.chat_icon}>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.chat_icon}>
                         <Image source={require('./../assets/icons8-chat/icons8-chat.png')} />
-                    </View>
-                </TouchableOpacity>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[styles.chat_icon, styles.email]} onPress={() => {
+                                        navigation.navigate('SendEmail', {
+                                            email: event.email, 
+                                        })
+                                    }}>
+                    {/* <TouchableOpacity style={[styles.chat_icon, styles.email]} onPress={() => Linking.openURL(`mailto:${event.email}`)}> */}
+                        <Image source={require('./../assets/icons8-mail-24.png')} />
+                    </TouchableOpacity>
+                </View>
 
                 <View style={styles.event_status}>
                     <TouchableOpacity style={styles.event_status_wrapper}>
@@ -142,18 +151,23 @@ const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: '#5050A5',
         borderRadius: 5,
+        marginRight: 5,
+    },
+    email: {
+        marginRight: 0,
     },
     inputContainer: {
         height: 70,
         borderWidth: 1,
         padding: 10,
         borderColor: '#EEEEEE',
-        width: 337,
+        // width: 337,
         flexDirection: 'row',
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'space-between',
         borderRadius: 5,
+        marginHorizontal: 19,
     },
     input_wrapper: {
         width: 219,

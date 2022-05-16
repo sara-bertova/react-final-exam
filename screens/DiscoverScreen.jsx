@@ -21,7 +21,7 @@ const DiscoverScreen = ({ navigation }) => {
                 })}>
                 <ImageBackground source={require('./../assets/Discover/organizations.png')} style={styles.img}>
                     <View style={[styles.title_wrapper, styles.title_wrapper_organisation]}>  
-                        <Text style={styles.title}>ALL STUDENT ORGANISATION</Text>
+                        <Text style={styles.title}>ALL STUDENT ORGANISATIONS</Text>
                     </View>
                 </ImageBackground>
             </TouchableOpacity>

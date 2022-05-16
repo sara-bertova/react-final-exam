@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import Modal from "react-native-modal";
-// import RadioGroup from 'react-native-radio-buttons-group';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import RadioButtonRN from 'radio-buttons-react-native';
 import Input from './../components/Input';

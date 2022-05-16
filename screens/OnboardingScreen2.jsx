@@ -13,8 +13,7 @@ const OnboardingScreen2 = ({ navigation }) => {
                     style={styles.icon}
                     source={require('./../assets/dots-03.png')}
                 />
-                {/* <Button title="Next" onPress={() => navigation.navigate("Signup")} color="#5050A5"/> */}
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Signup")}>
+                <TouchableOpacity style={styles.button} activeOpacity={.8} onPress={() => navigation.navigate("Signup")}>
                   <Text style={styles.buttonText}>Next</Text>
                 </TouchableOpacity>
             </View>
@@ -24,9 +23,6 @@ const OnboardingScreen2 = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // flexDirection:'row',
-    // backgroundColor: '#fff',
-    // alignItems: 'center',
     justifyContent: 'center',
     margin: 25,
   },

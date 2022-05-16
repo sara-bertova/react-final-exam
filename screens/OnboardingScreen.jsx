@@ -14,7 +14,7 @@ const OnboardingScreen = ({ navigation }) => {
                   source={require('./../assets/dots-01.png')}
               />
               {/* <Button title="Next" onPress={() => navigation.navigate("Onboarding1")} color="#5050A5"/> */}
-              <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Onboarding1")}>
+              <TouchableOpacity style={styles.button} activeOpacity={.8} onPress={() => navigation.navigate("Onboarding1")}>
                 <Text style={styles.buttonText}>Next</Text>
               </TouchableOpacity>
             </View>

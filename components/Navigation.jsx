@@ -14,6 +14,7 @@ import Organisations from "./../screens/Organisations";
 import Posts from "./../screens/Posts";
 import OneEvent from "../screens/OneEvent";
 import OnePost from '../screens/OnePost';
+import SendEmailScreen from "./../screens/SendEmailScreen";
 
 import MenuScreen from "./../screens/MenuScreen";
 import ProfileScreen from "./../screens/ProfileScreen";
@@ -63,6 +64,7 @@ const NavigationComponent = ({ navigation }) => {
                             headerShown: false,
                             tabBarLabel: "Home",
                             unmountOnBlur: true,
+                            tabBarIcon: () => (<Image source={require("./../assets/tab-menu/icons8-home.png")} />),
                         }}
                     />
                     <Tab.Screen name="Discover" component={DiscoverStack} 
@@ -70,6 +72,7 @@ const NavigationComponent = ({ navigation }) => {
                             headerShown: false,
                             tabBarLabel: "Discover",
                             unmountOnBlur: true,
+                            tabBarIcon: () => (<Image source={require("./../assets/tab-menu/icons8-find_user_male.png")} />),
                         }}
                     />
                     <Tab.Screen name="Chat" component={ChatStack} 
@@ -77,6 +80,7 @@ const NavigationComponent = ({ navigation }) => {
                             headerShown: false,
                             tabBarLabel: "Chat",
                             unmountOnBlur: true,
+                            tabBarIcon: () => (<Image source={require("./../assets/tab-menu/icons8-chat.png")} />),
                         }}
                     />
                     <Tab.Screen name="Menu" component={MenuStack}
@@ -84,7 +88,9 @@ const NavigationComponent = ({ navigation }) => {
                             headerShown: false,
                             tabBarLabel: "Menu",
                             unmountOnBlur: true,
+                            tabBarIcon: () => (<Image source={require("./../assets/tab-menu/icons8-menu.png")} />),
                         }} 
+            
                         // options={{
                         //     title: 'MENU',
                         //     headerTitleAlign: 'center',
@@ -143,6 +149,18 @@ function MenuStack() {
                 }}>
             </Stack.Screen>
             <Stack.Screen 
+                name="SendEmail" 
+                component={SendEmailScreen}
+                options={{
+                    title: 'CONTACT THE ORGANISATION',
+                    headerTitleAlign: 'center',
+                    headerTintColor: '#5050A5',
+                    contentStyle: {
+                        backgroundColor:'#fff',
+                    }
+                }}>
+            </Stack.Screen>
+            <Stack.Screen 
                 name="SetupProfile" 
                 component={SetupProfileScreen}
                 options={{
@@ -176,6 +194,18 @@ function FeedStack() {
                     headerTintColor: '#5050A5',
                 })}
             ></Stack.Screen>
+            <Stack.Screen 
+                name="SendEmail" 
+                component={SendEmailScreen}
+                options={{
+                    title: 'CONTACT THE ORGANISATION',
+                    headerTitleAlign: 'center',
+                    headerTintColor: '#5050A5',
+                    contentStyle: {
+                        backgroundColor:'#fff',
+                    }
+                }}>
+            </Stack.Screen>
             <Stack.Screen 
                 name="OnePost" 
                 component={OnePost}
@@ -219,6 +249,18 @@ function DiscoverStack() {
                     headerTintColor: '#5050A5',
                 })}
             ></Stack.Screen>
+            <Stack.Screen 
+                name="SendEmail" 
+                component={SendEmailScreen}
+                options={{
+                    title: 'CONTACT THE ORGANISATION',
+                    headerTitleAlign: 'center',
+                    headerTintColor: '#5050A5',
+                    contentStyle: {
+                        backgroundColor:'#fff',
+                    }
+                }}>
+            </Stack.Screen>
 
             <Stack.Screen 
                 name="Organisations" 

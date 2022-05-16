@@ -67,7 +67,7 @@ const SignupScreen = ({navigation}) => {
                 <Text style={styles.label}>I agree to the <Text style={styles.link2}>terms and conditions</Text></Text>
             </View>
             
-            <TouchableOpacity style={styles.button} disabled={!agree} 
+            <TouchableOpacity style={!agree ? styles.disabled : styles.button} disabled={!agree} 
                               onPress={() => {
                                     if ( password != repeatPassword) {
                                         Alert.alert("Passwords do not match")
@@ -108,6 +108,11 @@ const styles = StyleSheet.create({
     },
     button: {
         backgroundColor: '#5050A5',
+        padding: 20,
+        borderRadius: 5,
+    },
+    disabled: {
+        backgroundColor: '#BABADD',
         padding: 20,
         borderRadius: 5,
     },

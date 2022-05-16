@@ -11,9 +11,7 @@ import RadioButtonRN from 'radio-buttons-react-native';
 import Input from './../components/Input';
 import { updateUser } from '../store/actions/UserActions';
 
-const SetupProfileScreen = ({navigation}) => {
-
-    const [name, onChangeName] = useState('');
+const SetupProfileScreen = ({}) => {
 
     const placeholder = useSelector(state => state.user.username);
     const [username, onChangeUsername] = useState('');
@@ -30,7 +28,6 @@ const SetupProfileScreen = ({navigation}) => {
     const [shouldShow2, setShouldShow2] = useState(false);
     const [showRadio, setShowRadio] = useState(false);
     const [showRadio2, setShowRadio2] = useState(false);
-
 
     const bachelorProgrammes = [{
         id: '1', 

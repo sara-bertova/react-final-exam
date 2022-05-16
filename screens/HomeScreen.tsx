@@ -11,7 +11,6 @@ const HomeScreen = ({ navigation }: { navigation: any }) =>  {
     const dispatch = useDispatch();
     const events = useSelector((state: RootState) => state.event.events);
     const posts = useSelector((state: RootState) => state.post.posts);
-    // const eventsPosts = events.concat(posts)
 
     useEffect(() => {
         dispatch(fetchEvents())

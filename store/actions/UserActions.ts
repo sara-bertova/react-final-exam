@@ -20,20 +20,13 @@ export const logout = () => {
     }
 };
 
-export const signup = (email: string, password: string, repeatPassword: string) => {
-    return async (dispatch: any, getState: any) => {
-        // this.setState({ loading: true })
-        // let errorFlag = false;
+export const signup = (email: string, password: string) => {
+    return async (dispatch: any) => {
         const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDUnUm3h11wX7dP0NZixdZvw7X8eqK282o', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-
-            // if (password !== repeatPassword ) {
-            //     errorFlag = true;
-            //     this.setState({ passwordErrorMessage: "Password and repeat password should be same."});
-            //   }
 
             body: JSON.stringify({ //javascript to json
                 email: email,

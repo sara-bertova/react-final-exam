@@ -1,4 +1,4 @@
-import { RESTORE_USER, SIGNUP, LOGIN, UPDATE_USER, LOGOUT } from "../actions/UserActions";
+import { RESTORE_USER, SIGNUP, LOGIN, UPDATE_USER, LOGOUT, CHANGE_PASSWORD } from "../actions/UserActions";
 
 export interface UserState {
     idToken: string | undefined;
@@ -33,6 +33,8 @@ const userReducer = (state: UserState = initialState, action: Action) => {
             return { ...state, idToken: action.payload.idToken, username: action.payload.username }
         case LOGOUT:
             return { ...state, idToken: undefined, email: undefined }
+        case CHANGE_PASSWORD:
+            return { ...state, idToken: action.payload.idToken, email: action.payload.email }
 
         default:
             return state; //does not do anything yet​  

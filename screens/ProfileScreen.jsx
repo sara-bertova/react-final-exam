@@ -63,6 +63,9 @@ const ProfileScreen = ({ navigation }) => {
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SetupProfile')}>
                 <Text style={styles.buttonText}>Edit profile</Text>
             </TouchableOpacity>
+            <TouchableOpacity style={[styles.button, styles.changePasswordBtn]} onPress={() => navigation.navigate('ChangePassword')}>
+                <Text style={[styles.buttonText, styles.passwBtnText]}>Change password</Text>
+            </TouchableOpacity>
 
             <Text style={styles.heading}>Notifications</Text>
 
@@ -124,7 +127,6 @@ const styles = StyleSheet.create({
         padding: 8,
         borderRadius: 5,
         marginTop: 17,
-        marginBottom: 60,
     },
     buttonText: {
         color: '#fff',
@@ -132,11 +134,21 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
     },
+    changePasswordBtn: {
+        marginTop: 7, 
+        marginBottom: 30,
+        borderColor: '#5050A5',
+        borderWidth: 1,
+        backgroundColor: '#fff', 
+    },
+    passwBtnText: {
+        color: '#5050A5', 
+    },
     logoutButton: {
         backgroundColor: '#fff',
         paddingVertical: 19,
         borderRadius: 5,
-        marginTop: 60,
+        marginTop: 30,
     },
     logoutText: {
         textAlign: 'center',

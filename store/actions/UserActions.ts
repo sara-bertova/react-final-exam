@@ -5,6 +5,8 @@ export const LOGIN = 'LOGIN';
 export const RESTORE_USER = 'RESTORE_USER';
 export const UPDATE_USER = 'UPDATE_USER';
 export const LOGOUT = 'LOGOUT';
+export const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
+
 
 
 export const restoreUser = (email: string, token: string) => {
@@ -44,6 +46,35 @@ export const signup = (email: string, password: string) => {
             await SecureStore.setItemAsync('email', data.email);
             await SecureStore.setItemAsync('token', data.idToken);
             dispatch({ type: SIGNUP, payload: { email: data.email, username: data.displayName, idToken: data.idToken } })
+        }
+    };
+};
+
+export const changePassword = (password: string) => {
+    return async (dispatch: any, getState: any) => {
+        const idToken = getState().user.idToken
+        const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyDUnUm3h11wX7dP0NZixdZvw7X8eqK282o', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+
+            body: JSON.stringify({ //javascript to json
+                idToken: idToken,
+                password: password,
+                returnSecureToken: true
+            }) 
+        });
+
+        const data = await response.json(); // json to javascript
+
+        if (!response.ok) {
+            console.log('Something went wrong')
+        } else {
+            dispatch({ type: CHANGE_PASSWORD, payload: { email: data.email, password: data.passwordHash , idToken: data.idToken } })
+            SecureStore.deleteItemAsync('token');
+            SecureStore.deleteItemAsync('email');
+            dispatch({ type: LOGOUT })
         }
     };
 };

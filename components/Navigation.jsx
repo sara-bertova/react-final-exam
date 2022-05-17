@@ -20,6 +20,7 @@ import MenuScreen from "./../screens/MenuScreen";
 import ProfileScreen from "./../screens/ProfileScreen";
 import EditProfileScreen from "./../screens/EditProfileScreen";
 import SetupProfileScreen from "./../screens/SetupProfileScreen";
+import ChangePasswordScreen from "./../screens/ChangePasswordScreen";
 
 import SignupScreen from "./../screens/SignupScreen";
 import LoginScreen from "./../screens/LoginScreen";
@@ -165,6 +166,15 @@ function MenuStack() {
                 component={SetupProfileScreen}
                 options={{
                     title: 'EDIT PROFILE',
+                    headerTitleAlign: 'center',
+                    headerTintColor: '#5050A5',
+                }}>
+            </Stack.Screen>
+            <Stack.Screen 
+                name="ChangePassword" 
+                component={ChangePasswordScreen}
+                options={{
+                    title: 'CHANGE PASSWORD',
                     headerTitleAlign: 'center',
                     headerTintColor: '#5050A5',
                 }}>

@@ -1,13 +1,9 @@
-import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
-import { Button, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { login, restoreUser } from '../store/actions/UserActions';
-import { useNavigation } from '@react-navigation/native';
 import Input from './../components/Input';
 import { Linking } from 'react-native';
 
-const SendEmailScreen = ({route, navigation}) => {
+const SendEmailScreen = ({route}) => {
 
     const { email } = route.params;
 
@@ -16,6 +12,11 @@ const SendEmailScreen = ({route, navigation}) => {
 
     const [validSubject, setValidSubject] = useState(subject !== '')
     const [validBody, setValidBody] = useState(body !== '')
+
+    const resetInputField = () => {
+        onChangeSubject('');
+        onChangeBody('');
+    };
 
     return (
         <View style={styles.container}>
@@ -62,7 +63,10 @@ const SendEmailScreen = ({route, navigation}) => {
                         placeholderTextColor="#BABADD" />
             </View> */}
             
-            <TouchableOpacity style={styles.button} onPress={() => Linking.openURL(`mailto:${email}?subject=${subject}&body=${body}`)}>
+            <TouchableOpacity style={styles.button} 
+                              onPress={
+                                () => { Linking.openURL(`mailto:${email}?subject=${subject}&body=${body}`); resetInputField()}
+                              }>
                 <Text style={styles.buttonText}>Send email</Text>
             </TouchableOpacity>        
         </View>

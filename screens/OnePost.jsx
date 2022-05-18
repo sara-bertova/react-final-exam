@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchEvents, sendComment } from '../store/actions/FeedActions';
 import Moment from 'moment';
 
-const OnePost = ({ route, navigation }) => {
+const OnePost = ({ route }) => {
 
     const { postId, postName } = route.params;
     const [text, onChangeText] = useState('')
@@ -17,6 +17,10 @@ const OnePost = ({ route, navigation }) => {
     useEffect(() => {
         dispatch(fetchEvents())
     }, []);
+
+    const resetInputField = () => {
+        onChangeText('');
+    };
 
     const imageMap = {
         'post1-01.png' : require('./../assets/posts/post1-01.png'),
@@ -90,8 +94,10 @@ const OnePost = ({ route, navigation }) => {
                         onChangeText={onChangeText}
                         value={text} />
 
-                    <Button color="#5050A5" title='Send' onPress={() => dispatch(sendComment(postId, text))} />
-                
+                    <Button color="#5050A5" title='Send' 
+                            onPress={
+                                () => { dispatch(sendComment(postId, text)); resetInputField()}
+                            } />
                 </View>
             </View>
             

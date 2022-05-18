@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { View, Button, TextInput, StyleSheet, Image, ScrollView, Text, TouchableOpacity } from 'react-native';
+import { View, TextInput, StyleSheet, Image, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchChatrooms, sendMessage } from '../store/actions/ChatActions';
 import Moment from 'moment';
@@ -18,20 +18,33 @@ const OneChat = ({ route, navigation }) => {
         dispatch(fetchChatrooms())
     }, []);
 
+    const resetInputField = () => {
+        onChangeText('');
+    };
 
     return (
         <View style={styles.container}>
 
             <ScrollView style={styles.messages}>
-                {Object.keys(messages).map((keyName, i) => ( 
-                    <View key={i} style={styles.chatmsg_wrapper}>
-                        <Text key={messages[keyName].text}
-                            style={styles.chatmsg}>{messages[keyName].text}</Text>
-                        <Text key={messages[keyName].timestamp} style={styles.msg_time}>
-                            {Moment(messages[keyName].timestamp).format('h:mm a')}
-                        </Text>
+                {
+                    messages != undefined ? Object.keys(messages).map((keyName, i) => ( 
+                        <View key={i} style={styles.chatmsg_wrapper}>
+                            <Text key={messages[keyName].text}
+                                style={styles.chatmsg}>{messages[keyName].text}</Text>
+                            <Text key={messages[keyName].timestamp} style={styles.msg_time}>
+                                {Moment(messages[keyName].timestamp).format('h:mm a')}
+                            </Text>
+                        </View>
+                    )) : 
+                    <View style={styles.nochats_wrapper}>
+                        <Image  
+                            style={styles.nochat_image}
+                            source={require('./../assets/no-chats/no-chats.png')}
+                        />
+                        <Text style={styles.nochat_title}>No chat messages</Text>
+                        <Text style={styles.nochat_text}>BE the first one to start the conversation</Text>
                     </View>
-                ))}
+                }
             </ScrollView>
 
             <View style={styles.chatbox_wrapper}>
@@ -53,9 +66,10 @@ const OneChat = ({ route, navigation }) => {
                         onChangeText={onChangeText}
                         value={text} />
 
-                    {/* <Button color="#5050A5" title='Send' onPress={() => dispatch(sendMessage(chatId, text))} /> */}
-
-                    <TouchableOpacity style={styles.button} onPress={() => dispatch(sendMessage(chatId, text))}>
+                    <TouchableOpacity style={styles.button} 
+                                      onPress={
+                                            () => { dispatch(sendMessage(chatId, text)); resetInputField()}
+                                      }>
                         <Image
                             source={require('./../assets/icons8-email_send.png')}
                         />
@@ -68,6 +82,29 @@ const OneChat = ({ route, navigation }) => {
 }
 
 const styles = StyleSheet.create({
+    nochats_wrapper: {
+        marginTop: '50%',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    nochat_image: {
+        height: 75,
+        width: 223,
+    },
+    nochat_title: {
+        color: '#333333',
+        fontSize: 26,
+        marginTop: 14,
+    },
+    nochat_text: {
+        width: 260,
+        color: '#AAAAAA',
+        fontSize: 12,
+        marginTop: 14,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        textTransform: 'uppercase',
+    },
     container: {
         flex: 1,
     },

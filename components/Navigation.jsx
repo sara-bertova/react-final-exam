@@ -91,12 +91,6 @@ const NavigationComponent = ({ navigation }) => {
                             unmountOnBlur: true,
                             tabBarIcon: () => (<Image source={require("./../assets/tab-menu/icons8-menu.png")} />),
                         }} 
-            
-                        // options={{
-                        //     title: 'MENU',
-                        //     headerTitleAlign: 'center',
-                        //     headerTintColor: '#5050A5',
-                        // }}
                     />
                 </Tab.Navigator>
             ) : (

@@ -25,11 +25,25 @@ export const fetchChatrooms = () => {
             console.log('Something went wrong')
         } else {
 
+
             let chatrooms = [];
-            for (const key in data) {
-                let chatroom = new Chatroom(data[key].chatroomName, data[key].chatmessages, '', key)
-                chatrooms.push(chatroom)
+            for(const key in data) {
+                let messages = [];
+
+                for(const key2 in data[key].chatmessages) {
+                    let msg = data[key].chatmessages[key2];
+                    console.log('msg*****: ', msg)
+                    messages.push(new Chatmessage(msg.text, new Date(msg.timestamp)));
+                }
+
+                chatrooms.push(new Chatroom(data[key].chatroomName, messages, '', key))
             }
+
+            // let chatrooms = [];
+            // for (const key in data) {
+            //     let chatroom = new Chatroom(data[key].chatroomName, data[key].chatmessages, '', key)
+            //     chatrooms.push(chatroom)
+            // }
 
             dispatch({ type: FETCH_CHATROOMS, payload: chatrooms })
         }

@@ -1,17 +1,14 @@
-import { useEffect, useState } from 'react';
-import { View, Button, TextInput, StyleSheet, Image, ScrollView, Text, TouchableOpacity } from 'react-native';
+import { useEffect } from 'react';
+import { View, StyleSheet, Image, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchEvents } from '../store/actions/FeedActions';
-import Moment from 'moment';
-import { Linking } from 'react-native';
 
 const OnePost = ({ route, navigation }) => {
 
-    const { postId, postName } = route.params;
-    const [text, onChangeText] = useState('')
+    const { postId, postName } = route.params
 
     const dispatch = useDispatch();
-    const events = useSelector(state => state.event.events.filter(event => event.id == postId));
+    const events = useSelector(state => state.event.events.filter(event => event.id == postId))
     const event = events[0]
 
     useEffect(() => {
@@ -23,8 +20,6 @@ const OnePost = ({ route, navigation }) => {
         'cbs-ghost-world.png' : require('./../assets/cbs-ghost-world.png'),
     }
 
-    // console.log('*************** ', event.description)
-
     return (
         <ScrollView style={styles.container}>
 
@@ -33,11 +28,13 @@ const OnePost = ({ route, navigation }) => {
                 
                 <View style={styles.info}>
                     <Text style={styles.title}>{event.title}</Text>
+
                     <Text style={styles.time}>
                         <Image style={styles.icon_img}  
                             source={require('./../assets/icons8-alarm_clock/icons8-alarm_clock.png')}
                         /> {event.time}
                     </Text>
+
                     <Text style={styles.white_text}>
                         <Image style={styles.icon_img}    
                             source={require('./../assets/icons8-marker/icons8-marker.png')}
@@ -47,19 +44,21 @@ const OnePost = ({ route, navigation }) => {
 
                 <View style={styles.inputContainer}>
                     <Image source={require('./../assets/chat-img/chat-img-sm.png')} />
+
                     <TouchableOpacity style={styles.input_wrapper}>
                         <Text style={styles.organizer}>{event.organizer}</Text>
                         <Text style={styles.organizer_subtext}>View page</Text>
                     </TouchableOpacity>
+
                     <TouchableOpacity style={styles.chat_icon}>
                         <Image source={require('./../assets/icons8-chat/icons8-chat.png')} />
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.chat_icon, styles.email]} onPress={() => {
-                                        navigation.navigate('SendEmail', {
+
+                    <TouchableOpacity style={styles.chat_icon} onPress={() => {
+                                      navigation.navigate('SendEmail', {
                                             email: event.email, 
-                                        })
+                                       })
                                     }}>
-                    {/* <TouchableOpacity style={[styles.chat_icon, styles.email]} onPress={() => Linking.openURL(`mailto:${event.email}`)}> */}
                         <Image source={require('./../assets/icons8-mail-24.png')} />
                     </TouchableOpacity>
                 </View>
@@ -72,6 +71,7 @@ const OnePost = ({ route, navigation }) => {
                             /> Interested
                         </Text>
                     </TouchableOpacity>
+
                     <TouchableOpacity style={styles.event_status_wrapper}>
                         <Text>
                             <Image style={styles.status_img}    
@@ -87,6 +87,7 @@ const OnePost = ({ route, navigation }) => {
                             source={require('./../assets/icons8-rating/icons8-rating-full.png')}
                         /> 145 Interested
                     </Text>
+
                     <Text style={styles.one_event_status_result}>
                         <Image style={[styles.status_img, styles.icon_img]}    
                             source={require('./../assets/icons8-today/icons8-today-01.png')}
@@ -148,6 +149,7 @@ const styles = StyleSheet.create({
         width: 37,
         height: 37,
         alignItems: 'center',
+        justifyContent: 'center',
         padding: 10,
         backgroundColor: '#5050A5',
         borderRadius: 5,

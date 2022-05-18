@@ -10,24 +10,10 @@ const ChatScreen = ({ navigation }: { navigation: any }) => {
        
     const dispatch = useDispatch();
     const chatrooms = useSelector((state: RootState) => state.chat.chatrooms);
-
+    
     useEffect(() => {
         dispatch(fetchChatrooms())
     }, []);
-
-    // Object.keys(chatrooms).map((keyName, i) => ( 
-    //     chatrooms[keyName].chatmessages != undefined ?
-    //         console.log(chatrooms[keyName].chatmessages) :
-    //         console.log('nic')
-    // ))
-
-    // Object.keys(item.chatmessages).map((keyName, i) => ( 
-    //     item.chatmessages[keyName].text
-    //     item.chatmessages != undefined ? item.chatmessages[Object.keys(item.chatmessages)[Object.keys(item.chatmessages).length - 1]].text :
-    //     console.log('no messages')
-    // )) 
-
-    // console.log(chatrooms)
 
     const renderItem = ({ item }: { item: any }) => (
 
@@ -44,18 +30,20 @@ const ChatScreen = ({ navigation }: { navigation: any }) => {
             />
             <View style={styles.chat_content}>
                 <Text style={styles.chat_title}>{item.title}</Text>
-                
-                <Text style={styles.chat_text}>
-                    { item.chatmessages != undefined ? item.chatmessages[Object.keys(item.chatmessages)[Object.keys(item.chatmessages).length - 1]].text :
-                        console.log('no messages')}
-                 </Text>
+                { item.chatmessages.length == 0 ?
+                    <Text>No messages</Text> :
+                    <Text style={styles.chat_text}>
+                        {item.chatmessages[Object.keys(item.chatmessages)[Object.keys(item.chatmessages).length - 1]].text} 
+                    </Text>
+                }
             </View>
-            { item.chatmessages != undefined ? 
-            <View>
-                <Text style={styles.chat_text}>
-                    { Moment(item.chatmessages[Object.keys(item.chatmessages)[Object.keys(item.chatmessages).length - 1]].timestamp).format('h:mm a')}
-                 </Text>
-            </View> : <View><Text style={styles.chat_text}></Text></View>}
+            { item.chatmessages.length == 0 ? 
+                <View><Text style={styles.chat_text}></Text></View> :
+                <View>
+                    <Text style={styles.chat_text}>
+                        { Moment(item.chatmessages[Object.keys(item.chatmessages)[Object.keys(item.chatmessages).length - 1]].timestamp).format('h:mm a')}
+                    </Text>
+                </View> }
         </TouchableOpacity>
     );
 

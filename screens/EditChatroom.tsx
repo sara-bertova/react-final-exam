@@ -16,6 +16,10 @@ const AddChatroomScreen = ({ navigation }: { navigation: any }) => {
         dispatch(fetchChatrooms())
     }, []);
 
+    const resetInputField = () => {
+        onChangeText('');
+    };
+
     const renderItem = ({ item }: { item: any }) => (
         <TouchableOpacity style={styles.one_chat}>
             <Image  
@@ -47,7 +51,10 @@ const AddChatroomScreen = ({ navigation }: { navigation: any }) => {
                         onChangeText={onChangeText}
                         value={text} />
 
-                    <Button color="#5050A5" title='Add' onPress={() => dispatch(addChatroom(text))} />
+                    <Button color="#5050A5" title='Add' 
+                            onPress={
+                                () => { dispatch(addChatroom(text)); resetInputField()}
+                            } />
                 </View>
                 <Text style={styles.cancel_btn} onPress={() => navigation.navigate('ChatScreen')}>Cancel</Text>
             </View>

@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { login, restoreUser } from '../store/actions/UserActions';
 import { useNavigation } from '@react-navigation/native';
 import Input from './../components/Input';
-import qs from 'qs';
 import { Linking } from 'react-native';
 
 const SendEmailScreen = ({route, navigation}) => {

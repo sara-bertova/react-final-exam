@@ -122,7 +122,7 @@ export const updateUser = (username: string) => {
             console.log('Something went wrong')
         } else {
             const data = await response.json(); 
-            dispatch({ type: LOGIN, payload: { email: data.email, username: data.displayName, idToken: data.idToken } })
+            dispatch({ type: UPDATE_USER, payload: { email: data.email, username: data.displayName, idToken: data.idToken } })
         }
     };
 };

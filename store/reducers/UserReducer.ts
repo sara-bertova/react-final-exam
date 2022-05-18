@@ -29,8 +29,7 @@ const userReducer = (state: UserState = initialState, action: Action) => {
         case RESTORE_USER:
             return { ...state, idToken: action.payload.idToken, email: action.payload.email }
         case UPDATE_USER:
-            console.log(action.payload.username)
-            return { ...state, idToken: action.payload.idToken, username: action.payload.username }
+            return { ...state, idToken: action.payload.idToken, email: action.payload.email, username: action.payload.username }
         case LOGOUT:
             return { ...state, idToken: undefined, email: undefined }
         case CHANGE_PASSWORD:

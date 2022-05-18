@@ -45,11 +45,11 @@ const OneChat = ({ route, navigation }) => {
                     <TextInput placeholder="Write message"
                         multiline
                         style={styles.input}
-                        // onSubmitEditing={()=>{
-                        //     this.setState({
-                        //       clearInput:!this.state.clearInput, 
-                        //     })  
-                        //   }}
+                        onSubmitEditing={()=>{
+                            this.setState({
+                              clearInput:!this.state.clearInput, 
+                            })  
+                          }}
                         onChangeText={onChangeText}
                         value={text} />
 

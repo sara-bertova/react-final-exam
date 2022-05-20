@@ -1,7 +1,6 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Linking } from 'react-native';
 import { useState } from 'react';
 import Input from './../components/Input';
-import { Linking } from 'react-native';
 
 const SendEmailScreen = ({route}) => {
 

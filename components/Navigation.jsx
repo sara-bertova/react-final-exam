@@ -50,16 +50,6 @@ const NavigationComponent = ({ navigation }) => {
             {token !== undefined ? (
                 // Show the app with all navigation
                 <Tab.Navigator>
-                    {/* <Tab.Screen name="VerifyEmail" component={VerifyEmailScreen} options={{
-                        title: '',
-                        headerStyle: {
-                            backgroundColor: '#5050A5',
-                            borderBottomColor: '#5050A5',
-                        },
-                        contentStyle:{
-                            backgroundColor:'#5050A5'
-                          }
-                        }} /> */}
                     <Tab.Screen name="Home" component={FeedStack} 
                         options={{
                             headerShown: false,

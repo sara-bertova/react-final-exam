@@ -1,25 +1,27 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { TextInput } from 'react-native';
 import { useState } from 'react';
+import Input from './../components/Input';
 
 const LoginScreen = ({navigation}) => {
 
     const [email, onChangeEmail] = useState('');
+    const [validEmail, setValidEmail] = useState(email !== '')
 
     return (
         <View style={styles.container}>
             <Text style={styles.heading}>Reset password</Text>
             <Text style={styles.text}>If you do not know your current password, you can change it.</Text>
 
-            <View style={styles.inputContainer}>
-                <Text style={styles.label2}>E-mail</Text>
-                <TextInput 
-                    placeholder="Email" 
-                    placeholderTextColor="#BABADD" 
-                    style={styles.input} 
-                    onChangeText={onChangeEmail}
-                    value={email} />
-            </View>
+            <Input
+                    label="E-mail"
+                    placeholder='E-mail'
+                    inputValue={email}
+                    error="Email cannot be empty"
+                    valid={validEmail}
+                    setValid={setValidEmail}
+                    setText={onChangeEmail}
+                />
             
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ResetPasswordEmail')}>
                 <Text style={styles.buttonText}>Reset</Text>
@@ -97,6 +99,7 @@ const styles = StyleSheet.create({
         color: '#333333', 
         marginTop: 0,
         fontSize: 16,
+        marginBottom: 16,
     }
 });
 

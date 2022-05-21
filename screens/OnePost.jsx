@@ -94,11 +94,21 @@ const OnePost = ({ route }) => {
                         onChangeText={onChangeText}
                         value={text} />
 
-                    <Button color="#5050A5" title='Send' 
+                    <TouchableOpacity style={!text ? styles.disabled : styles.button} 
+                                      disabled={!text}
+                                      onPress={
+                                            () => { dispatch(sendComment(postId, text)); resetInputField()}
+                                      }>
+                        <Image
+                            source={require('./../assets/icons8-email_send.png')}
+                        />
+                    </TouchableOpacity>
+
+                    {/* <Button color="#5050A5" title='Send' 
                             disabled={!text}
                             onPress={
                                 () => { dispatch(sendComment(postId, text)); resetInputField()}
-                            } />
+                            } /> */}
                 </View>
             </View>
             
@@ -265,6 +275,16 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         width: 120,
         padding: 8,
+    },
+    button: {
+        backgroundColor: '#5050A5',
+        padding: 12,
+        borderRadius: 5,
+    },
+    disabled: {
+        backgroundColor: '#BABADD',
+        padding: 12,
+        borderRadius: 5,
     },
 })
 

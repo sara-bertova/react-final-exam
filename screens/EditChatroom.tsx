@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Button, FlatList, StyleSheet, Text, TouchableOpacity, View, Image, TouchableHighlight } from 'react-native';
+import { Button, FlatList, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 import { TextInput } from 'react-native';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -30,13 +30,13 @@ const AddChatroomScreen = ({ navigation }: { navigation: any }) => {
                 <Text style={styles.chat_title}>{item.title}</Text>
             </View>
             <View>
-                <TouchableHighlight onPress={() => dispatch(deleteChatroom(item.id))}>
+                <TouchableOpacity onPress={() => dispatch(deleteChatroom(item.id))} activeOpacity={.8}>
                     <View>
                         <Image  
                         style={styles.close_image}
                         source={require('./../assets/icons8-close_window/close.png')} />
                     </View>
-                </TouchableHighlight>
+                </TouchableOpacity>
             </View>
         </TouchableOpacity>
     );
@@ -52,6 +52,7 @@ const AddChatroomScreen = ({ navigation }: { navigation: any }) => {
                         value={text} />
 
                     <Button color="#5050A5" title='Add' 
+                            disabled={!text}
                             onPress={
                                 () => { dispatch(addChatroom(text)); resetInputField()}
                             } />

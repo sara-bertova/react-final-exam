@@ -2,7 +2,6 @@ import { View, Text, TextInput, StyleSheet } from 'react-native';
 import { useState } from 'react';
 
 const Input = props => {
-    // const [text, setText] = useState(props.inputValue)
     const [placeholder, setPlaceholder] = useState(props.placeholder)
     const [boolean, setBoolean] = useState(props.secureEntry)
 

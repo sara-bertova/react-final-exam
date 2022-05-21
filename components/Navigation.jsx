@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View, Text, Button, TouchableHighlight, Image, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
 import ChatScreen from "../screens/ChatScreen";
 import EditChatroomScreen from "../screens/EditChatroom";
@@ -81,7 +81,7 @@ const NavigationComponent = ({ navigation }) => {
                     />
                 </Tab.Navigator>
             ) : (
-                // show a stack navigator with only signup and login screens.
+                // show a stack navigator with only signup and login related screens.
                 <Stack.Navigator screenOptions={{
                     headerShown: false,
                     contentStyle: {
@@ -297,13 +297,13 @@ function ChatStack() {
                     headerTitleAlign: 'center',
                     headerTintColor: '#5050A5',
                     headerRight: (props) => (
-                        <TouchableHighlight {...props} onPress={() => navigation.navigate('EditChatroomScreen')}>
+                        <TouchableOpacity {...props} onPress={() => navigation.navigate('EditChatroomScreen')} activeOpacity={.8}>
                             <View>
                                 <Image  
                                 style={styles.create_image}
                                 source={require('./../assets/icons8-create/icons8create.png')} />
                             </View>
-                        </TouchableHighlight>
+                        </TouchableOpacity>
                       ),
                 }} 
             />

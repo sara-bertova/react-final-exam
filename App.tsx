@@ -4,15 +4,11 @@ import ReduxThunk from 'redux-thunk';
 import NavigationComponent from './components/Navigation';
 import chatReducer from './store/reducers/ChatReducer';
 import userReducer from "./store/reducers/UserReducer";
-// import programmeReducer from './store/reducers/ProgrammeReducer';
 import feedReducer from './store/reducers/FeedReducer';
 
 const rootReducer = combineReducers({
   chat: chatReducer,
   user: userReducer,
-  // userInfo: userReducer,
-  // programme: programmeReducer,
-
   event: feedReducer,
   post: feedReducer,
 })

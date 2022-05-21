@@ -1,8 +1,6 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity, Alert} from 'react-native';
 import CheckBox from "expo-checkbox";
 import { useState } from 'react';
-import Modal from "react-native-modal";
-
 import Input from './../components/Input';
 
 const SignupScreen = ({navigation}) => {
@@ -16,9 +14,6 @@ const SignupScreen = ({navigation}) => {
     const [validRepPassword, setValidRepPassword] = useState(repeatPassword !== '')
 
     const [agree, setAgree] = useState(false);
-
-    const [isModalVisible, setIsModalVisible] = useState(false);
-    const handleModal = () => setIsModalVisible(() => !isModalVisible);
 
     return (
         <View style={styles.container}>

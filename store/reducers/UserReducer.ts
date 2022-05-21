@@ -24,10 +24,7 @@ const userReducer = (state: UserState = initialState, action: Action) => {
         case SIGNUP:
             return { ...state, idToken: action.payload.idToken, email: action.payload.email, username: action.payload.username }
         case LOGIN:
-            console.log(action.payload.username)
             return { ...state, idToken: action.payload.idToken, email: action.payload.email, username: action.payload.username } 
-        case RESTORE_USER:
-            return { ...state, idToken: action.payload.idToken, email: action.payload.email }
         case UPDATE_USER:
             return { ...state, idToken: action.payload.idToken, email: action.payload.email, username: action.payload.username }
         case LOGOUT:
@@ -36,7 +33,7 @@ const userReducer = (state: UserState = initialState, action: Action) => {
             return { ...state, idToken: action.payload.idToken, email: action.payload.email }
 
         default:
-            return state; //does not do anything yet​  
+            return state;
     }
 };
 

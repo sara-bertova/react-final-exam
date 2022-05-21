@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { login, restoreUser } from '../store/actions/UserActions';
+import { login } from '../store/actions/UserActions';
 import Input from './../components/Input';
 
 const LoginScreen = ({navigation}) => {
@@ -13,20 +13,6 @@ const LoginScreen = ({navigation}) => {
     const [validPassword, setValidPassword] = useState(password !== '')
 
     const dispatch = useDispatch();
-
-    // async function load() {
-    //     let emailFromSecureStore = await SecureStore.getItemAsync('email');
-    //     let tokenFromSecureStore = await SecureStore.getItemAsync('token');
-    //     if (emailFromSecureStore && tokenFromSecureStore) {
-    //         console.log("success", emailFromSecureStore);
-
-    //         dispatch(restoreUser(emailFromSecureStore, tokenFromSecureStore));
-
-    //     } else {
-    //         console.log("failure");
-    //     }
-    // }
-
 
     return (
         <View style={styles.container}>
@@ -65,7 +51,6 @@ const LoginScreen = ({navigation}) => {
 
             <Text style={styles.text}>Don't have an account? <Text style={styles.link} onPress={() => navigation.navigate('Signup')}>Sign up</Text></Text>
 
-            
         </View>
     );
 }

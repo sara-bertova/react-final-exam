@@ -7,12 +7,6 @@ export const UPDATE_USER = 'UPDATE_USER';
 export const LOGOUT = 'LOGOUT';
 export const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
 
-
-
-export const restoreUser = (email: string, token: string) => {
-    return { type: RESTORE_USER, payload: { email, idToken: token } };
-};
-
 export const logout = () => {
     return async (dispatch: any) => {
         SecureStore.deleteItemAsync('token');

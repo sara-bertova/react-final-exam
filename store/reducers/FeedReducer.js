@@ -15,7 +15,7 @@ const feedReducer = (state = initialState, action) => {
             return { ...state, posts: action.payload }
 
         default:
-            return state; //does not do anything yet​   
+            return state;  
     }
 };
 

@@ -20,7 +20,7 @@ export const fetchChatrooms = () => {
         });
 
 
-        const data = await response.json(); // json to javascript
+        const data = await response.json();
         if (!response.ok) {
             console.log('Something went wrong')
         } else {
@@ -38,12 +38,6 @@ export const fetchChatrooms = () => {
 
                 chatrooms.push(new Chatroom(data[key].chatroomName, messages, '', key))
             }
-
-            // let chatrooms = [];
-            // for (const key in data) {
-            //     let chatroom = new Chatroom(data[key].chatroomName, data[key].chatmessages, '', key)
-            //     chatrooms.push(chatroom)
-            // }
 
             dispatch({ type: FETCH_CHATROOMS, payload: chatrooms })
         }
@@ -68,7 +62,7 @@ export const addChatroom = (chatroomName: string) => {
         });
 
 
-        const data = await response.json(); // json to javascript
+        const data = await response.json();
         console.log(data);
         if (!response.ok) {
             console.log('Something went wrong')
@@ -93,7 +87,7 @@ export const deleteChatroom = (id: string) => {
         });
 
 
-        const data = await response.json(); // json to javascript
+        const data = await response.json();
         console.log(data);
         if (!response.ok) {
             console.log('Something went wrong')
@@ -121,8 +115,6 @@ export const sendMessage = (chatId: string, message: string) => {
                 timestamp: oneMessage.timestamp
             })
         });
-
-        const data = await response.json(); // json to javascript
 
         if (!response.ok) {
             console.log('Something went wrong')

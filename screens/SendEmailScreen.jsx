@@ -32,6 +32,7 @@ const SendEmailScreen = ({route}) => {
             />
 
             <Input style={styles.textarea}
+                isMultiline={true}
                 label="Your enquiry"
                 placeholder='Write your message'
                 inputValue={body}

@@ -53,15 +53,10 @@ const OneChat = ({ route }) => {
                         style={styles.chat_image}
                         source={require('./../assets/emma/emma-101.png')}
                     />
-                
+     
                     <TextInput placeholder="Write message"
                         multiline
                         style={styles.input}
-                        onSubmitEditing={()=>{
-                            this.setState({
-                              clearInput:!this.state.clearInput, 
-                            })  
-                          }}
                         onChangeText={onChangeText}
                         value={text} />
 

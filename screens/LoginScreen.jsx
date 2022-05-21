@@ -27,7 +27,7 @@ const LoginScreen = ({navigation}) => {
     //     }
     // }
 
-    
+
     return (
         <View style={styles.container}>
             <Image
@@ -57,7 +57,9 @@ const LoginScreen = ({navigation}) => {
     
             <Text style={styles.link} onPress={() => navigation.navigate('ResetPassword')}>Forgot password?</Text>
             
-            <TouchableOpacity style={styles.button} onPress={() => dispatch(login(email, password))}>
+            <TouchableOpacity style={!email && !password ? styles.disabled : styles.button} 
+                              disabled={!email && !password} 
+                              onPress={() => dispatch(login(email, password))}>
                 <Text style={styles.buttonText}>Log in</Text>
             </TouchableOpacity>
 
@@ -69,6 +71,11 @@ const LoginScreen = ({navigation}) => {
 }
 
 const styles = StyleSheet.create({
+    disabled: {
+        backgroundColor: '#BABADD',
+        padding: 20,
+        borderRadius: 5,
+    },
     container: {
         margin: 20,
         flex: 1,

@@ -193,7 +193,7 @@ const SetupProfileScreen = ({}) => {
                 </View>
             </Modal>
 
-            <TouchableOpacity style={styles.button} onPress={() => dispatch(updateUser(username))}>
+            <TouchableOpacity style={!username ? styles.disabled : styles.button} disabled={!username} onPress={() => dispatch(updateUser(username))}>
                 <Text style={styles.buttonText}>Save changes</Text>
             </TouchableOpacity>
             
@@ -203,6 +203,11 @@ const SetupProfileScreen = ({}) => {
 
 
 const styles = StyleSheet.create({
+    disabled: {
+        backgroundColor: '#BABADD',
+        padding: 20,
+        borderRadius: 5,
+    },
     container: {
         margin: 20,
         flex: 1,

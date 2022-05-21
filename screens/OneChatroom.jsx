@@ -60,7 +60,8 @@ const OneChat = ({ route }) => {
                         onChangeText={onChangeText}
                         value={text} />
 
-                    <TouchableOpacity style={styles.button} 
+                    <TouchableOpacity style={!text ? styles.disabled : styles.button} 
+                                      disabled={!text}
                                       onPress={
                                             () => { dispatch(sendMessage(chatId, text)); resetInputField()}
                                       }>
@@ -76,6 +77,11 @@ const OneChat = ({ route }) => {
 }
 
 const styles = StyleSheet.create({
+    disabled: {
+        backgroundColor: '#BABADD',
+        padding: 20,
+        borderRadius: 5,
+    },
     nochats_wrapper: {
         marginTop: '50%',
         alignItems: 'center',

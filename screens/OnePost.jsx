@@ -95,6 +95,7 @@ const OnePost = ({ route }) => {
                         value={text} />
 
                     <Button color="#5050A5" title='Send' 
+                            disabled={!text}
                             onPress={
                                 () => { dispatch(sendComment(postId, text)); resetInputField()}
                             } />

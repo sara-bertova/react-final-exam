@@ -15,9 +15,6 @@ const ChangePasswordScreen = ({}) => {
     const [validPassword, setValidPassword] = useState(password !== '')
     const [validRepPassword, setValidRepPassword] = useState(repeatPassword !== '')
 
-    const [isModalVisible, setIsModalVisible] = useState(false);
-    const handleModal = () => setIsModalVisible(() => !isModalVisible);
-
     return (
         <View style={styles.container}>
             <Text style={styles.heading}>Change your password</Text>
@@ -51,7 +48,8 @@ const ChangePasswordScreen = ({}) => {
                     secureEntry={true}
                 />
  
-            <TouchableOpacity style={styles.button} 
+            <TouchableOpacity style={!repeatPassword && !password ? styles.disabled : styles.button} 
+                              disabled={!repeatPassword && !password}
                               onPress={() => {
                                     if ( password != repeatPassword) {
                                         Alert.alert("Passwords do not match")
@@ -68,6 +66,11 @@ const ChangePasswordScreen = ({}) => {
 
 
 const styles = StyleSheet.create({
+    disabled: {
+        backgroundColor: '#BABADD',
+        padding: 20,
+        borderRadius: 5,
+    },
     container: {
         margin: 20,
         flex: 1,

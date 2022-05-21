@@ -42,7 +42,8 @@ const SendEmailScreen = ({route}) => {
                 setText={onChangeBody}
             />
             
-            <TouchableOpacity style={styles.button} 
+            <TouchableOpacity style={!body && !subject ? styles.disabled : styles.button}
+                              disabled={!body && !subject} 
                               onPress={
                                 () => { Linking.openURL(`mailto:${email}?subject=${subject}&body=${body}`); resetInputField()}
                               }>
@@ -53,6 +54,11 @@ const SendEmailScreen = ({route}) => {
 }
 
 const styles = StyleSheet.create({
+    disabled: {
+        backgroundColor: '#BABADD',
+        padding: 20,
+        borderRadius: 5,
+    },
     container: {
         margin: 20,
         flex: 1,

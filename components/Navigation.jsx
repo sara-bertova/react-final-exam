@@ -16,9 +16,7 @@ import OneEvent from "../screens/OneEvent";
 import OnePost from '../screens/OnePost';
 import SendEmailScreen from "./../screens/SendEmailScreen";
 
-import MenuScreen from "./../screens/MenuScreen";
 import ProfileScreen from "./../screens/ProfileScreen";
-import EditProfileScreen from "./../screens/EditProfileScreen";
 import SetupProfileScreen from "./../screens/SetupProfileScreen";
 import ChangePasswordScreen from "./../screens/ChangePasswordScreen";
 
@@ -36,7 +34,6 @@ import VerifyEmailScreen from "./../screens/VerifyEmailScreen";
 import { NavigationContainer } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();

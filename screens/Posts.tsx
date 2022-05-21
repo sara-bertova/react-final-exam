@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { FlatList, StyleSheet, Text, TouchableOpacity, View, Image, ImageBackground, ScrollView } from 'react-native';
+import { FlatList, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../App';

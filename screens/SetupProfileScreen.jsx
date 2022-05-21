@@ -1,9 +1,6 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView, ScrollView} from 'react-native';
-import CheckBox from "expo-checkbox";
-import { Button, TextInput } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigation } from '@react-navigation/native';
 import Modal from "react-native-modal";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import RadioButtonRN from 'radio-buttons-react-native';
@@ -15,8 +12,6 @@ const SetupProfileScreen = ({}) => {
     const placeholder = useSelector(state => state.user.username);
     const [username, onChangeUsername] = useState('');
     const [validUsername, setValidUsername] = useState(username !== '')
-
-    const [agree, setAgree] = useState(false);
 
     const dispatch = useDispatch();
 

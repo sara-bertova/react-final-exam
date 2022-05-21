@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { FlatList, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 import Moment from 'moment';
 
@@ -30,18 +30,25 @@ const ChatScreen = ({ navigation }: { navigation: any }) => {
             />
             <View style={styles.chat_content}>
                 <Text style={styles.chat_title}>{item.title}</Text>
+
+                {/* if there are no messages in chatmessages array shows "No messages" */}
                 { item.chatmessages.length == 0 ?
                     <Text>No messages</Text> :
+                    // else gets the last objects of the chetmessages to show most recent text message
                     <Text style={styles.chat_text}>
                         {item.chatmessages[Object.keys(item.chatmessages)[Object.keys(item.chatmessages).length - 1]].text} 
                     </Text>
                 }
             </View>
+
             { item.chatmessages.length == 0 ? 
                 <View><Text style={styles.chat_text}></Text></View> :
                 <View>
                     <Text style={styles.chat_text}>
+
+                        {/* Gets time of the last text message and formates it */}
                         { Moment(item.chatmessages[Object.keys(item.chatmessages)[Object.keys(item.chatmessages).length - 1]].timestamp).format('h:mm a')}
+                        
                     </Text>
                 </View> }
         </TouchableOpacity>

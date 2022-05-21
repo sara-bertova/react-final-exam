@@ -40,27 +40,6 @@ const SendEmailScreen = ({route}) => {
                 setValid={setValidBody}
                 setText={onChangeBody}
             />
-
-            {/* <View style={styles.inputContainer}>
-                <Text style={styles.label2}>Subject</Text>
-                <TextInput style={styles.input} 
-                        value={subject} 
-                        onChangeText={onChangeSubject} 
-                        placeholder='' 
-                        placeholderTextColor="#BABADD" />
-            </View> */}
-
-            {/* <View style={styles.inputContainer}>
-                <Text style={styles.label2}>Your enquiry</Text>
-                <TextInput style={[styles.input, styles.textArea]} 
-                        multiline
-                        editable
-                        maxLength={500}
-                        value={body} 
-                        onChangeText={onChangeBody} 
-                        placeholder='Your enquiry' 
-                        placeholderTextColor="#BABADD" />
-            </View> */}
             
             <TouchableOpacity style={styles.button} 
                               onPress={

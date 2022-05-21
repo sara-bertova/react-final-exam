@@ -1,29 +1,22 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { Link } from '@react-navigation/native';
+import { Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 const IntroductionScreen = ({ navigation }) => {
 
     return (
-        // <Link to={{ screen: 'Onboarding'}}>
         <TouchableOpacity style={styles.container} onPress={() => navigation.navigate("Onboarding")}>
-            {/* <View style={styles.container}> */}
-                <Text style={styles.heading}>Student Life at Copenhagen Business School</Text>
-                <Text style={styles.subheading}>by</Text>
-                <Image
-                    style={styles.image}
-                    source={require('./../assets/logo.png')}
-                />
-            {/* </View> */}
+          <Text style={styles.heading}>Student Life at Copenhagen Business School</Text>
+          <Text style={styles.subheading}>by</Text>
+          <Image
+              style={styles.image}
+              source={require('./../assets/logo.png')}
+          />
         </TouchableOpacity>
-        // {/* </Link> */}
     );
 }
 
 const styles = StyleSheet.create({
       container: {
         flex: 1,
-        // flexDirection:'row',
-        // backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'flex-end',
         margin: 50,

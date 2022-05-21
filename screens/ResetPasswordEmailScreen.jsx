@@ -1,30 +1,21 @@
-import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity} from 'react-native';
-import CheckBox from "expo-checkbox";
-import { Button, TextInput } from 'react-native';
-import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { signup } from '../store/actions/UserActions';
-
-import { useNavigation } from '@react-navigation/native';
+import { View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 
 const VerifyEmailScreen = ({navigation}) => {
 
     return (
         <View style={styles.container}>
             <Text style={styles.heading}>Check your inbox</Text>
-            <Text style={styles.text}>We’ve sent you a verification email. Open it and tap the “Change Password” link to continue.</Text>
+            
+            <Text style={styles.text}>We've sent you a verification email. Open it and tap the “Change Password” link to continue.</Text>
+
             <Image
                 style={styles.image}
                 source={require('./../assets/verify-email/postman-receive-letter.png')}
             />
+
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}>
                 <Text style={styles.buttonText}>Log in</Text>
-                {/* <Image
-                    source={require('./../assets/verify-email/icons8-checked.png')}
-                /> */}
             </TouchableOpacity>
-            {/* <Text style={styles.text2}>Having trouble?</Text>
-            <Text style={styles.link} onPress={() => navigation.navigate('Login')}>Resend e-mail</Text> */}
         </View>
     );
 }

@@ -1,44 +1,16 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView, Switch} from 'react-native';
-import CheckBox from "expo-checkbox";
-import { Button, TextInput } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Switch} from 'react-native';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigation } from '@react-navigation/native';
-import Modal from "react-native-modal";
 import { logout } from '../store/actions/UserActions';
 
 const ProfileScreen = ({ navigation }) => {
 
-    const [name, onChangeName] = useState('');
-    // const [programme, onChangeProgramme] = useState('');
-
-    const [agree, setAgree] = useState(false);
-
-    const [isModalVisible, setIsModalVisible] = useState(false);
-    const handleModal = () => setIsModalVisible(() => !isModalVisible);
-
     const dispatch = useDispatch();
-
-    // const [isSecondSelectVisible, setIsSecondSelectVisible] = useState(false);
-    // const handleSecondSelect = () => setIsSecondSelectVisible(() => !isSecondSelectVisible);
 
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
     const [isEnabled2, setIsEnabled2] = useState(false);
     const toggleSwitch2 = () => setIsEnabled2(previousState => !previousState);
-
-    // async function load() {
-    //     let emailFromSecureStore = await SecureStore.getItemAsync('email');
-    //     let tokenFromSecureStore = await SecureStore.getItemAsync('token');
-    //     if (emailFromSecureStore && tokenFromSecureStore) {
-    //         console.log("success", emailFromSecureStore);
-
-    //         dispatch(restoreUser(emailFromSecureStore, tokenFromSecureStore));
-
-    //     } else {
-    //         console.log("failure");
-    //     }
-    // }
 
     const email = useSelector(state => state.user.email);
     const username = useSelector(state => state.user.username);
@@ -63,6 +35,7 @@ const ProfileScreen = ({ navigation }) => {
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SetupProfile')}>
                 <Text style={styles.buttonText}>Edit profile</Text>
             </TouchableOpacity>
+
             <TouchableOpacity style={[styles.button, styles.changePasswordBtn]} onPress={() => navigation.navigate('ChangePassword')}>
                 <Text style={[styles.buttonText, styles.passwBtnText]}>Change password</Text>
             </TouchableOpacity>
@@ -74,6 +47,7 @@ const ProfileScreen = ({ navigation }) => {
                     <Text style={styles.toggleTitle}>Chat</Text>
                     <Text style={styles.toggleText}>When you receive a new message</Text>
                 </View>
+
                 <Switch
                     trackColor={{ false: "#AAAAAA", true: "#BABADD" }}
                     thumbColor={isEnabled ? "#5050A5" : "#F5F5F5"}
@@ -88,6 +62,7 @@ const ProfileScreen = ({ navigation }) => {
                     <Text style={styles.toggleTitle}>Event reminder</Text>
                     <Text style={styles.toggleText}>An hour before events you are ‘going to’</Text>
                 </View>
+                
                 <Switch
                     trackColor={{ false: "#AAAAAA", true: "#BABADD" }}
                     thumbColor={isEnabled2 ? "#5050A5" : "#F5F5F5"}

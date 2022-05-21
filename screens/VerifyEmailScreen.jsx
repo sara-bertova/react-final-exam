@@ -1,27 +1,13 @@
-import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity} from 'react-native';
-import CheckBox from "expo-checkbox";
-import { Button, TextInput } from 'react-native';
-import { useState } from 'react';
+import { View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { signup } from '../store/actions/UserActions';
 
-import { useNavigation } from '@react-navigation/native';
-
 const VerifyEmailScreen = ({route, navigation}) => {
-    // const navigation = useNavigation();
 
     const { email, password, repeatPassword } = route.params;
     console.log(password);
 
-    // const [email, onChangeEmail] = useState('');
-    // const [password, onChangePassword] = useState('');
-    // const [repeatPassword, onChangeRepeatPassword] = useState('');
-
-    // const [agree, setAgree] = useState(false);
-
     const dispatch = useDispatch();
-
-    const users = useSelector(state => state.user.idToken);
 
     return (
         <View style={styles.container}>
@@ -35,8 +21,7 @@ const VerifyEmailScreen = ({route, navigation}) => {
                 style={styles.image}
                 source={require('./../assets/verify-email/postman-receive-letter.png')}
             />
-            {/* <Button title="I've verified my e-mail"
-                    onPress={() => navigation.navigate('Login')}  color="#ffffff"/> */}
+           
             <TouchableOpacity style={styles.button} onPress={() => dispatch(signup(email, password, repeatPassword))}>
                 <Text style={styles.buttonText}>I've verified my e-mail</Text>
                 <Image
@@ -45,8 +30,6 @@ const VerifyEmailScreen = ({route, navigation}) => {
             </TouchableOpacity>
             <Text style={styles.text2}>Having trouble?</Text>
             <Text style={styles.link} onPress={() => navigation.navigate('Login')}>Resend e-mail</Text>
-            {/* <Button title="Already have an account? Log in" 
-                    onPress={() => navigation.navigate('Login')} color="#5050A5"/> */}
         </View>
     );
 }
@@ -55,9 +38,7 @@ const VerifyEmailScreen = ({route, navigation}) => {
 const styles = StyleSheet.create({
     container: {
         margin: 20,
-        // flexDirection: "column",
         flex: 1,
-        // alignItems: 'center',
         justifyContent: 'center',
     },
     button: {

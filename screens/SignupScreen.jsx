@@ -82,18 +82,6 @@ const SignupScreen = ({navigation}) => {
                 <Text style={styles.buttonText}>Get access</Text>
             </TouchableOpacity>
 
-            <Modal isVisible={isModalVisible}>
-                <View style={styles.modal}>
-                    <TouchableOpacity style={styles.closeWrapper} onPress={handleModal}>
-                        <Image
-                            style={styles.close_img}
-                            source={require('./../assets/setup-profile/icons8-close_window.png')}
-                        />
-                    </TouchableOpacity>
-                    <Text>Passwords dont</Text>
-                </View>
-            </Modal>
-
             <Text style={styles.text}>Already have a user? <Text style={styles.link} onPress={() => navigation.navigate('Login')}>Log in</Text></Text>
         </View>
     );

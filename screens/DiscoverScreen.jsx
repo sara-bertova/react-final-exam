@@ -1,4 +1,4 @@
-import { View, Text, ImageBackground, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
 
 const DiscoverScreen = ({ navigation }) => {
 

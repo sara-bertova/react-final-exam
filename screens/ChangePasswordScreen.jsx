@@ -1,13 +1,11 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity, Alert, TextInput} from 'react-native';
-import CheckBox from "expo-checkbox";
+import { View, Text, StyleSheet, TouchableOpacity, Alert, TextInput} from 'react-native';
 import { useState } from 'react';
-import Modal from "react-native-modal";
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import Input from './../components/Input';
 import { changePassword } from '../store/actions/UserActions';
 
-const ChangePasswordScreen = ({navigation}) => {
+const ChangePasswordScreen = ({}) => {
 
     const dispatch = useDispatch();
     
@@ -64,17 +62,6 @@ const ChangePasswordScreen = ({navigation}) => {
                 <Text style={styles.buttonText}>Save password</Text>
             </TouchableOpacity>
 
-            <Modal isVisible={isModalVisible}>
-                <View style={styles.modal}>
-                    <TouchableOpacity style={styles.closeWrapper} onPress={handleModal}>
-                        <Image
-                            style={styles.close_img}
-                            source={require('./../assets/setup-profile/icons8-close_window.png')}
-                        />
-                    </TouchableOpacity>
-                    <Text>Passwords dont</Text>
-                </View>
-            </Modal>
         </View>
     );
 }

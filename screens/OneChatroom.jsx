@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchChatrooms, sendMessage } from '../store/actions/ChatActions';
 import Moment from 'moment';
 
-const OneChat = ({ route, navigation }) => {
-    const [agree, setAgree] = useState(false);
+const OneChat = ({ route }) => {
 
     const { chatId, chatName } = route.params;
     const [text, onChangeText] = useState('')

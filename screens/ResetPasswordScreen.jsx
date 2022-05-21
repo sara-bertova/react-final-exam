@@ -1,9 +1,6 @@
-import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
-import { Button, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { TextInput } from 'react-native';
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { login, restoreUser } from '../store/actions/UserActions';
-import { useNavigation } from '@react-navigation/native';
 
 const LoginScreen = ({navigation}) => {
 
@@ -13,6 +10,7 @@ const LoginScreen = ({navigation}) => {
         <View style={styles.container}>
             <Text style={styles.heading}>Reset password</Text>
             <Text style={styles.text}>If you do not know your current password, you can change it.</Text>
+
             <View style={styles.inputContainer}>
                 <Text style={styles.label2}>E-mail</Text>
                 <TextInput 
@@ -22,6 +20,7 @@ const LoginScreen = ({navigation}) => {
                     onChangeText={onChangeEmail}
                     value={email} />
             </View>
+            
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ResetPasswordEmail')}>
                 <Text style={styles.buttonText}>Reset</Text>
             </TouchableOpacity>            

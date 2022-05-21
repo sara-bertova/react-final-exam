@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, Button, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 const OnboardingScreen = ({ navigation }) => {
 
@@ -13,7 +13,6 @@ const OnboardingScreen = ({ navigation }) => {
                   style={styles.icon}
                   source={require('./../assets/dots-01.png')}
               />
-              {/* <Button title="Next" onPress={() => navigation.navigate("Onboarding1")} color="#5050A5"/> */}
               <TouchableOpacity style={styles.button} activeOpacity={.8} onPress={() => navigation.navigate("Onboarding1")}>
                 <Text style={styles.buttonText}>Next</Text>
               </TouchableOpacity>
@@ -24,9 +23,6 @@ const OnboardingScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
       container: {
         flex: 1,
-        // flexDirection:'row',
-        // backgroundColor: '#fff',
-        // alignItems: 'center',
         justifyContent: 'center',
         margin: 25,
       },
@@ -53,11 +49,6 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         alignSelf: 'center',
       },
-      // button: {
-      //   textAlign: 'left',
-      //   backgroundColor: '#5050A5',
-      //   fontWeight: 'bold',
-      // },
       text: {
         textAlign: 'center',
         color: '#707070',

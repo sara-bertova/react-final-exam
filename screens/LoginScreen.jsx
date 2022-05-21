@@ -1,44 +1,33 @@
-import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
-import { Button, TextInput } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { login, restoreUser } from '../store/actions/UserActions';
-import { useNavigation } from '@react-navigation/native';
 import Input from './../components/Input';
 
 const LoginScreen = ({navigation}) => {
 
     const [email, onChangeEmail] = useState('');
     const [password, onChangePassword] = useState('');
-
-    // const email = useSelector(state => state.user.email);
+ 
     const [validEmail, setValidEmail] = useState(email !== '')
-
-    // const password = useSelector(state => state.user.password);
     const [validPassword, setValidPassword] = useState(password !== '')
 
     const dispatch = useDispatch();
 
-    async function load() {
-        let emailFromSecureStore = await SecureStore.getItemAsync('email');
-        let tokenFromSecureStore = await SecureStore.getItemAsync('token');
-        if (emailFromSecureStore && tokenFromSecureStore) {
-            console.log("success", emailFromSecureStore);
+    // async function load() {
+    //     let emailFromSecureStore = await SecureStore.getItemAsync('email');
+    //     let tokenFromSecureStore = await SecureStore.getItemAsync('token');
+    //     if (emailFromSecureStore && tokenFromSecureStore) {
+    //         console.log("success", emailFromSecureStore);
 
-            dispatch(restoreUser(emailFromSecureStore, tokenFromSecureStore));
+    //         dispatch(restoreUser(emailFromSecureStore, tokenFromSecureStore));
 
-        } else {
-            console.log("failure");
-        }
-    }
+    //     } else {
+    //         console.log("failure");
+    //     }
+    // }
 
-//     const users = useSelector(state => state.user.users);
-//     const loggedInUser = useSelector( (state: any) => state.user.loggedInUser )
-
-//     const renderItem = ({ item }) => (
-//         <Text>You are logged in with email: {item.email}</Text>
-//  );
-
+    
     return (
         <View style={styles.container}>
             <Image
@@ -65,34 +54,12 @@ const LoginScreen = ({navigation}) => {
                     setText={onChangePassword}
                     secureEntry={true}
                 />
-            {/* <View style={styles.inputContainer}>
-                <Text style={styles.label2}>E-mail</Text>
-                <TextInput 
-                    placeholder="Email" 
-                    placeholderTextColor="#BABADD" 
-                    style={styles.input} 
-                    onChangeText={onChangeEmail}
-                    value={email} />
-            </View>
-            <View style={styles.inputContainer}>
-                <Text style={styles.label2}>Password</Text>
-                <TextInput 
-                    placeholder="Password" 
-                    placeholderTextColor="#BABADD" 
-                    style={styles.input}
-                    onChangeText={onChangePassword}
-                    value={password}
-                    secureTextEntry={true} />
-            </View> */}
+    
             <Text style={styles.link} onPress={() => navigation.navigate('ResetPassword')}>Forgot password?</Text>
-            {/* <Button title='Log in' 
-                    onPress={() => dispatch(login(email, password))} color="#5050A5"/> */}
+            
             <TouchableOpacity style={styles.button} onPress={() => dispatch(login(email, password))}>
                 <Text style={styles.buttonText}>Log in</Text>
             </TouchableOpacity>
-            {/* <Button title='Set up profile' 
-                    onPress={() => navigation.navigate('SetupProfile')} color="#5050A5"/> */}
-            {/* <FlatList data={loggedInUser} renderItem={renderItem} /> */}
 
             <Text style={styles.text}>Don't have an account? <Text style={styles.link} onPress={() => navigation.navigate('Signup')}>Sign up</Text></Text>
 
@@ -104,8 +71,6 @@ const LoginScreen = ({navigation}) => {
 const styles = StyleSheet.create({
     container: {
         margin: 20,
-        // marginTop: '30%',
-        // flexDirection: "row",
         flex: 1,
         justifyContent: 'center',
     },

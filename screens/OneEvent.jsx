@@ -3,7 +3,7 @@ import { View, StyleSheet, Image, ScrollView, Text, TouchableOpacity } from 'rea
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchEvents } from '../store/actions/FeedActions';
 
-const OnePost = ({ route, navigation }) => {
+const OneEvent = ({ route, navigation }) => {
 
     const { postId, postName } = route.params
 
@@ -269,4 +269,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default OnePost;
+export default OneEvent;

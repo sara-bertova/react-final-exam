@@ -3,12 +3,12 @@ import { View, StyleSheet, Image, ScrollView, Text, TouchableOpacity } from 'rea
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchEvents } from '../store/actions/FeedActions';
 
-const OneEvent = ({ route, navigation }) => {
+const OnePost = ({ route, navigation }) => {
 
-    const { eventId, eventName } = route.params
+    const { postId, postName } = route.params
 
     const dispatch = useDispatch();
-    const events = useSelector(state => state.event.events.filter(event => event.id == eventId))
+    const events = useSelector(state => state.event.events.filter(event => event.id == postId))
     const event = events[0]
 
     useEffect(() => {
@@ -269,4 +269,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default OneEvent;
+export default OnePost;

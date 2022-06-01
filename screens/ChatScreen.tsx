@@ -36,7 +36,7 @@ const ChatScreen = ({ navigation }: { navigation: any }) => {
                     <Text>No messages</Text> :
                     // else gets the last objects of the chetmessages to show most recent text message
                     <Text style={styles.chat_text}>
-                        {item.chatmessages[Object.keys(item.chatmessages)[Object.keys(item.chatmessages).length - 1]].text} 
+                        {item.chatmessages[Object.keys(item.chatmessages).length - 1].text}
                     </Text>
                 }
             </View>
@@ -47,7 +47,7 @@ const ChatScreen = ({ navigation }: { navigation: any }) => {
                     <Text style={styles.chat_text}>
 
                         {/* Gets time of the last text message and formates it */}
-                        { Moment(item.chatmessages[Object.keys(item.chatmessages)[Object.keys(item.chatmessages).length - 1]].timestamp).format('h:mm a')}
+                        { Moment(item.chatmessages[Object.keys(item.chatmessages).length - 1].timestamp).format('h:mm a')}
                         
                     </Text>
                 </View> }

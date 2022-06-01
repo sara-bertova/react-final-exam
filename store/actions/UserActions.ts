@@ -2,7 +2,6 @@ import * as SecureStore from 'expo-secure-store';
 
 export const SIGNUP = 'SIGNUP';
 export const LOGIN = 'LOGIN';
-export const RESTORE_USER = 'RESTORE_USER';
 export const UPDATE_USER = 'UPDATE_USER';
 export const LOGOUT = 'LOGOUT';
 export const CHANGE_PASSWORD = 'CHANGE_PASSWORD';

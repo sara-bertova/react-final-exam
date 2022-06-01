@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../App';
 import { fetchEvents } from '../store/actions/FeedActions';
 
-const HomeScreen = ({ navigation }: { navigation: any }) =>  {
+const Events = ({ navigation }: { navigation: any }) =>  {
 
     const dispatch = useDispatch();
     const events = useSelector((state: RootState) => state.event.events);
@@ -80,4 +80,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default HomeScreen;
+export default Events;

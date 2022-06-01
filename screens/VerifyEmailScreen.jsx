@@ -1,10 +1,10 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { signup } from '../store/actions/UserActions';
 
 const VerifyEmailScreen = ({route, navigation}) => {
 
-    const { email, password, repeatPassword } = route.params;
+    const { email, password } = route.params;
     console.log(password);
 
     const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const VerifyEmailScreen = ({route, navigation}) => {
                 source={require('./../assets/verify-email/postman-receive-letter.png')}
             />
            
-            <TouchableOpacity style={styles.button} onPress={() => dispatch(signup(email, password, repeatPassword))}>
+            <TouchableOpacity style={styles.button} onPress={() => dispatch(signup(email, password))}>
                 <Text style={styles.buttonText}>I've verified my e-mail</Text>
                 <Image
                     source={require('./../assets/verify-email/icons8-checked.png')}

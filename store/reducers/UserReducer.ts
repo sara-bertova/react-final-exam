@@ -1,17 +1,15 @@
-import { RESTORE_USER, SIGNUP, LOGIN, UPDATE_USER, LOGOUT, CHANGE_PASSWORD } from "../actions/UserActions";
+import { SIGNUP, LOGIN, UPDATE_USER, LOGOUT, CHANGE_PASSWORD } from "../actions/UserActions";
 
 export interface UserState {
     idToken: string | undefined;
     email: string | undefined;
-    username: string | undefined;
-    programme: string | undefined;
+    username: string | undefined
 }
 
 const initialState: UserState = {
     idToken: undefined,
     email: undefined,
-    username: undefined,
-    programme: undefined
+    username: undefined
 };
 
 export interface Action {

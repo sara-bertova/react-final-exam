@@ -49,11 +49,6 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     alignSelf: 'center',
   },
-  // button: {
-  //   textAlign: 'left',
-  //   backgroundColor: '#5050A5',
-  //   fontWeight: 'bold',
-  // },
   text: {
     textAlign: 'center',
     color: '#707070',

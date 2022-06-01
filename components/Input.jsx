@@ -2,15 +2,11 @@ import { View, Text, TextInput, StyleSheet } from 'react-native';
 import { useState } from 'react';
 
 const Input = props => {
-    const [placeholder, setPlaceholder] = useState(props.placeholder)
-    const [boolean, setBoolean] = useState(props.secureEntry)
 
     const [entered, setEntered] = useState(false);
 
     const handleChangeText = (text) => {
         setEntered(true);
-        setPlaceholder(placeholder);
-        setBoolean(boolean);
         props.setText(text);
         if (text === '') {
             props.setValid(false);
@@ -30,9 +26,9 @@ const Input = props => {
                     value={props.inputValue} 
                     onChangeText={handleChangeText} 
                     onBlur={handleOnBlur} 
-                    placeholder={placeholder} 
+                    placeholder={props.placeholder} 
                     placeholderTextColor="#BABADD" 
-                    secureTextEntry={boolean}/>
+                    secureTextEntry={props.secureEntry}/>
                 {!props.valid && entered ? 
                     <Text style={styles.error}>{props.error}</Text> 
                 : <>

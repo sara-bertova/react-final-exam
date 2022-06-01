@@ -69,8 +69,7 @@ const SignupScreen = ({navigation}) => {
                                     } else {
                                         navigation.navigate('VerifyEmail', {
                                             email: email, 
-                                            password: password, 
-                                            repeatPassword: repeatPassword
+                                            password: password
                                         })
                                     }
                             }}>

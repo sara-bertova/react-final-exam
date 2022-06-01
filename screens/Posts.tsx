@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../App';
 import { fetchPosts } from '../store/actions/FeedActions';
 
-const HomeScreen = ({ navigation }: { navigation: any }) =>  {
+const Posts = ({ navigation }: { navigation: any }) =>  {
 
     const dispatch = useDispatch();
     const posts = useSelector((state: RootState) => state.post.posts);
@@ -137,4 +137,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default HomeScreen;
+export default Posts;

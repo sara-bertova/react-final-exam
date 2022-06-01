@@ -296,8 +296,8 @@ function ChatStack() {
                     title: 'CHAT',
                     headerTitleAlign: 'center',
                     headerTintColor: '#5050A5',
-                    headerRight: (props) => (
-                        <TouchableOpacity {...props} onPress={() => navigation.navigate('EditChatroomScreen')} activeOpacity={.8}>
+                    headerRight: () => (
+                        <TouchableOpacity onPress={() => navigation.navigate('EditChatroomScreen')} activeOpacity={.8}>
                             <View>
                                 <Image  
                                 style={styles.create_image}

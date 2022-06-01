@@ -1,9 +1,8 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { TextInput } from 'react-native';
 import { useState } from 'react';
 import Input from './../components/Input';
 
-const LoginScreen = ({navigation}) => {
+const ResetPasword = ({navigation}) => {
 
     const [email, onChangeEmail] = useState('');
     const [validEmail, setValidEmail] = useState(email !== '')
@@ -103,4 +102,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default LoginScreen;
+export default ResetPasword;

@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 
-const VerifyEmailScreen = ({navigation}) => {
+const ResetPaswordEmailScreen = ({navigation}) => {
 
     return (
         <View style={styles.container}>
@@ -103,4 +103,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default VerifyEmailScreen;
+export default ResetPaswordEmailScreen;

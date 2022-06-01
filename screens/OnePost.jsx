@@ -103,12 +103,7 @@ const OnePost = ({ route }) => {
                             source={require('./../assets/icons8-email_send.png')}
                         />
                     </TouchableOpacity>
-
-                    {/* <Button color="#5050A5" title='Send' 
-                            disabled={!text}
-                            onPress={
-                                () => { dispatch(sendComment(postId, text)); resetInputField()}
-                            } /> */}
+                    
                 </View>
             </View>
             
